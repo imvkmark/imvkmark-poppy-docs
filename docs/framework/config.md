@@ -1,38 +1,27 @@
-# 配置(Config)
+# 配置
 
-### Seo
+## page_size
 
-```
-// 用于设置后台网站名称 和 描述信息
-'title'       => '网站名称',
-'description' => '网站描述',
-```
+default : 15
+默认的分页大小, 默认 15 条
 
-### 信息模板
+## page_max
 
-```
-// 根据执行内容显示不同的视图模板(例成功/失败)
-// 接收视图地址 如 module::xx.folder.message  可支持多个视图地址
-'message_template' => [
-],
-```
+default: 3000
+最大分页数
 
-### 配置信息
+## message_template
 
-```
-'framework' => [
-    // 页数 
-    'page_size'        => 15,
+default : []
+根据执行内容显示不同的视图模板(例成功/失败)
+接收视图地址 如 `module::xx.folder.message`   可支持多个视图地址
 
-    // 最大页数
-    'page_max'         => 3000,
+## title
 
-    // 根据执行内容显示不同的模板
-    'message_template' => [
+default : '网站名称'
+默认的网站名称, 作为默认信息会注入到 view 视图的 `$_title`  中
 
-    ],
+## description
 
-    // Seo 相关
-    'title'            => '网站名称',
-],
-```
+default : '网站描述'
+默认的网站描述信息, 作为默认信息会注入到 view 视图的 `$_description`  中

@@ -1,19 +1,22 @@
 module.exports = {
-	"/": [
-		{
-			text: "项目",
-			collapsable: true,
-			sidebarDepth: 2,
-			children: ["/readme.md", "/project/install.md", "/project/project.md", "/project/todo.md"],
-		},
+	"/": ["/readme.md"],
+	"/project/": [
+		"/project/readme.md",
+		"/project/install.md",
+		"/project/config.md",
+		"/project/best-practice.md",
+		"/project/fe-mix.md",
+		"/project/fe-backend.md",
+		"/project/code-review.md",
 	],
 	"/framework/": [
 		"/framework/readme.md",
-		"/framework/build.md",
 		"/framework/config.md",
 		"/framework/extension.md",
 		"/framework/tree.md",
 		"/framework/resp.md",
+		"/framework/build.md",
+		"/framework/plan.md",
 	],
 	"/module/": [
 		"/module/readme.md",
@@ -30,16 +33,28 @@ module.exports = {
 	],
 	"/poppy/": [
 		{
-			text: "系统",
+			text: "System",
 			collapsable: true,
 			sidebarDepth: 2,
 			children: ["/poppy/system/readme.md", "/poppy/system/config.md"],
 		},
 		{
-			text: "核心",
+			text: "Core",
 			collapsable: true,
 			sidebarDepth: 2,
 			children: ["/poppy/core/readme.md", "/poppy/core/cache.md", "/poppy/core/config.md", "/poppy/core/sami.md"],
+		},
+		{
+			text: "Mgr-Page",
+			collapsable: true,
+			sidebarDepth: 2,
+			children: ["/poppy/mgr-page/readme.md"],
+		},
+		{
+			text: "CanalEs",
+			collapsable: true,
+			sidebarDepth: 2,
+			children: ["/poppy/canal-es/readme.md"],
 		},
 	],
 };

@@ -1,4 +1,4 @@
-# 扩展开发(extension)
+# 扩展开发
 
 ## Composer 文件生成
 
@@ -77,12 +77,11 @@ $ php artisan poppy:optimize
 },
 ```
 
-
 ## 技巧
 
 1. 如何验证 trans 文档是否正确
 
-- 使用 phpstorm 搜索出所有所有 `trans('` 匹配的文档
-- 使用 `open in window`打开
-- 邮件根菜单选择 `Export to text file` 选择位置进行保存
-- 运行命令 `php artisan py-core:inspect trans --export=/Users/duoli/Desktop/report.txt`
+-   使用 phpstorm 搜索出所有所有 `trans('` 匹配的文档
+-   使用 `open in window`打开
+-   邮件根菜单选择 `Export to text file` 选择位置进行保存
+-   运行命令 `php artisan py-core:inspect trans --export=/Users/duoli/Desktop/report.txt`

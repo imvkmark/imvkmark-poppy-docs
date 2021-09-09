@@ -31,7 +31,7 @@ poppy.system.api_info:
 **定义 hooks** 然后再 hooks.yaml 文件中,注册调用 hook 方法
 
 ```yaml
-- name: 'poppy.system.api_info'
+- name: "poppy.system.api_info"
   hooks:
       - '\Poppy\System\Services\Hooks\ApiInfo'
 ```
@@ -76,7 +76,7 @@ poppy.ad.place_selection:
 注册 hook 方法
 
 ```yaml
-- name: 'poppy.ad.place_selection'
+- name: "poppy.ad.place_selection"
   builder: '\Poppy\Ad\Services\Hooks\AdPlaceSelection'
 ```
 

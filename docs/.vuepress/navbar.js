@@ -1,14 +1,18 @@
 module.exports = [
 	{
-		text: "框架",
+		text: "项目/Project",
+		link: "/project/",
+	},
+	{
+		text: "框架/Framework",
 		link: "/framework/",
 	},
 	{
-		text: "模块",
+		text: "模块/Module",
 		link: "/module/",
 	},
 	{
-		text: "系统",
-		link: "/system/",
-	}
+		text: "系统模块/Poppy",
+		link: "/poppy/",
+	},
 ];

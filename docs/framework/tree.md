@@ -1,7 +1,6 @@
-# 文件目录树
+# 文件树
 
 Poppy Framework 文档
-
 
 ```
 ├── README.md
@@ -67,11 +66,11 @@ Poppy Framework 文档
 │   │           ├── command.stub
 │   │           ├── controller.resource.stub
 │   │           ├── controller.stub
-│   │           ├── event.stub          
-│   │           ├── listener.stub      
-│   │           ├── listener-duck.stub  
-│   │           ├── listener-queued.stub       
-│   │           ├── listener-queued-duck.stub  
+│   │           ├── event.stub
+│   │           ├── listener.stub
+│   │           ├── listener-duck.stub
+│   │           ├── listener-queued.stub
+│   │           ├── listener-queued-duck.stub
 │   │           ├── middleware.stub
 │   │           ├── model.stub
 │   │           ├── policy.stub
@@ -90,17 +89,17 @@ Poppy Framework 文档
 │   │   ├── ArithmeticException.php
 │   │   ├── BaseException.php
 │   │   ├── DoException.php
-│   │   ├── FakerException.php   
+│   │   ├── FakerException.php
 │   │   ├── LoadConfigurationException.php
 │   │   ├── ModuleNotFoundException.php
 │   │   ├── ParamException.php
 │   │   ├── PolicyException.php
-│   │   ├── PoppyException.php   
+│   │   ├── PoppyException.php
 │   │   ├── RbacException.php
 │   │   ├── RuntimeException.php
-│   │   ├── TestException.php     
+│   │   ├── TestException.php
 │   │   └── TransactionException.php
-│   ├── Facade        # 门面   
+│   ├── Facade        # 门面
 │   │   ├── IniFacade.php
 │   │   ├── XmlFacade.php
 │   │   ├── YamlFacade.php

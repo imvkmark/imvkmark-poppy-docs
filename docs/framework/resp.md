@@ -1,4 +1,4 @@
-# 错误标识码(Error Code)
+# 错误码
 
 ## 返回格式
 
@@ -15,7 +15,7 @@ Api 以 Json 格式返回: 其中代表的含义如下:
 
 **有服务器错误**
 
-```
+```json
 {
   "status": 500,
   "message": "Internal Server Error"
@@ -24,7 +24,7 @@ Api 以 Json 格式返回: 其中代表的含义如下:
 
 **服务器无错误**
 
-```
+```json
 {
   "status": 0,
   "message": "获取用户信息成功!",

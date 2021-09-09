@@ -50,21 +50,21 @@ trait PolicyTrait
      * @param string     $ability 能力
      * @return bool|null
      */
-    public function be#fore(PamAccount $pam, $ability)
-    {#
-        $permission = #self::$permissionMap[$ability] ?? '';
-        return $permis#sion ? $pam->capable($permission) : null;
-    }#
-#
-    /**#
-     * 策略映射#
+    public function before(PamAccount $pam, $ability)
+    {
+        $permission = self::$permissionMap[$ability] ?? '';
+        return $permission ? $pam->capable($permission) : null;
+    }
+
+    /**
+     * 策略映射
      * @return mixed#
-     */#
-    public static func#tion getPermissionMap()
-    {#
-        return self::$#permissionMap;
-    }#
-#
+     */
+    public static function getPermissionMap()
+    {
+        return self::$permissionMap;
+    }
+
 }
 ```
 

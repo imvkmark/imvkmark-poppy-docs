@@ -1,4 +1,4 @@
-# 项目说明
+# 说明
 
 ### 开发文件不需要自动加载
 
@@ -223,3 +223,7 @@ public/docs
 **将 public 目录设置为资源根目录**
 
 因为 public 目录是对外输出目录, 所有的资源均以这个作为资源的识别
+
+## 最佳实践
+
+-   单元测试 : [**在 PhpStorm 中运行 Laravel 的 phpunit 单元测试** ](https://www.yuque.com/duoli/php/phpstorm-run-laravel-phpunit)
