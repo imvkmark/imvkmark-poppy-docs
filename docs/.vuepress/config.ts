@@ -17,5 +17,19 @@ module.exports = {
 			// lineNumbers: false,
 		},
 	},
-	plugins: [],
+	plugins: [
+		[
+			"@vuepress/docsearch",
+			{
+				apiKey: "eee6e259e4f1bf8fda4e0111ec2c7bd4",
+				indexName: "lang",
+				appId: "SXPLIEYR2X",
+				locales: {
+					"/": {
+						placeholder: "Search",
+					},
+				},
+			},
+		],
+	],
 };
