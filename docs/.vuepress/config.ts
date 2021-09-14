@@ -5,6 +5,7 @@ const { path } = require("@vuepress/utils");
 module.exports = {
 	lang: "zh-CN",
 	title: "Poppy Framework 中文文档",
+	base: "/doc",
 	themeConfig: {
 		logo: "/images/logo.png",
 		sidebar,
