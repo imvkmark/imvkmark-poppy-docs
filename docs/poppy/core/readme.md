@@ -1,4 +1,4 @@
-# Poppy Core 模块
+# Readme
 
 > Poppy 核心模块, system 基于本模块
 
@@ -21,7 +21,7 @@ php artisan py-core:doc {slug}
 {slug}:
     - api   : 生成api文档[apidoc 生成目录]
     - cs    : code style - fix , 代码格式修复(todo 以后IDE 来做)
-    - cs-pf : 
+    - cs-pf :
     - lint  : 安装检测PHP语法错误的工具
     - php   : 生成 php api 文档
     - log   : 查看当天的 storage 日志
@@ -36,7 +36,6 @@ $ composer global require overtrue/phplint -vvv
 $ php artisan py-core:doc lint
 $ phplint /path/of/code -c /framework/path/.phplint.yml
 ```
-
 
 ### 检查代码
 
@@ -58,7 +57,7 @@ php artisan py-core:inspect {slug}
 
 ```
 php artisan py-core:op {slug}
-{slug} : 
+{slug} :
     - mail   : 发送运维邮件
 ```
 

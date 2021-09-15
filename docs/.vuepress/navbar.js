@@ -12,7 +12,7 @@ module.exports = [
 		link: "/module/",
 	},
 	{
-		text: "系统模块/Poppy",
+		text: "核心/Poppy",
 		link: "/poppy/",
 	},
 ];

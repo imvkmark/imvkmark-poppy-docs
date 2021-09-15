@@ -32,6 +32,7 @@ module.exports = {
 		"/module/progress.md",
 	],
 	"/poppy/": [
+        "/poppy/readme.md",
 		{
 			text: "System",
 			collapsable: true,
