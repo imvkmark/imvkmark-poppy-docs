@@ -61,6 +61,19 @@ _composer.json_
 $ composer dumpautoload
 ```
 
+**使用 Handler**
+
+将错误监听修改为自定义的错误监控类
+
+_storage/bootstrap/app.php_
+
+```php
+$app->singleton(
+	Illuminate\Contracts\Debug\ExceptionHandler::class,
+	Misc\Foundation\Handler::class
+);
+```
+
 这样便可以注册并收到异常
 
 因为框架在注册异常之前需要知晓异常类的位置, 否则出现异常的时候无法进行异常报错
