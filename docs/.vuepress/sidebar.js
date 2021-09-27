@@ -30,9 +30,10 @@ module.exports = {
 		"/module/permission.md",
 		"/module/policy.md",
 		"/module/progress.md",
+		"/module/qa.md",
 	],
 	"/poppy/": [
-        "/poppy/readme.md",
+		"/poppy/readme.md",
 		{
 			text: "System",
 			collapsable: true,
