@@ -15,4 +15,8 @@ module.exports = [
 		text: "核心/Poppy",
 		link: "/poppy/",
 	},
+	{
+		text: "Wulicode",
+		link: "https://wulicode.com/",
+	},
 ];

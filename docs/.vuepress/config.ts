@@ -10,6 +10,7 @@ module.exports = {
 		logo: "/images/logo.png",
 		sidebar,
 		navbar,
+		repo: "https://github.com/imvkmark/poppy-doc",
 		displayAllHeaders: true,
 		smoothScroll: true,
 	},
