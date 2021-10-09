@@ -10,14 +10,14 @@ composer require sentry/sentry-laravel
 
 **新建异常监听**
 
-这里文件位置放置在 `modules/misc/src/foundation` 下
+这里文件位置放置在 `modules/misc/src/http/foundation` 下
 
 _Handler.php_
 
 ```php
 <?php
 
-namespace Misc\Foundation;
+namespace Misc\Http\Foundation;
 
 use Exception;
 
@@ -48,7 +48,7 @@ _composer.json_
      "autoload": {
         "psr-4": {
             ...
-            "Misc\\Foundation\\": "modules/misc/src/foundation",
+            "Misc\\Http\\Foundation\\": "modules/misc/src/http/foundation",
             ...
         }
      }
@@ -70,7 +70,7 @@ _storage/bootstrap/app.php_
 ```php
 $app->singleton(
 	Illuminate\Contracts\Debug\ExceptionHandler::class,
-	Misc\Foundation\Handler::class
+	Misc\Http\Foundation\Handler::class
 );
 ```
 
