@@ -1,4 +1,4 @@
-# 模块(Module)
+# 说明
 
 ## 功能开发流程
 
@@ -187,11 +187,9 @@ private function bootConfigMail()
 3.FrameworkServiceProvider.php 验证正则规则
 ```
 
-
 ## 设置
 
 设置使用 Form Setting 来进行设置, 详细见 Form 部分
-
 
 ## 模块约定
 

@@ -1,4 +1,4 @@
-# 钩子 hook 和服务 Services
+# 钩子服务
 
 服务的位置: `modules/{module}/configurations/services.yaml`
 

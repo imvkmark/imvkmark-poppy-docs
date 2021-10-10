@@ -3,7 +3,7 @@
 ## 访问地址
 
 ```
-http://xxx.com/develop
+http://xxx.com/mgr-page/develop
 点击 数据表更新
 参数
 [
