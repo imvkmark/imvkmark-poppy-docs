@@ -70,8 +70,8 @@ User root_user created
 
 安装完成访问 `https://poppy-demo.wulicode.com/backend/login`
 
-![](images/proj-login.png)
+![](./images/proj-login.png)
 
 登录之后的界面
 
-![](images/proj-logined.png)
+![](./images/proj-logined.png)
