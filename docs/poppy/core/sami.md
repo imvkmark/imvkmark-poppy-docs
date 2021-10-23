@@ -55,6 +55,7 @@ Version master
 
 生成文档如下
 
-![023624](./media/15810398480492/023624.png)
+![](https://file.wulicode.com/note/2021/10-23/11-33-00249.png)
+
 
 Sami 配置文件查看 : [sami-config.php](https://github.com/imvkmark/poppy-core/blob/3.0/resources/config/sami-config.php)
