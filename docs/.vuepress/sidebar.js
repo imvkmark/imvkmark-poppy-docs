@@ -38,7 +38,7 @@ module.exports = {
 			text: "System",
 			collapsable: true,
 			sidebarDepth: 2,
-			children: ["/poppy/system/readme.md", "/poppy/system/config.md"],
+			children: ["/poppy/system/readme.md", "/poppy/system/config.md", "/poppy/system/middlewares.md"],
 		},
 		{
 			text: "Core",
