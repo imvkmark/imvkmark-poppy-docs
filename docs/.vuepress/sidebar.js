@@ -59,4 +59,5 @@ module.exports = {
 			children: ["/poppy/canal-es/readme.md"],
 		},
 	],
+	"/vendor/": ["/vendor/code-review.md"],
 };
