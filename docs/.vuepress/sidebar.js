@@ -32,32 +32,6 @@ module.exports = {
 		"/module/progress.md",
 		"/module/qa.md",
 	],
-	"/poppy/": [
-		"/poppy/readme.md",
-		{
-			text: "System",
-			collapsable: true,
-			sidebarDepth: 2,
-			children: ["/poppy/system/readme.md", "/poppy/system/config.md", "/poppy/system/middlewares.md"],
-		},
-		{
-			text: "Core",
-			collapsable: true,
-			sidebarDepth: 2,
-			children: ["/poppy/core/readme.md", "/poppy/core/cache.md", "/poppy/core/config.md", "/poppy/core/sami.md"],
-		},
-		{
-			text: "Mgr-Page",
-			collapsable: true,
-			sidebarDepth: 2,
-			children: ["/poppy/mgr-page/readme.md"],
-		},
-		{
-			text: "CanalEs",
-			collapsable: true,
-			sidebarDepth: 2,
-			children: ["/poppy/canal-es/readme.md"],
-		},
-	],
+	"/poppy/": ["/poppy/system.md", "/poppy/core.md", "/poppy/mgr-app.md", "/poppy/mgr-page.md", "/poppy/canal-es.md"],
 	"/vendor/": ["/vendor/code-review.md"],
 };
