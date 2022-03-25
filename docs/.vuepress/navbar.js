@@ -1,22 +1,10 @@
 module.exports = [
 	{
-		text: "项目/Project",
-		link: "/project/",
+		text: "3.x",
+		link: "/3.x/",
 	},
 	{
-		text: "框架/Framework",
-		link: "/framework/",
-	},
-	{
-		text: "模块/Module",
-		link: "/module/",
-	},
-	{
-		text: "核心/Poppy",
-		link: "/poppy/system.md",
-	},
-	{
-		text: "Wulicode",
-		link: "https://wulicode.com/",
+		text: "开发",
+		link: "/develop/",
 	},
 ];

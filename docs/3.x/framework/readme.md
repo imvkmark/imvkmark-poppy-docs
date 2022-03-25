@@ -243,7 +243,7 @@ ArrayHelper
 EnvHelper
 FileHelper
 HtmlHelper
-ImageHelper
+ImgHelper
 CookieHelper
 RouterHelper
 SearchHelper

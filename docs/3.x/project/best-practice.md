@@ -1,5 +1,13 @@
 # 最佳实践
 
+## 配置
+
+对于文件目录 & 网址, 我们不建议在右侧添加 `/` 作为后缀, 例如
+
+```
+URL_SITE=https://wulicode.com
+```
+
 ## phplint
 
 [phplint](https://github.com/overtrue/phplint)是一个快速检测 php 语法错误的工具,

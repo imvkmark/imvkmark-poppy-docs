@@ -71,12 +71,12 @@ php artisan system:doc api
         'default_url' => 'api_v1/backend/system/role/permissions',
     ],
 ],
-
+```
 
 webpack.mix.js 的配置
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: javascript
+```
 
 mix
    .browserSync({

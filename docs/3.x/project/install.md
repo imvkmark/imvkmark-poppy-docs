@@ -68,7 +68,7 @@ $ php artisan py-system:user create_user
 User root_user created
 ```
 
-安装完成访问 `https://poppy-demo.wulicode.com/backend/login`
+安装完成访问 `https://poppy-demo.wulicode.com/mgr-page/login`
 
 
 ![](https://file.wulicode.com/note/2021/11-09/09-47-19512.png)

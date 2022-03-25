@@ -3,6 +3,21 @@
 前后端分离的项目包
 
 -   [] 安装方式
+## 开发
+
+数据准备
+
+```
+# demo 集成
+$ php artisan poppy:migrate module.demo
+
+# 创建数据
+$ php artisan poppy:seed module.demo --class='\Demo\Database\Seeds\DemoWebappDatabaseSeeder'
+$ php artisan poppy:seed module.demo --class='\Demo\Database\Seeds\DemoUserDatabaseSeeder'
+
+# 还原数据
+$ php artisan poppy:migrate:rollback
+```
 
 ## Grid
 

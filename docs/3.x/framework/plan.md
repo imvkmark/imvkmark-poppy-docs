@@ -2,8 +2,6 @@
 
 ## 版本计划
 
-1. 目录不允许存在后缀 '/'
-1. 扩展仅仅作为功能项目存在, 扩展也可以进行相应的配置, 当前没有不可以的地方, 扩展的前缀为 ext, 命名规则为 ext-push*ali(ext-(fun)*(type))
 1. modules 和 poppy 不同的地方是
 
 -   manifest 交给 composer 部分
