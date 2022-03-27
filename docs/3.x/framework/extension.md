@@ -61,21 +61,7 @@ $ php artisan poppy:optimize
 
 至此命名空间可以自动加载成功
 
-## 开发时单元测试支持
 
-配置命名空间支持 单元测试
-
-因为单元测试需要识别路径, 这里需要配置 psr-4 的映射 需要配置 1 个地址即可, 否则使用 phpunit 进行单元测试的时候无法进行有效的类加载.
-
-```
-"autoload-dev" : {
-    "classmap" : [
-    ],
-    "psr-4" : {
-        "Poppy\\System\\Tests\\" : "poppy/system/tests/"
-    }
-},
-```
 
 ## 技巧
 

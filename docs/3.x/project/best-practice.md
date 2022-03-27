@@ -94,22 +94,6 @@ php artisan poppy:optimize
 
 ## 模块配置 (config/module.php)
 
-### 隐藏功能
-
-### 配置命名空间支持 单元测试
-
-因为单元测试需要识别路径, 这里需要配置 psr-4 的映射 需要配置 1 个地址即可,
-否则使用 phpunit 进行单元测试的时候无法进行有效的类加载.
-
-```
-"autoload-dev" : {
-    "classmap" : [
-    ],
-    "psr-4" : {
-        "System\\Tests\\" : "modules/system/tests/"
-    }
-},
-```
 
 ## IDE 项目配置
 

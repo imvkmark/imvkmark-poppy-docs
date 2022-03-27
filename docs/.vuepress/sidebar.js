@@ -21,7 +21,6 @@ module.exports = {
 			children: [
 				"/3.x/module/readme.md",
 				"/3.x/module/action.md",
-				"/3.x/module/apidoc.md",
 				"/3.x/module/event.md",
 				"/3.x/module/hook.md",
 				"/3.x/module/lang.md",

@@ -62,16 +62,6 @@
 
 ```
 
-## 单元测试
-
-```
-首先安装PHPunit  PHPunit --version 可以查看是否安装和PHPunit版本
-PHPstorm配置:
- - 在setting 搜索PHP 设置php版本
- - 在php下 Test Frameworks 中设置 phpunit路径
- - default bootstrap中设置框架自动加载文件目录
-使用本框架的  php artisan poppy:test  模块名 测试文件名来创建测试文件
-```
 
 ## 代码风格统一
 
@@ -166,25 +156,6 @@ bug # 308 用户管理操作
 release # 2.3.2
 ```
 
-## 单元测试
-
-必须对接口写单元测试, 否则测试不通过的代码一律打回
-
-### 接口单元测试
-
--   保证接口请求不返回 null 值
--   保证接口必须返回成功, 必须要有返回
-
-### 功能单元测试
-
--   编写配置文件, 保证配置正确
--   编写模型文件, 保证模型函数正确
--   编写功能文件, 保证 Notification, Im 等功能正常
-
-### Action 单元测试
-
--   编写方便的 Action 测试, 便于功能点测试
-
 ## 代码审核
 
 ### 代码要求
@@ -198,8 +169,6 @@ release # 2.3.2
 -   运行优化导入, 保证代码无冗余 `ctrl + alt + o`
 -   保证代码格式正确, 对文件夹进行代码格式化 `ctrl + alt + l`, 在 `src` 目录下运行
 -   代码中不得存在编辑器提示的错误, 优化提示见[PHP Code Review](https://snippets.cacher.io/snippet/8e1fe81c08d6f6591295)
--   Api 单元测试正确
--   功能单元测试正确
 -   对开发功能进行抽检, 进行考评, 不符合标准的进行 5 元红包进行改正
 
 ## IDE
@@ -223,7 +192,3 @@ public/docs
 **将 public 目录设置为资源根目录**
 
 因为 public 目录是对外输出目录, 所有的资源均以这个作为资源的识别
-
-## 最佳实践
-
--   单元测试 : [**在 PhpStorm 中运行 Laravel 的 phpunit 单元测试** ](https://www.yuque.com/duoli/php/phpstorm-run-laravel-phpunit)
