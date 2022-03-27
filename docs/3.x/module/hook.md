@@ -1,4 +1,4 @@
-# 钩子服务
+# 服务和钩子
 
 服务的位置: `modules/{module}/configurations/services.yaml`
 
@@ -8,9 +8,8 @@ hook 位置: `modules/{module}/configurations/hooks.yaml`
 
 我们来解释一下 service：
 
-1.  service 是 module 之间扩展的重要方式。
-2.  我们将 service 和 hook
-    看作是插槽与插头的关系。一个插槽可以插多个插头。
+1.  service 是多个 module 之间扩展的重要方式。
+2.  我们将 service 和 hook 看作是插槽与插头的关系。一个插槽可以插多个插头。
 3.  每个 app 下都会有一个 service.yaml 的文件，来描述本 app 的 service,。
 
 ## 使用
@@ -19,7 +18,7 @@ hook 位置: `modules/{module}/configurations/hooks.yaml`
 
 **定义 service**
 
-首先再 services.yaml 中定义如下内容
+首先在 services.yaml 中定义如下内容
 
 ```yaml
 poppy.system.api_info:
@@ -28,12 +27,27 @@ poppy.system.api_info:
     description: 系统信息接口调用, 系统信息返回的灵活数据
 ```
 
-**定义 hooks** 然后再 hooks.yaml 文件中,注册调用 hook 方法
+`poppy.system.api_info` 分为三个部分
+
+```
+poppy    : 命名空间
+system   : 模块
+api_info : 自定义名称
+```
+
+**定义 hooks**
+
+然后再 hooks.yaml 文件中,注册调用 hook 方法, Hooks 命名方式推荐
+
+```
+{模块名称}/Hooks/{定义模块}/{名称}
+{module}/Hooks/System/ApiInfo
+```
 
 ```yaml
 - name: "poppy.system.api_info"
   hooks:
-      - '\Poppy\System\Services\Hooks\ApiInfo'
+      - '\Poppy\System\Hooks\System\ApiInfo'
 ```
 
 编写实现对应的 key()/data()方法
@@ -41,6 +55,7 @@ poppy.system.api_info:
 ```php
 <?php
 class ApiInfo
+{
     public function key()
     {
         return 'api';
