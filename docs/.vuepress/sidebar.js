@@ -35,7 +35,6 @@ module.exports = {
 		{
 			text: "模块",
 			children: [
-				"/3.x/components/readme.md",
 				"/3.x/components/core.md",
 				"/3.x/components/system.md",
 				"/3.x/components/mgr-app.md",
