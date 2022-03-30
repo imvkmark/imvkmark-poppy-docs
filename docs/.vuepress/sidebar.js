@@ -5,6 +5,12 @@ module.exports = {
 			children: ["/develop/index.md", "/develop/spec.md", "/develop/changelog.md"],
 		},
 	],
+	"/4.x/": [
+		{
+			text: "升级",
+			children: ["/4.x/upgrade.md"],
+		},
+	],
 	"/3.x/": [
 		{
 			text: "框架",

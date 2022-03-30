@@ -4,6 +4,10 @@ module.exports = [
 		link: "/3.x/",
 	},
 	{
+		text: "4.x",
+		link: "/4.x/",
+	},
+	{
 		text: "开发",
 		link: "/develop/",
 	},
