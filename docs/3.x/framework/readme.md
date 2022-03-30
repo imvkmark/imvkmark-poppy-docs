@@ -42,6 +42,7 @@ $ php artisan poppy:make {slug} [-Q|--quick]
     ├── http
     │   ├── request
     │   │   ├── api
+    │   │   ├── api_mgr_app    # 4.0 MgrApp 接口文件放置位置
     │   │   ├── backend
     │   │   └── web
     │   └── routes
