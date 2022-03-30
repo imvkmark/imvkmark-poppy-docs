@@ -2,7 +2,44 @@
 
 前后端分离的项目包
 
--   [] 安装方式
+## 配置后台
+
+mgr-app 文件内置在 mgr-page 包的 resources 目录下, nginx 进行如下配置
+
+_mgr-app.conf_
+
+```
+server {
+    listen 9101;
+    server_name localhost;
+    index index.html;
+    root /path/of/mgr-app;
+
+    location / {
+        add_header Cache-Control "public, max-age=0, must-revalidate";
+        try_files $uri $uri/ /index.html?$query_string;
+    }
+
+    access_log off;
+    error_log off;
+}
+```
+
+_domain.conf_
+
+```
+server {
+    # ...
+    location /mgr-app {
+        rewrite "mgr-app/(.*)" /$1 break;
+        proxy_pass http://127.0.0.1:9101;
+    }
+    # ...
+}
+```
+
+如果需要自定义目录, 从源码编译并自行配置包目录即可
+
 ## 开发
 
 数据准备

@@ -10,6 +10,10 @@ module.exports = {
 			text: "升级",
 			children: ["/4.x/upgrade.md"],
 		},
+		{
+			text: "组件",
+			children: ["/4.x/components/mgr-app.md"],
+		},
 	],
 	"/3.x/": [
 		{
@@ -39,11 +43,10 @@ module.exports = {
 			],
 		},
 		{
-			text: "模块",
+			text: "组件",
 			children: [
 				"/3.x/components/core.md",
 				"/3.x/components/system.md",
-				"/3.x/components/mgr-app.md",
 				"/3.x/components/mgr-page.md",
 				"/3.x/components/canal-es.md",
 			],
