@@ -12,11 +12,11 @@ $ php artisan py-system:install
 $ php artisan py-system:user {slug}
 ```
 
-### 用户
+## 用户
 
 本系统基于角色的权限访问控制（Role-Based Access Control）
 
-#### 用户类型
+### 用户类型
 
 根据使用分为三种用户类型(默认)
 
@@ -29,11 +29,17 @@ backend         # 后台用户
 对于用户的类型区分我们使用 Header 来进行区分, Header 的名称是 `x-type` 来进行区分, 区分的层级为
 
 ```
-1. 中间件
-2. Header
+1. 中间件参数 [web, backend, develop, jwt, jwt_backend, jwt_web, jwt_develop]
+2. Header参数 [user/backend/develop]
 ```
 
+参数的类型便是用户的类型, 这里的数据和 guard起到映射关系, 但无需一致
+
+
 根据使用到的用户的类型我们应当分为这几项
+
+Guard : web,backend,develop
+Type : user, backend, develop
 
 ```
 用户 - api (jwt) 驱动
@@ -51,7 +57,7 @@ user     : 前台普通用户
 develop  : 开发者
 ```
 
-#### 密码加密方式
+### 密码加密方式
 
 ```
 $password     : 原始密码
@@ -60,7 +66,7 @@ $randomKey    : 六位随机值
 md5(sha1($password . $reg_datetime) . $randomKey);
 ```
 
-#### 通行证约定
+### 通行证约定
 
 | id       | int(10)     |                                           |
 | -------- | ----------- | ----------------------------------------- |
@@ -69,6 +75,10 @@ md5(sha1($password . $reg_datetime) . $randomKey);
 | email    | varchar(50) | 邮箱                                      |
 
 因为以上这些可以作为通行证, 所以必须是经过认证的才可以写入这个数据表, 否则无法进行写入
+
+### 平台
+
+平台遵循标准化, x-id: 定义为设备ID
 
 ## 配置
 
@@ -270,3 +280,10 @@ class OrderHunterResultProgress implements Progress
 流程参考
 
 ![](https://file.wulicode.com/note/2021/11-09/11-46-46495.png)
+
+### Ban
+
+对用户进行IP/设备的封禁
+
+如果是前台用户, 放到所有请求之前
+如果是后台用户, 放到所有请求之后(需要放过管理员)

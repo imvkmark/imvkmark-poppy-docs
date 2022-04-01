@@ -20,7 +20,7 @@ todo : 关于 Header 的定义需要完善
 
 ## System
 
-1. **不兼容** `ApiSignContract` 方法 `sign` 增加参数 `$type` , 使该方法同时支持不同端签名
+-   **不兼容** `ApiSignContract` 方法 `sign` 增加参数 `$type` , 使该方法同时支持不同端签名
 
 ```diff
 class DefaultApiSignProvider extends DefaultBaseApiSign
@@ -54,12 +54,38 @@ class DefaultApiSignProvider extends DefaultBaseApiSign
 -   **不兼容** 移除 `\Poppy\System\Action\Pam::setPasswordById`, 使用 `\Poppy\System\Action\Pam::setPassword` 替代, 参数不一致, 需要注意
 
 -   **不兼容** 移除 `\Poppy\System\Classes\Contracts\UploadContract::type` , 使用 `\Poppy\System\Classes\Uploader\Uploader::kvExt` 替代, 参数有差异
+
+-   **不兼容** 移除 `\Poppy\System\Action\Pam::captchaLogin` , 参数 `platform` 替换为 guard 类型, `platform` 从 header 中进行取值
+
 -   **不兼容** 移除
 
 ```
 \Poppy\System\Models\PamAccount::fetch()             :  多余的字段查询
 \Poppy\System\Models\PamAccount::getIdByUsername()   :  频率低, 无用函数
 \Poppy\System\Models\PamAccount::getTypeById()       :  频率低, 无用函数
+```
+
+-   **不兼容** Pam 中 loginCheck 移除 loginAllowIpCheck 方法(次级别调用), 会影响(ydl) 项目, 移除 `\System\Events\LoginSuccessEvent` 调用方法
+
+```diff
+public function loginCheck(string $passport, string $password, string $guard_name = PamAccount::GUARD_WEB): bool
+{
+
+-        event(new LoginBannedEvent($pam, $guard));
+
+-        if (method_exists($this, 'loginAllowIpCheck') && !$this->loginAllowIpCheck()) {
+-            $guard->logout();
+-            return false;
+-       }
+
+-        // 兼容存在 system 模块事件
+-        // deprecated 为了兼容 q2
+-        if (class_exists('\System\Events\LoginSuccessEvent')) {
+-            event(new \System\Events\LoginSuccessEvent($pam, $platform, $guard));
+-            return true;
+-        }
+...
+}
 ```
 
 -   **可替代** 移除 `ModuleManager->repository()`, 使用 `ModuleManager->modules()` 替代
@@ -73,6 +99,19 @@ class DefaultApiSignProvider extends DefaultBaseApiSign
 -   **可替代** 移除 `\Poppy\System\Action\Verification::getHiddenStr` , 使用 `\Poppy\System\Action\Verification::getHidden` 替代, 因为返回不仅仅是字串, 可能还会有数组
 
 -   **可替代** 移除 `\Poppy\System\Tests\Base\SystemTestCase::export` , 使用 `\Poppy\Framework\Application\TestCase::outputVariables` 替代, 使用 stream 打印数据, 可保证运行无异常提示
+-   **可替代** 移除 `\Poppy\System\Events\LoginSuccessEvent` 的 platform 参数, 使用 `x-id` 替代
+
+-   **可替代** services 钩子改动
+
+移除 `poppy.system.html_top_nav` 更改为 `poppy.mgr-page.html_top_nav` 并移动到 mgr-page 中
+移除 `poppy.system.html_cp` 更改为 `poppy.mgr-page.html_cp` 并移动到 mgr-page 中
+移除 `poppy.system.settings` 更改为 `poppy.mgr-page.settings` 并移动到 mgr-page 中
+移除 `poppy.system.custom_settings`, 此服务并入 `poppy.mgr-page.settings`
+
+-   **接口** 接口需要增加标准化参数 `x-type` 用来指定是前台用户还是后台用户, 默认是 `user`
+
+-   **重复** 移除 `JwtAuthGuard` , 和 Jwt 包数据重复
+
 
 ## Aliyun-Oss
 
