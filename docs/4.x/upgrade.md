@@ -14,6 +14,10 @@ todo : 关于 Header 的定义需要完善
 
 ## Core
 
+-   **不兼容** 因为 apidoc 升级导致无法生成 json , mgr-page 中无法使用新版来生成 apidoc 文档, 必须使用新版本才可以解析 json 数据, 使用 js `eval` 来解析
+
+-   **可替代** 因为 sami 维护, 无法生成新版本 php api 文档, 使用 doctum 替代 sami, 接口不变, 可重新生成
+
 -   **可替代** 移除 `RdsNative->delTaggedKeys()` , 使用 `RdsNative->del()` 替代
 
 -   **可替代** 移除 `sys_success()` 方法, 使用 `sys_info()` 替代
@@ -111,7 +115,6 @@ public function loginCheck(string $passport, string $password, string $guard_nam
 -   **接口** 接口需要增加标准化参数 `x-type` 用来指定是前台用户还是后台用户, 默认是 `user`
 
 -   **重复** 移除 `JwtAuthGuard` , 和 Jwt 包数据重复
-
 
 ## Aliyun-Oss
 

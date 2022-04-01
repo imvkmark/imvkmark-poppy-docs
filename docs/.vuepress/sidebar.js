@@ -12,7 +12,7 @@ module.exports = {
 		},
 		{
 			text: "组件",
-			children: ["/4.x/components/mgr-app.md"],
+			children: ["/4.x/components/mgr-app.md", "/4.x/components/core.md"],
 		},
 	],
 	"/3.x/": [

@@ -44,37 +44,8 @@ $ npm install
 $ npm run watch
 ```
 
-## apidoc 接口文档
 
-apidoc 是一个简单的 RESTful API
-文档生成工具，它从代码注释中提取特定格式的内容，生成文档。
-
-```
-php artisan system:doc api
-```
-
-配置信息
-
-```
-'apidoc' => [
-    // key : 标识
-    'web' => [
-        // 标题
-        'title'       => '后台接口',
-        // 源文件夹
-        'origin'      => 'modules',
-        // 接口测试构建器
-        'factory'     => \Site\Testing\WebApiFactory::class,
-        // 生成目录
-        'doc'         => 'public/docs/backend',
-        // 默认访问的url
-        'default_url' => 'api_v1/backend/system/role/permissions',
-    ],
-],
-```
-
-webpack.mix.js 的配置
-~~~~~~~~~~~~~~~~~~~~~~~
+## webpack.mix.js 的配置
 
 ```
 
