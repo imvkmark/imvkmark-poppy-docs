@@ -138,7 +138,7 @@ api 接口文档配置, 改文档可以使用 `php artisan py-core:doc api` 来�
         'method'           => 'post',
         // 默认访问地址
         'default_url'      => 'api_v1/system/auth/login',
-        // 匹配 src/http/request 的文件目录来生成文件
+        // 匹配 src/http/request 的文件目录来生成文件, 使用 glob 规则匹配 
         'match'      => 'api.*/web|ApiWeb|api/web|ApiV1',
 	],
 	...
