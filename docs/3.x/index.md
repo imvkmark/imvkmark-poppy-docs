@@ -38,8 +38,6 @@
 
 项目为了便于管理, 对代码进行模块化分组分为 框架, 核心, 管理, 组件 四部分构成, 使用 composer 进行模块化安装
 
-- 项目文档 : [https://wulicode.com/doc](https://wulicode.com/doc)
-
 ##
 
 ## 功能

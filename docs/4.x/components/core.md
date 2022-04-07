@@ -65,7 +65,7 @@ php artisan py-core:op {slug}
 
 ### 生成 php api 文档
 
-> 先睹为快, 使用 doctum 生成的 php api 地址 [PoppyV4 Api](http://v4.wulicode.com/docs/php/)
+> 先睹为快, 使用 doctum 生成的 php api 地址 [PoppyV4 Api](http://v4.poppy-framework.com/docs/php/)
 
 **生成配置文件**
 

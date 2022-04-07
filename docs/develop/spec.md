@@ -81,7 +81,7 @@ $ php artisan poppy:test  {slug} {name}
 接口文档写法遵循 [apidoc](https://apidocjs.com/)
 
 -   接口文档说明: [使用 ApiDoc 编写接口文档](https://wulicode.com/develop/cooperation/apidoc/)
--   接口文档示例: [ApiDocument@Start](https://start.wulicode.com/docs/web/)
+-   接口文档示例: [ApiDocument@Start](http://v4.poppy-framework.com/docs/web/)
 
 **接口要求**
 
