@@ -12,6 +12,8 @@ todo : 关于 Header 的定义需要完善
 
 -   **可替代** 移除 `get(), post()` 方法, 使用 `input()` 替代
 
+-   **调整** `jwt_token` 方法取消参数传递, 使用 jwt 的 `tymon.jwt` 来获取
+
 ## Core
 
 -   **不兼容** 因为 apidoc 升级导致无法生成 json , mgr-page 中无法使用新版来生成 apidoc 文档, 必须使用新版本才可以解析 json 数据, 使用 js `eval` 来解析
@@ -117,6 +119,8 @@ public function loginCheck(string $passport, string $password, string $guard_nam
 -   **接口** 接口需要增加标准化参数 `x-type` 用来指定是前台用户还是后台用户, 默认是 `user`
 
 -   **重复** 移除 `JwtAuthGuard` , 和 Jwt 包数据重复
+
+-   **移除** 移除 `PamAccount->getJWTCustomClaims()` 的 `user.id` 返回, 改返回和 jwt 的 `sub` 一致, 不必再多余返回, 无兼容性问题
 
 ## Aliyun-Oss
 
