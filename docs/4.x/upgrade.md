@@ -1,5 +1,9 @@
 # 3.2 -> 4.0 升级说明
 
+## 建议
+
+-   使用 `Guzzle\Client` 替代掉 `Curl\Curl`, 写法等均需要变动
+
 ## Framework
 
 -   **不兼容** 移除 `x_app` 函数, 此函数在 3.2 中废弃, 因为 nginx 无法从 json 中获取需要的数据, 需要显式使用 `x_header` 来获取
@@ -108,6 +112,10 @@ public function loginCheck(string $passport, string $password, string $guard_nam
 
 -   **可替代** 移除 `\Poppy\System\Tests\Base\SystemTestCase::export` , 使用 `\Poppy\Framework\Application\TestCase::outputVariables` 替代, 使用 stream 打印数据, 可保证运行无异常提示
 -   **可替代** 移除 `\Poppy\System\Events\LoginSuccessEvent` 的 platform 参数, 使用 `x-id` 替代
+
+-   **可替代**
+
+继承项目 `\Poppy\System\Http\Forms\Settings\FormSettingBase` 更新为 `Poppy\MgrPage\Classes\Form\FormSettingBase`, 同理 Grid 也会迁移, 这里是对页面的组织对 mgr-page 做的一个调整
 
 -   **可替代** services 钩子改动
 
