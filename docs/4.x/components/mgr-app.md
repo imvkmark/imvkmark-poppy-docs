@@ -245,7 +245,7 @@ table 列表
 
 > Motion 用于触发全局的动作, 使用后端返回内容来用于前端的不同操作
 
-编写: Motion 使用 `Resp` 返回
+编写: Motion 使用 [Resp](./../framework/resp.md) 返回
 Motion 格式如下, 如果使用 Resp 返回, 则也可使用 kv 方式来编写 `motion|grid:reload;time|200`
 
 解析之后的对象如下所示
