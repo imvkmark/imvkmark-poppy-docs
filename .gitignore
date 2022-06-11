@@ -3,3 +3,4 @@ node_modules
 .cache
 *.class
 yarn.lock
+pnpm-lock.yaml

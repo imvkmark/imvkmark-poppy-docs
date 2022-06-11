@@ -46,9 +46,6 @@
 			</p>
 		</div>
 	</section>
-	<div style="text-align: center" class="footer">
-		<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">鲁ICP备13016276号-8</a>
-	</div>
 </template>
 
 <style scoped>
