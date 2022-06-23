@@ -8,12 +8,11 @@ module.exports = {
 	"/4.x/": [
 		{
 			text: "升级",
-			children: ["/4.x/upgrade.md"],
-		},
-		{
-			text: "组件",
-			children: ["/4.x/components/mgr-app.md", "/4.x/components/core.md"],
-		},
+			children: [
+                "/4.x/upgrade.md",
+                "/4.x/components/mgr-app.md", "/4.x/components/core.md"
+            ],
+		}
 	],
 	"/3.x/": [
 		{

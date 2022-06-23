@@ -1,4 +1,4 @@
-# MgrApp
+# 管理端(前后端分离)
 
 前后端分离的项目包
 
@@ -236,6 +236,126 @@ $actions->copy('复制', '复制自定义的内容' . $row['id']);
 $actions->target('Target(百度)', 'https://www.baidu.com');
 ```
 
+## Dashboard
+
+Dashboard 意思是仪表盘, 目的是集中多个部分放到一个页面中进行展示, 可用于不同 `scope` 之间的配置和主页仪表盘
+
+![](https://file.wulicode.com/note/2022/06-23/17-41-48420.png)
+
+类之间的关系如下
+
+![](https://file.wulicode.com/note/2022/06-23/17-52-34572.png)
+
+`Dashboard` 是仪表板, `Panel` 定义为仪表盘的部件
+
+### 使用
+
+**定义路径**
+
+这里的 url 类型是 `dashboard`
+
+```yaml
+- title: 表单仪表盘
+  path: dashboard/demo:api.mgr_app.dashboard/form
+```
+
+**定义控制器**
+
+```php
+class DashboardController {
+    public function form()
+    {
+        $dashboard = new DashboardForm();
+        return $dashboard->resp();
+    }
+}
+```
+
+**定义仪表盘**
+
+```php
+/**
+ * 表单仪表盘
+ */
+class DashboardForm extends DashboardWidget
+{
+
+    // 标题
+    public string $title = '仪表盘';
+
+    public function __construct()
+    {
+        parent::__construct();
+        // 定义 Scope
+        $this->scope('test', 'TEST');
+        $this->scope('mark', 'Mark');
+    }
+
+    // 定义仪表盘面板
+    public function panels(): array
+    {
+        // 获取当前的Scope
+        $scope = $this->getCurrentScope();
+
+        // 定义面板
+        $form1 = (new PanelForm('site', 12))->form(function (FormPlugin $form) use ($scope) {
+            $form->text($scope->value . ':Title', $scope->label . '标题')->rules([
+                Rule::required(),
+            ]);
+        })->handle(function ($data) {
+            return Resp::success('返回成功' . var_export($data, true));
+        });
+        return [$form1];
+    }
+}
+```
+### Scope
+
+Scope 定义为 Dashboard 分类, 根据不同的类型区分不同的仪表盘的数据展示, 这里引用的是 trait `\Poppy\MgrApp\Classes\Traits\UseScopes` , 提供的方法有
+
+```php
+trait UseScopes
+{
+
+    /**
+     * 添加全局范围, 在添加全局范围之后, 如果不传入 Scope, 则默认为第一个 Scope
+     */
+    public function scope(string $key, string $label)
+
+    /**
+     * 范围结构
+     * @return Collection
+     */
+    public function getScopesStruct(): Collection
+
+    /**
+     * 获取当前的Scope,
+     * 支持未传入
+     */
+    public function getCurrentScope(): ?Scope
+}
+```
+
+
+### PanelForm
+
+表单面板, 定义为表单提交类型
+
+```php
+// 定义标题以及宽度
+(new PanelForm('site', 12))
+    // 定义表单项目, 这里的类型和 Form 一致
+    ->form(function (FormPlugin $form) {
+        $form->text('Title', '标题')->rules([
+            Rule::required(),
+        ]);
+    })
+    // 定义表单数据接收的处理方式
+    ->handle(function ($data) {
+        return Resp::success('返回成功' . var_export($data, true));
+    });
+```
+
 ## Grid
 
 Grid 是项目的数据展示工具, 各个部件如下所示
@@ -246,8 +366,8 @@ Grid 是项目的数据展示工具, 各个部件如下所示
 
 列渲染, 列采用如下方式进行列的添加
 
-
 #### 列展示
+
 ```php
 public function table(TableWidget $table)
 {
@@ -333,7 +453,7 @@ $table->add('info', '姓名(部门)')->display(function($value){
 // 渲染为可点击的链接地址
 $table->add('url', '用户主页')->->asLink();
 
-// 渲染为Html 
+// 渲染为Html
 $table->add('color', 'Html')->asHtml(function () {
     return "<div style='{$this->style}'>$this->title</div>";
 })
@@ -367,7 +487,6 @@ $table->add('filesize', '文件体积')->asHidden();
 
 支持行内编辑, 文本模式, 开关模式, 选择模式, 如果不指定地址, 则采用模型的数据进行修改, 此功能对于不敏感的数据进行编辑, 如果涉及到业务逻辑的数据, 建议使用自定义地址进行修改
 
-
 ```php
 // 支持编辑, 并支持字段更换名称
 $table->add('loading-alt', '行内编辑(字段更名)')->editAsOnOff(function () {
@@ -390,6 +509,7 @@ $table->add('loading-url', '行内编辑(自定义Url)')->editAsOnOff(function (
 当前支持的几个类型为
 
 **Select, 选择数据进行提交**
+
 ```php
 $table->add('status-alt', '行内编辑(字段更名)')->editAsSelect(function () {
     return $this->status;
@@ -412,7 +532,6 @@ $table->add('sort-alt', '行内编辑(字段更名)')->copyable()->editAsText(fu
 })->query('sort');
 ```
 
-
 ### Filter
 
 > 表的搜索工具
@@ -427,7 +546,7 @@ $table->add('sort-alt', '行内编辑(字段更名)')->copyable()->editAsText(fu
 
 ### Action
 
-操作 ![Action](#action) 是触发全局动作, 参考 Action 部分
+操作 [Action](#action) 是触发全局动作, 参考 Action 部分
 
 ```php
 $table->add('handle', '操作')->asAction(function (ActionsRender $actions) {
