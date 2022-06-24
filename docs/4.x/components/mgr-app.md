@@ -169,7 +169,7 @@ $action
 ```php
 class GridTableActions extends GridBase
 {
-    public function table(TableWidget $table)
+    public function table(TablePlugin $table)
     {
         // 添加 Action
         $table->add('handle', '操作')->asAction(function (ActionsRender $actions) {
@@ -309,6 +309,7 @@ class DashboardForm extends DashboardWidget
     }
 }
 ```
+
 ### Scope
 
 Scope 定义为 Dashboard 分类, 根据不同的类型区分不同的仪表盘的数据展示, 这里引用的是 trait `\Poppy\MgrApp\Classes\Traits\UseScopes` , 提供的方法有
@@ -335,7 +336,6 @@ trait UseScopes
     public function getCurrentScope(): ?Scope
 }
 ```
-
 
 ### PanelForm
 
@@ -369,7 +369,7 @@ Grid 是项目的数据展示工具, 各个部件如下所示
 #### 列展示
 
 ```php
-public function table(TableWidget $table)
+public function table(TablePlugin $table)
 {
     $table->add('id', 'ID')->quickId();
 }
@@ -378,7 +378,7 @@ public function table(TableWidget $table)
 列的基础属性
 
 ```php
-public function table(TableWidget $table)
+public function table(TablePlugin $table)
 {
     $table->add('id', 'ID')
         // 定义最小宽度
@@ -401,7 +401,7 @@ public function table(TableWidget $table)
 列的快捷属性
 
 ```php
-public function table(TableWidget $table)
+public function table(TablePlugin $table)
 {
     $table->add('id', 'ID')
         // 渲染为ID, 固定宽度, 并将ID 居中, 普通模式 5位数值, large模式 7 位数字
@@ -561,6 +561,111 @@ $table->add('handle', '操作')->asAction(function (ActionsRender $actions) {
 ## Form
 
 表单支持对数据的创建以及编辑
+
+### 创建表单
+
+**继承方式**
+表单继承了 `FormWidget`
+
+```php
+class FormBanEstablish extends FormWidget
+{
+    // 设置标题
+    protected string $title = '新增';
+
+    // 获取路由参数或者 Query 参数用于初始化
+    public function __construct()
+    {
+        parent::__construct();
+        $this->id = Route::input('id');
+    }
+
+    // 对数据的处理, 这里的执行在表单验证过之后触发
+    public function handle()
+    {
+        $scope                 = input(Scope::QUERY_NAME);
+        $input                 = input();
+        $input['account_type'] = $scope;
+
+        $Ban = new Ban();
+        if (!$Ban->establish($input)) {
+            return Resp::error($Ban->getError());
+        }
+
+        return Resp::success('操作成功', 'motion|grid:reload');
+    }
+
+    // 返回模型数据
+    public function data(): array
+    {
+        if ($this->id) {
+            $pam = PamBan::findOrFail($this->id);
+            return Arr::pluck($pam, ['type', 'value', 'note']);
+        }
+        return [];
+    }
+
+    // 定义表单
+    public function form()
+    {
+        $this->select('type', '类型')->options(PamBan::kvType())->rules([
+            Rule::required()
+        ]);
+        $this->text('value', '限制值')->rules([
+            Rule::required()
+        ])->help("如果是Ip支持如下几种格式 :  固定IP(192.168.1.1) ; IP段 : (192.168.1.1-192.168.1.21);  IP 掩码(192.168.1.1/24); IP 通配符(192.168.1.*)");
+        $this->text('note', '备注');
+    }
+}
+```
+
+**简易方式**
+
+> 开发中...
+
+下面对组件进行相应的介绍, 所有使用方式以以上两种方式为主
+
+### Table
+
+表单的表格组件
+
+```php
+class FormTableEstablish extends FormWidget
+{
+    // 设置标题
+    protected string $title = '表格';
+
+    // 返回模型数据
+    public function data(): array
+    {
+        return [
+            'table' => [
+                [
+                    'id'   => 1,
+                    'name' => '多厘',
+                ],
+                [
+                    'id'   => 2,
+                    'name' => '晴天',
+                ],
+            ]
+        ];
+    }
+
+    // 定义表单
+    public function form()
+    {
+        $this->table('table', '表格')
+            // 定义列
+            ->cols(function (TablePlugin $table) {
+                $table->add('id', 'ID');
+                $table->add('name', '用户名');
+            });
+    }
+}
+
+
+```
 
 ## Setting
 
