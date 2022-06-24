@@ -10,7 +10,9 @@ module.exports = {
 			text: "升级",
 			children: [
                 "/4.x/upgrade.md",
-                "/4.x/components/mgr-app.md", "/4.x/components/core.md"
+                "/4.x/components/mgr-app.md",
+                "/4.x/components/mgr-app-table.md",
+                "/4.x/components/core.md"
             ],
 		}
 	],
