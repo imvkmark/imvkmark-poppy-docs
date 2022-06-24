@@ -136,7 +136,7 @@ form   / demo:api.mgr_app.form / field-textarea / name|my
 
 项目中的操作项, 操作可分为 `request(请求)`, `page(页面)`, `copy(复制)`, `progress(进度)`
 
-### 样式 / 操作扩展
+### 样式
 
 ```php
 $action
@@ -160,6 +160,28 @@ $action
     ->link()
     // 圆形图标
     ->circle()
+```
+
+### ICON
+
+对于操作的图标,我们支持两种类型
+
+1. [ElementIcon](https://element-plus.org/zh-CN/component/icon.html#图标集合)
+
+使用 ElementUI 的图标需要填入指定的名称即可
+
+```php
+$action->icon('Bell')
+```
+
+2. [Material Symbols](https://fonts.google.com/icons?selected=Material+Icons&icon.style=Outlined&icon.set=Material+Symbols)
+
+使用 Material 图标, 需要选择 MaterialSymbols 图标, 为了样式实现简约, 只能使用 Outline 样式图标, 为了区分不同的图标库, 需要在图标前加上前缀 `mu:`
+
+这里的图标名称需要填写图标的蛇形写法, 在图标详情中可以查询到
+
+```php
+$action->icon('mu:notifications')
 ```
 
 ### 使用场景
