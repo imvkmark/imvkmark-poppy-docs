@@ -162,7 +162,7 @@ $action
     ->circle()
 ```
 
-### ICON
+### 图标
 
 对于操作的图标,我们支持两种类型
 
@@ -224,7 +224,7 @@ class GridLayout extends GridBase
 }
 ```
 
-### Request
+### request
 
 Ajax 请求
 
@@ -234,7 +234,7 @@ Ajax 请求
 $actions->request('成功', route('demo:api.mgr_app.grid_request', ['success']));
 ```
 
-### Page
+### page
 
 以内部页面方式打开指定类型数据
 
@@ -392,37 +392,7 @@ trait UseScopes
     });
 ```
 
-## Grid
 
-Grid 是项目的数据展示工具, 各个部件如下所示
-
-![](https://file.wulicode.com/note/2022/06-11/10-51-50606.png)
-
-### Filter
-
-> 表的搜索工具
-
-### Batch
-
-> 对数据的批处理
-
-### Render
-
-列显示的渲染
-
-### Action
-
-操作 [Action](#action) 是触发全局动作, 参考 Action 部分
-
-```php
-$table->add('handle', '操作')->asAction(function (ActionsRender $actions) {
-    $actions->request('成功', route('demo:api.mgr_app.grid_request', ['success']));
-    $actions->page('页面', route('demo:api.mgr_app.grid_form', ['detail']), 'form');
-    $actions->target('Target(百度)', 'https://www.baidu.com');
-});
-```
-
-**隐藏**
 
 ## Form
 
