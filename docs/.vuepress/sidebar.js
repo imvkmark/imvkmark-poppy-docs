@@ -13,6 +13,7 @@ module.exports = {
                 "/4.x/components/mgr-app.md",
                 "/4.x/components/mgr-app-table.md",
                 "/4.x/components/mgr-app-grid.md",
+                "/4.x/components/mgr-app-form.md",
                 "/4.x/components/core.md"
             ],
 		}
