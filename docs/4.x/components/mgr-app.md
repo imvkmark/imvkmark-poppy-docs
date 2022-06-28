@@ -2,11 +2,17 @@
 
 前后端分离的项目包
 
-## 配置
+
+## 安装
+
+后端需要添加包 `poppy/mgr-app` 当前版本是开发版, 版本是 `4.0.x-dev`, 因为授权返回的地址是有此包支持, 所以需要添加此扩展包
 
 ### 前端访问
 
-mgr-app 文件内置在 mgr-page 包的 resources 目录下, nginx 进行如下配置
+mgr-app 文件内置在 mgr-page 包的 resources 目录下, 当前是属于开发过程中, 包放置在 [GitHub Release](https://github.com/imvkmark/poppy-dev-mgr-app/releases)
+
+
+nginx 进行如下配置
 
 _mgr-app.conf_
 
@@ -42,11 +48,8 @@ server {
 
 如果需要自定义目录, 从源码编译并自行配置包目录即可
 
-### 后端支持
 
-后端需要添加包 `poppy/mgr-app` 当前版本是开发版, 版本是 `4.0.x-dev`, 因为授权返回的地址是有此包支持, 所以需要添加此扩展包
-
-## 开发
+### 开发
 
 数据准备
 
@@ -62,7 +65,7 @@ $ php artisan poppy:seed module.demo --class='\Demo\Database\Seeds\DemoUserDatab
 $ php artisan poppy:migrate:rollback
 ```
 
-## 路径配置
+### 路径配置
 
 路径是生成前端所用导航的入口文件, 告诉前端如何加载数据, 渲染页面, 文件位于 `modules/{module}/configurations/path.yaml`
 
@@ -186,7 +189,7 @@ $action->icon('mu:notifications')
 
 ### 使用场景
 
-**Grid表格**
+**Grid 表格**
 
 ```php
 class GridTableActions extends GridBase
@@ -205,7 +208,7 @@ class GridTableActions extends GridBase
 }
 ```
 
-**Grid操作**
+**Grid 操作**
 
 ```php
 class GridLayout extends GridBase
@@ -247,7 +250,6 @@ $actions->page('页面', route('demo:api.mgr_app.grid_form', ['detail']), 'form'
 ### dialog
 
 使用对话框的形式来打开一个页面, 当前支持 `form`, `grid` 两种数据内容
-
 
 ```php
 $actions->dialog('页面', route('demo:api.mgr_app.grid_form', ['detail']), 'form');
@@ -401,17 +403,12 @@ trait UseScopes
     });
 ```
 
-
-
-
-
 ## Setting
 
 设置用于支持分组的配置
 
-## 其他概念
 
-### Motion
+## Motion
 
 > Motion 用于触发全局的动作, 使用后端返回内容来用于前端的不同操作
 
@@ -424,7 +421,30 @@ Motion 格式如下, 如果使用 Resp 返回, 则也可使用 kv 方式来编�
 {
 	motion: "grid:reload";
 	time: 200;
+	path: "";
 }
 ```
 
 设置用于在表单中加入操作, 在 Grid 渲染中加入操作, 批处理, 表单的快速操作
+
+参数说明
+
+**motion** : 全局操作
+
+-   `grid:reload` 加载当前请求条件下的数据
+-   `grid:reset` 请求搜索条件并重置到第一页
+-   `grid:filter` 更新请求条件
+-   `window:reload` 刷新当前页面
+
+**time** : 等待时长来执行函数, 单位(ms)
+**path** : 匹配路径
+当页面中存在多个组件的时候, 组件的请求地址是不同的, 可以根据请求路径的 path 来判定是否允许更新, path 不存在时候不进行限制
+
+为了项目中方便使用, 已经对 Motion 进行了封装
+
+```php
+Motion::windowReload()
+Motion::gridFilter()
+Motion::gridReset()
+Motion::gridReload()
+```
