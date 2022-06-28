@@ -63,11 +63,40 @@ class FormBanEstablish extends FormWidget
 
 > 开发中...
 
-## 组件
+## 分组方式
+
+对于模型中有些数据可能需要多个数据来支持, 根据字段再去拆分结构, 使用 `.` 来进行拆分字段, 这里的渲染和标准的html有所不同
+
+```php
+class FormFieldGroupEstablish extends FormWidget
+{
+
+    public function handle(){}
+
+    /**
+     */
+    public function data(): array
+    {
+        return [
+            'group' => [
+                1   => '1-value',
+                'a' => 'a-value',
+            ],
+        ];
+    }
+
+    public function form()
+    {
+        $this->text('group.1', '1Value');
+        $this->text('group.a', 'Group Val');
+    }
+}
+```
 
 下面对组件进行相应的介绍, 所有使用方式以以上两种方式为主
+## 组件
 
-## Table
+### Table - 表格
 
 表格组件, 支持行内编辑
 
@@ -113,7 +142,7 @@ $this->table('ez-table', '表格')->easy([
 ]);
 ```
 
-### 级联选择组件
+### Cascader - 级联选择
 
 级联选择可用于级联选择, 数据返回以数组为主
 
