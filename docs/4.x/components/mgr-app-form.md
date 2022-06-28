@@ -4,7 +4,8 @@
 
 ## 创建表单
 
-**继承方式**
+### 继承方式
+
 表单继承了 `FormWidget`
 
 ```php
@@ -59,9 +60,21 @@ class FormBanEstablish extends FormWidget
 }
 ```
 
-**简易方式**
+### 简易方式
 
-> 开发中...
+简易方式是允许在控制器中编写定义, 从而简化编写 form 的方式
+
+```php
+$form = new FormWidget();
+$form->text('name', '姓名');
+$form->data([
+    'name' => '多厘',
+]);
+$form->on(function () {
+    return Resp::error(var_export(input(), true));
+});
+return $form->resp();
+```
 
 ## 分组方式
 
