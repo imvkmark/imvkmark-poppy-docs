@@ -65,7 +65,7 @@ class FormBanEstablish extends FormWidget
 
 ## 分组方式
 
-对于模型中有些数据可能需要多个数据来支持, 根据字段再去拆分结构, 使用 `.` 来进行拆分字段, 这里的渲染和标准的html有所不同
+对于模型中有些数据可能需要多个数据来支持, 根据字段再去拆分结构, 使用 `.` 来进行拆分字段, 这里的渲染和标准的 html 有所不同
 
 ```php
 class FormFieldGroupEstablish extends FormWidget
@@ -94,6 +94,7 @@ class FormFieldGroupEstablish extends FormWidget
 ```
 
 下面对组件进行相应的介绍, 所有使用方式以以上两种方式为主
+
 ## 组件
 
 ### Table - 表格
@@ -132,14 +133,19 @@ class FormTableEstablish extends FormWidget
 
 ```
 
-表格组件, 仅仅用于渲染, 将页面渲染为可以展示的表格
+### EzTable - 表格预览
+
+表格预览组件仅仅用于渲染数据, 当前支持文字, 图片渲染
 
 ```php
-$this->table('ez-table', '表格')->easy([
-    ['Header', 'Title', 'Value'],
-    ['网站', '地址', 'https://www.baidu.com'],
+use Poppy\MgrApp\Classes\Table\EzTable;
+// ...
+$this->ezTable('ez-table', '表格')->easy([
+    ['Header', 'Title', 'Value', '图片'],
+    ['网站', '地址', 'https://www.baidu.com', EzTable::image('https://start.wulicode.com/img/428x280/wulicode')],
     ['网站', '名称', '百度'],
 ]);
+// ...
 ```
 
 ### Cascader - 级联选择
