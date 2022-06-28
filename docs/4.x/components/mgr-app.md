@@ -244,6 +244,15 @@ $actions->request('成功', route('demo:api.mgr_app.grid_request', ['success']))
 $actions->page('页面', route('demo:api.mgr_app.grid_form', ['detail']), 'form');
 ```
 
+### dialog
+
+使用对话框的形式来打开一个页面, 当前支持 `form`, `grid` 两种数据内容
+
+
+```php
+$actions->dialog('页面', route('demo:api.mgr_app.grid_form', ['detail']), 'form');
+```
+
 ### copy
 
 复制自定义数据
