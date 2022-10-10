@@ -4,4 +4,4 @@ node_modules
 *.class
 yarn.lock
 pnpm-lock.yaml
-.vuepress/dist
+docs/.vuepress/dist
