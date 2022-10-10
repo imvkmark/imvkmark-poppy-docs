@@ -16,6 +16,12 @@ module.exports = {
 			],
 		},
 		{
+			text: "MgrPage",
+			children: [
+				"/4.x/components/mgr-page.md",
+			],
+		},
+		{
 			text: "组件",
 			children: ["/4.x/components/core.md"],
 		},
