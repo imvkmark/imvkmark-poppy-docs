@@ -2,9 +2,9 @@ import { defaultTheme } from "vuepress";
 
 const sidebar = require("./sidebar.js");
 const navbar = require("./navbar.js");
-const { path } = require("@vuepress/utils");
-const { registerComponentsPlugin } = require("@vuepress/plugin-register-components");
-const { tocPlugin } = require("@vuepress/plugin-toc");
+import { path } from "@vuepress/utils";
+import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
+import { tocPlugin } from "@vuepress/plugin-toc";
 
 module.exports = {
 	lang: "zh-CN",
