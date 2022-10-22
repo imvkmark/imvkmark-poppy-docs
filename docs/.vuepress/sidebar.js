@@ -16,14 +16,8 @@ module.exports = {
 			],
 		},
 		{
-			text: "MgrPage",
-			children: [
-				"/4.x/components/mgr-page.md",
-			],
-		},
-		{
 			text: "组件",
-			children: ["/4.x/components/core.md"],
+			children: ["/4.x/components/system.md", "/4.x/components/mgr-page.md", "/4.x/components/core.md"],
 		},
 		{
 			text: "升级",
