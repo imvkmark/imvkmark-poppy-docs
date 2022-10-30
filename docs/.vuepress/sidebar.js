@@ -21,7 +21,7 @@ module.exports = {
 		},
 		{
 			text: "升级",
-			children: ["/4.x/upgrade.md"],
+			children: ["/4.x/upgrade/4.0-4.1.md", "/4.x/upgrade/3.2-4.0.md"],
 		},
 	],
 	"/3.x/": [
