@@ -5,7 +5,7 @@ module.exports = [
 	},
 	{
 		text: "4.x",
-		link: "/4.x/upgrade.html",
+		link: "/4.x/upgrade/4.0-4.1.html",
 	},
 	{
 		text: "开发",
