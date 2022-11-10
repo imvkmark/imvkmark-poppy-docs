@@ -22,7 +22,7 @@ $ php artisan py-mgr-page:mix
 
 MgrPage 管理后台使用的是 js 加载方式, 如果使用 MgrPage, 则需要在更新 composer 组件之后运行以下命令进行强制更新
 
-```xml
+```
 $ php artisan vendor:publish --force --tag=poppy-mix
 ```
 
