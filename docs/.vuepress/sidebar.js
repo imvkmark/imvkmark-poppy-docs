@@ -21,7 +21,32 @@ module.exports = {
 		},
 		{
 			text: "升级",
-			children: ["/4.x/upgrade/4.0-4.1.md", "/4.x/upgrade/3.2-4.0.md"],
+			children: ["/4.x/upgrade/4.x.md", "/4.x/upgrade/3.2-4.0.md"],
+		},
+	],
+	"/1.x-2.x/": [
+		{
+			text: "2.x",
+			children: [
+				"/1.x-2.x/readme.md",
+				"/1.x-2.x/acl.md",
+				"/1.x-2.x/action.md",
+				"/1.x-2.x/api.md",
+				"/1.x-2.x/compass.md",
+				"/1.x-2.x/env.md",
+				"/1.x-2.x/lang.md",
+				"/1.x-2.x/model-2.0.md",
+				"/1.x-2.x/policy.md",
+				"/1.x-2.x/rbac-role.md",
+				"/1.x-2.x/rbac.md",
+				"/1.x-2.x/route.md",
+				"/1.x-2.x/tree.md",
+				"/1.x-2.x/upload.md",
+			],
+		},
+		{
+			text: "1.x",
+			children: ["/1.x-2.x/model-1.0.md", "/1.x-2.x/sample.md"],
 		},
 	],
 	"/3.x/": [
