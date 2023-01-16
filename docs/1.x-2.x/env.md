@@ -35,7 +35,7 @@ MAIL_HOST=smtp.exmail.qq.com
 MAIL_PORT=465
 MAIL_ENCRYPTION=ssl
 MAIL_USERNAME=10000@ixdcw.com
-MAIL_PASSWORD=963852zxc
+MAIL_PASSWORD=
 ```
 
 ## 第三方数据
