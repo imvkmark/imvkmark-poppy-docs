@@ -46,10 +46,31 @@ $ php artisan vendor:publish --force --tag=poppy-mix
 
 ### Pjax 错误
 
-在输出 pjax 错误的前提是需要存在 `_search` 模版, 并且在控制器中输出错误变量 `$_pjax_error`
+![](https://file.wulicode.com/note/2023/01-16/13-57-27757.png)
+
+使用方式
 
 ```php
-view()->share([
-    '_pjax_error' => '错误'
-]);
+use Poppy\System\Classes\Traits\PjaxTrait;
+
+/**
+ * 内容生成器
+ */
+class JsController extends WebController
+{
+
+    use PjaxTrait;
+
+    /**
+     * Pjax Error
+     * @return Factory|JsonResponse|RedirectResponse|Response|View
+     */
+    public function pjax()
+    {
+        if (!check_js_time(input('start_at'))) {
+            return $this->pjaxError('Pjax 请求错误 : 提交的时间和日期不符');
+        }
+        return view('demo::js.fe');
+    }
+}
 ```
