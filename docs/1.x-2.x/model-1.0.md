@@ -1,4 +1,4 @@
-# [弃] LF - 模型 v1.0
+# 模型 v1.0
 
 > Lemon Framework (柠檬框架 ps:LF) 由 Sour-Lemon 团队(SL Team) 协力打造
 > 

@@ -28,7 +28,8 @@ module.exports = {
 		{
 			text: "2.x",
 			children: [
-				"/1.x-2.x/readme.md",
+				"/1.x-2.x/index.md",
+				"/1.x-2.x/sample.md",
 				"/1.x-2.x/acl.md",
 				"/1.x-2.x/action.md",
 				"/1.x-2.x/api.md",
@@ -40,13 +41,12 @@ module.exports = {
 				"/1.x-2.x/rbac-role.md",
 				"/1.x-2.x/rbac.md",
 				"/1.x-2.x/route.md",
-				"/1.x-2.x/tree.md",
 				"/1.x-2.x/upload.md",
 			],
 		},
 		{
 			text: "1.x",
-			children: ["/1.x-2.x/model-1.0.md", "/1.x-2.x/sample.md"],
+			children: ["/1.x-2.x/model-1.0.md", "/1.x-2.x/tree-1.0.md"],
 		},
 	],
 	"/3.x/": [
