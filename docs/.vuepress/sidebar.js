@@ -7,21 +7,32 @@ module.exports = {
 	],
 	"/4.x/": [
 		{
-			text: "MgrApp",
+			text: "Poppy",
 			children: [
-				"/4.x/components/mgr-app.md",
-				"/4.x/components/mgr-app-table.md",
-				"/4.x/components/mgr-app-grid.md",
-				"/4.x/components/mgr-app-form.md",
+				"/4.x/poppy/system.md",
+				"/4.x/poppy/mgr-page.md",
+				"/4.x/poppy/core.md",
+				"/4.x/poppy/sms.md",
+				"/4.x/poppy/aliyun-oss.md",
+				"/4.x/poppy/aliyun-push.md",
+				"/4.x/poppy/app.md",
+				"/4.x/poppy/ext-alipay.md",
+				"/4.x/poppy/ext-ip_store.md",
+				"/4.x/poppy/ext-phpstan.md",
 			],
-		},
-		{
-			text: "组件",
-			children: ["/4.x/components/system.md", "/4.x/components/mgr-page.md", "/4.x/components/core.md"],
 		},
 		{
 			text: "升级",
 			children: ["/4.x/upgrade/4.x.md", "/4.x/upgrade/3.2-4.0.md"],
+		},
+		{
+			text: "[WIP]MgrApp",
+			children: [
+				"/4.x/poppy/mgr-app.md",
+				"/4.x/poppy/mgr-app-table.md",
+				"/4.x/poppy/mgr-app-grid.md",
+				"/4.x/poppy/mgr-app-form.md",
+			],
 		},
 	],
 	"/1.x-2.x/": [
