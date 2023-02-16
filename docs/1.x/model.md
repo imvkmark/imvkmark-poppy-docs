@@ -124,7 +124,7 @@ class BaseBanword extends \Eloquent {
 
 开发中不允许出现状态是 1, 2, 3, 所有的对应项目必须在模型中给予定义, 采用常量的方式进行定义
 
-```
+```php
 /**
  * 锁定/解锁
  * @param null $key
@@ -199,7 +199,7 @@ updated_at  : l5 更新
 
 ### 表创建
 
-```
+```php
 $tb_pam   = (new PamAccount())->getTable();
 $tb_ft    = (new AccountFront())->getTable();
 $Db = \DB::table($tb_pam)->where('account_type', 'front');
@@ -213,7 +213,7 @@ $accounts->appends($request->input());
 
 **多字段like**
 
-```
+```php
 $kw = $request->input('kw');
 if ($kw) {
     $Db->where(function($query) use ($kw, $tb_weixin){

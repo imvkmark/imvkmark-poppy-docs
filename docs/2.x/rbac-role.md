@@ -54,6 +54,7 @@ App\Lemon\Repositories\Providers\RbacServiceProvider::class,
 
 ```
 <?php
+
 use App\Lemon\Repositories\Application\Rbac\Traits\RbacUserTrait;
 class User extends Eloquent {    
     use RbacUserTrait;  
@@ -230,7 +231,24 @@ $options = array(
 下面是示例 :
 
 ```
-$options = array(    'validate_all' => true,    'return_type' => 'both');list($validate, $allValidations) = $user->ability(    array('admin', 'owner'),    array('create-post', 'edit-user'),    $options);var_dump($validate);// bool(false)var_dump($allValidations);// array(4) {//     ['role'] => bool(true)//     ['role_2'] => bool(false)//     ['create-post'] => bool(true)//     ['edit-user'] => bool(false)// }
+$options = array(    
+    'validate_all' => true,    
+    'return_type' => 'both'
+);
+list($validate, $allValidations) = $user->ability(    
+    array('admin', 'owner'),    
+    array('create-post', 'edit-user'),    
+    $options
+);
+var_dump($validate);
+// bool(false)
+var_dump($allValidations);
+// array(4) {
+//     ['role'] => bool(true)
+//     ['role_2'] => bool(false)
+//     ['create-post'] => bool(true)
+//     ['edit-user'] => bool(false)
+// }
 ```
 
 `Rbac` 有一个 `ability()` 快捷方式来检测当前的用户
@@ -244,7 +262,19 @@ Rbac::ability('admin,owner', 'create-post,edit-user');// is identical toAuth::us
 在 blade 模板中有三个标签可用: 传递的值会直接传递给 `Rbac` 函数
 
 ```
-@role('admin')    <p>This is visible to users with the admin role. Gets translated to    \Rbac::role('admin')</p>@endrole@permission('manage-admins')    <p>This is visible to users with the given permissions. Gets translated to    \Rbac::capable('manage-admins'). The @can directive is already taken by core    laravel authorization package, hence the @permission directive instead.</p>@endpermission@ability('admin,owner', 'create-post,edit-user')    <p>This is visible to users with the given abilities. Gets translated to    \Rbac::ability('admin,owner', 'create-post,edit-user')</p>@endability
+@role('admin')    <p>This is visible to users with the admin role. Gets translated to    \Rbac::role('admin')</p>
+
+@endrole
+
+@permission('manage-admins')    
+
+<p>This is visible to users with the given permissions. Gets translated to    \Rbac::capable('manage-admins'). The @can directive is already taken by core    laravel authorization package, hence the @permission directive instead.</p>
+
+@endpermission
+
+@ability('admin,owner', 'create-post,edit-user')    
+<p>This is visible to users with the given abilities. Gets translated to    \Rbac::ability('admin,owner', 'create-post,edit-user')</p>
+@endability
 ```
 
 ### Middleware 中间件
@@ -252,7 +282,16 @@ Rbac::ability('admin,owner', 'create-post,edit-user');// is identical toAuth::us
 你可以使用中间件来过滤路由或者是一组路由, 通过权限或者是角色
 
 ```
-Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {    Route::get('/', 'AdminController@welcome');    Route::get('/manage', ['middleware' => ['permission:manage-admins'], 'uses' => 'AdminController@manageAdmins']);});
+Route::group([
+    'prefix' => 'admin', 
+    'middleware' => ['role:admin']
+], function() {    
+    Route::get('/', 'AdminController@welcome');    
+    Route::get('/manage', [
+        'middleware' => ['permission:manage-admins'], 
+        'uses' => 'AdminController@manageAdmins'
+    ]);
+});
 ```
 
 It is possible to use pipe symbol as *OR* operator: 也可以使用管道符号 `|` 来替代 `OR` 选项
@@ -278,7 +317,15 @@ It is possible to use pipe symbol as *OR* operator: 也可以使用管道符号 
 通过 权限/ 角色来过滤路由的方式是在 `app/Http/routes.php` 文件中调用:
 
 ```
-// only users with roles that have the 'manage_posts' permission will be able to access any route within admin/postRbac::routeNeedsPermission('admin/post*', 'create-post');// only owners will have access to routes within admin/advancedRbac::routeNeedsRole('admin/advanced*', 'owner');// optionally the second parameter can be an array of permissions or roles// user would need to match all roles or permissions for that routeRbac::routeNeedsPermission('admin/post*', array('create-post', 'edit-comment'));Rbac::routeNeedsRole('admin/advanced*', array('owner','writer'));
+// only users with roles that have the 'manage_posts' permission will be able to access any route within admin/post
+Rbac::routeNeedsPermission('admin/post*', 'create-post');
+
+// only owners will have access to routes within admin/advanced
+Rbac::routeNeedsRole('admin/advanced*', 'owner');// optionally the second parameter can be an array of permissions or roles
+
+// user would need to match all roles or permissions for that route
+Rbac::routeNeedsPermission('admin/post*', array('create-post', 'edit-comment'));
+Rbac::routeNeedsRole('admin/advanced*', array('owner','writer'));
 ```
 
 以上的方法都接受第三个参数, 如果第三个参数传递为空则返回 `App::abort(403)`, 否则返回其他的输入值
@@ -294,7 +341,21 @@ Rbac::routeNeedsRole('admin/advanced*', 'owner', Redirect::to('/home'));
 如果设置为 false, 函数仅仅在用户角色不符合同时权限也不符合的时候返回 `false`. 这个在管理员允许多组用户的时候会非常有用
 
 ```
-// if a user has 'create-post', 'edit-comment', or both they will have accessRbac::routeNeedsPermission('admin/post*', array('create-post', 'edit-comment'), null, false);// if a user is a member of 'owner', 'writer', or both they will have accessRbac::routeNeedsRole('admin/advanced*', array('owner','writer'), null, false);// if a user is a member of 'owner', 'writer', or both, or user has 'create-post', 'edit-comment' they will have access// if the 4th parameter is true then the user must be a member of Role and must have PermissionRbac::routeNeedsRoleOrPermission(    'admin/advanced*',    array('owner', 'writer'),    array('create-post', 'edit-comment'),    null,    false);
+// if a user has 'create-post', 'edit-comment', or both they will have access
+Rbac::routeNeedsPermission('admin/post*', array('create-post', 'edit-comment'), null, false);
+
+// if a user is a member of 'owner', 'writer', or both they will have access
+Rbac::routeNeedsRole('admin/advanced*', array('owner','writer'), null, false);
+
+// if a user is a member of 'owner', 'writer', or both, or user has 'create-post', 'edit-comment' they will have access
+// if the 4th parameter is true then the user must be a member of Role and must have Permission
+Rbac::routeNeedsRoleOrPermission(    
+    'admin/advanced*',    
+    array('owner', 'writer'),    
+    array('create-post', 'edit-comment'),    
+    null,    
+    false
+);
 ```
 
 ### 路由过滤
@@ -302,13 +363,27 @@ Rbac::routeNeedsRole('admin/advanced*', 'owner', Redirect::to('/home'));
 `Rbac` roles/permissions 也能够很简单的写在路由的过滤器中通过 Facade 进行权限控制
 
 ```
-Route::filter('manage_posts', function(){    // check the current user    if (!Rbac::capable('create-post')) {        return Redirect::to('admin');    }});// only users with roles that have the 'manage_posts' permission will be able to access any admin/post routeRoute::when('admin/post*', 'manage_posts');
+Route::filter('manage_posts', function(){    
+    // check the current user    
+    if (!Rbac::capable('create-post')) {        
+        return Redirect::to('admin');    
+    }
+});
+
+// only users with roles that have the 'manage_posts' permission will be able to access any admin/post route
+Route::when('admin/post*', 'manage_posts');
 ```
 
 过滤一个角色:
 
 ```
-Route::filter('owner_role', function(){    // check the current user    if (!Rbac::hasRole('Owner')) {        App::abort(403);    }});// only owners will have access to routes within admin/advancedRoute::when('admin/advanced*', 'owner_role');
+Route::filter('owner_role', function(){    
+    // check the current user    
+    if (!Rbac::hasRole('Owner')) {        
+        App::abort(403);    
+    }
+});
+// only owners will have access to routes within admin/advancedRoute::when('admin/advanced*', 'owner_role');
 ```
 
 如上所示 `Rbac::hasRole()` 和 `Rbac::capable()` 检查用户是否已经登陆同时这个用户是否有这个权限来操作这个功能. 如果用户未登录则返回的值一定是 false;

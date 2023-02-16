@@ -26,7 +26,12 @@
 文件 `desktop.php`
 
 ```
-Route::controller('dsk_app_version', 'AppVersionController', [    'getIndex'    => 'dsk_app_version.index',    'getCreate'   => 'dsk_app_version.create',    ...    'postDestroy' => 'dsk_app_version.destroy',]);
+Route::controller('dsk_app_version', 'AppVersionController', [    
+    'getIndex'    => 'dsk_app_version.index',    
+    'getCreate'   => 'dsk_app_version.create',    
+    ...    
+    'postDestroy' => 'dsk_app_version.destroy',
+]);
 ```
 
 ## 加入菜单组
@@ -36,13 +41,28 @@ Route::controller('dsk_app_version', 'AppVersionController', [    'getIndex'    
 - 文件名根据路由命名 `dsk_app_version.php` 例如:
 
 ```
-return [    'title'     => 'App版本管理',    'route'     => 'dsk_app_version',    'operation' => [        'index' => [            'title' => '版本管理',            'menu'  => true,        ],    ]];
+return [    
+    'title'     => 'App版本管理',    
+    'route'     => 'dsk_app_version',    
+    'operation' => [        
+        'index' => [            
+            'title' => '版本管理',            
+            'menu'  => true,        
+        ],    
+    ]
+];
 ```
 
 在 `~/app/Lemon/Suit/Acl` 下的相应分组文件里加入菜单代码 例如:
 
 ```
-'app' => [    'title'  => 'App 管理',    'param'  => '',    'group' => [        'dsk_app_version',    ],],
+'app' => [    
+    'title'  => 'App 管理',    
+    'param'  => '',    
+    'group' => [        
+        'dsk_app_version',    
+    ],
+],
 ```
 
 ## 创建模板, 显示数据

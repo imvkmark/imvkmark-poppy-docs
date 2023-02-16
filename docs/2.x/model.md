@@ -34,7 +34,19 @@ pam
 这里的注释必须放置在类文件中进行定义, 里边的字段值出现的仅仅是新模块使用的, 包含兼容, 但是不包含调用的字段命名.
 
 ```
-/** * App\Models\BaseBanword * @property integer        $item_id      id * @property string         $replace_from 需要替换的词 * @property string         $replace_to   替换为 * @property boolean        $deny         是否进行拦截(0,1) * @property \Carbon\Carbon $created_at   创建时间 * @property \Carbon\Carbon $deleted_at   删除时间 * @property \Carbon\Carbon $updated_at   更新时间 */ class BaseBanword extends \Eloquent {     ... }
+/**
+ * App\Models\BaseBanword
+ * @property integer        $item_id      id 
+ * @property string         $replace_from 需要替换的词 
+ * @property string         $replace_to   替换为 
+ * @property boolean        $deny         是否进行拦截(0,1) 
+ * @property \Carbon\Carbon $created_at   创建时间 
+ * @property \Carbon\Carbon $deleted_at   删除时间 
+ * @property \Carbon\Carbon $updated_at   更新时间 
+ */ 
+class BaseBanword extends \Eloquent {     
+    ... 
+}
 ```
 
 ## 设计原则
