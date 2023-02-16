@@ -157,8 +157,37 @@ $api->version(['v1'], function ($api) {
 
 返回采用 `api_end($trans, $append=null)` helper 函数来调用返回, 第一个传值调用的是对应的状态码说明, 第二个调用的是附加数据. 如果没有特殊提示返回 可以传值 `success`, `error`, 则默认返回 `api_account.php` 语言包中的 `request_success` 和 `request_error` 两个默认值. 如果传值使用 helper 函数 `trans($key)` 来调用, 因为可以用 Laravel Plugin ( phpstorm 的 Laravel ) 实现对语言包文件的跟踪. **示例:**
 
-```
-public function getInit(Request $request) {    $device_id   = $request->input('device_id');  // 设备序列号    $time        = $request->input('time');    $sign        = $request->input('sign');    $device_type = $request->input('device_type');    $app_version = $request->input('app_version');    // 验证这些值是否符合指定规则    $validator = \Validator::make($request->all(), [        'device_id'   => 'required',        'time'        => 'required',        'sign'        => 'required',        'device_type' => 'required',        'app_version' => 'required',    ]);    if ($validator->fails()) {        return api_end($validator->errors());    }    ...    if (!$accessToken) {        return api_end(\Api::getError());    }    $apiInfo = [        'api_version'  => config('api.version'),        'api_domain'   => config('api.domain'),        'api_format'   => config('api.defaultFormat'),        'access_token' => $accessToken,    ];    return api_end(trans('api_front.init_success'), $apiInfo);}
+```php
+public function getInit(Request $request) {    
+    $device_id   = $request->input('device_id');  
+    // 设备序列号    
+    $time        = $request->input('time');    
+    $sign        = $request->input('sign');    
+    $device_type = $request->input('device_type');    
+    $app_version = $request->input('app_version');    
+    // 验证这些值是否符合指定规则    
+    $validator = \Validator::make($request->all(), [
+        'device_id'   => 'required',        
+        'time'        => 'required',        
+        'sign'        => 'required',        
+        'device_type' => 'required',        
+        'app_version' => 'required',    
+        ]);    
+    if ($validator->fails()) {        
+        return api_end($validator->errors());    
+    }
+    ...    
+    if (!$accessToken) {        
+        return api_end(\Api::getError());    
+    }   
+    $apiInfo = [        
+        'api_version'  => config('api.version'),        
+        'api_domain'   => config('api.domain'),        
+        'api_format'   => config('api.defaultFormat'),        
+        'access_token' => $accessToken,    
+    ];    
+    return api_end(trans('api_front.init_success'), $apiInfo);
+}
 ```
 
 ## 版本说明

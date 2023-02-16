@@ -1,7 +1,7 @@
-# 模型 v1.0
+# 模型
 
 > Lemon Framework (柠檬框架 ps:LF) 由 Sour-Lemon 团队(SL Team) 协力打造
-> 
+
 
 ## 命名及放置位置
 
@@ -33,7 +33,7 @@ pam
 
 模型映射采用 `sofa/eloquence` 框架, 使用字段的映射
 
-```
+```php
 <?php namespace App\Models;
 
 # 引入字段映射的类库
@@ -80,16 +80,42 @@ addtime  => add_datetime
 
 **常用函数** > 这里只是支持常用的`where`, `select` 等方式的调用, 对于 `updateOrCreate` 这种方式暂不支持
 
-```
-# 是否存在列BaseBanword::hasColumn('replace_to') // bool# 获取列BaseBanword::getColumnListing()      // array# whereBaseBanword::where('replace_to', 'some_value')->first();# 创建BaseBanword::create([    'replace_from' => '优衣库',    'replace_to'   => '妞妞',])
+```php
+// 是否存在列
+BaseBanword::hasColumn('replace_to')        // bool
+ 
+// 获取列
+
+BaseBanword::getColumnListing()      // array
+
+// where
+BaseBanword::where('replace_to', 'some_value')->first();
+
+// 创建
+BaseBanword::create([
+    'replace_from' => '优衣库',
+    'replace_to'   => '妞妞',
+])
 ```
 
 ## 注释
 
 这里的注释必须放置在类文件中进行定义, 里边的字段值出现的仅仅是新模块使用的, 包含兼容, 但是不包含调用的字段命名.
 
-```
-/** * App\Models\BaseBanword * @property integer        $item_id      id * @property string         $replace_from 需要替换的词 * @property string         $replace_to   替换为 * @property boolean        $deny         是否进行拦截(0,1) * @property \Carbon\Carbon $created_at   创建时间 * @property \Carbon\Carbon $deleted_at   删除时间 * @property \Carbon\Carbon $updated_at   更新时间 */ class BaseBanword extends \Eloquent {     ... }
+```php
+/**
+ * App\Models\BaseBanword
+ * @property integer        $item_id      id 
+ * @property string         $replace_from 需要替换的词
+ * @property string         $replace_to   替换为
+ * @property boolean        $deny         是否进行拦截(0,1)
+ * @property \Carbon\Carbon $created_at   创建时间
+ * @property \Carbon\Carbon $deleted_at   删除时间
+ * @property \Carbon\Carbon $updated_at   更新时间
+ */ 
+class BaseBanword extends \Eloquent {
+    ... 
+}
 ```
 
 ## 模型定义

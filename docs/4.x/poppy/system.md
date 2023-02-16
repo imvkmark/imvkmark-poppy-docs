@@ -68,7 +68,7 @@ md5(sha1($password . $reg_datetime) . $randomKey);
 ### 通行证约定
 
 | id       | int(10)     |                                           |
-| -------- | ----------- | ----------------------------------------- |
+|----------|-------------|-------------------------------------------|
 | username | varchar(45) | 字母数字下划线中文, 冒号(英文,子用户使用) |
 | mobile   | varchar(45) | 手机号, 格式 86-15555555555, 国别手机号   |
 | email    | varchar(50) | 邮箱                                      |
@@ -207,6 +207,30 @@ cross_headers => 'X-APP-VERSION'
 
 [待定]支付类型
 
+### sso_group
+
+-   Type : `array`
+-   Default : `[]`
+
+sso 单点登录的分组, 默认数据为
+
+```
+[
+    'app' => ['android', 'ios'],
+    'web' => ['h5', 'webapp', 'mp'],
+    'pc'  => ['mac', 'linux', 'win'],
+];
+```
+
+对于 sso 的分组还有设备限制的定义, 定义的 key 是设备, 定义的值是设备类型, 如果仅允许 h5 和 webapp 两种设备类型,并且 h5 和 webapp 可以同时登录, 可以设定为
+
+```
+[
+    'h5'     => ['h5'],
+    'webapp' => ['webapp'],
+];
+```
+
 ## 使用 Progress 方式数据表更新
 
 ### 访问地址
@@ -301,3 +325,7 @@ class OrderHunterResultProgress implements Progress
 
 如果是前台用户, 放到所有请求之前
 如果是后台用户, 放到所有请求之后(需要放过管理员)
+
+## SSO(单点登录)
+
+单点登录, 用于 Pam 的设备登录类型限定

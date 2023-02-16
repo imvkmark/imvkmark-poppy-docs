@@ -109,8 +109,8 @@ L5_CHINAPAY_ENV=test    # production 代替线上环境
 ### 友盟的 key
 
 ```
-UM_ANDROID_APP_KEY=55114237fd98c53729000a33
-UM_ANDROID_MASTER_SECRET=yfejij3y7i6se0s8vvok7prrwnllnhz8
-UM_IOS_APP_KEY=557e776b67e58e0efe000a89
-UM_IOS_MASTER_SECRET=klsghik55sa6zbkbyiv0hu0fdfkjvev1
+UM_ANDROID_APP_KEY=55114237******000a33
+UM_ANDROID_MASTER_SECRET=yfejij3y7i6******7prrwnllnhz8
+UM_IOS_APP_KEY=557e776b67******000a89
+UM_IOS_MASTER_SECRET=klsghik55******0hu0fdfkjvev1
 ```

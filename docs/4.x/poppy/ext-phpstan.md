@@ -1,4 +1,5 @@
-# Phpstan Extension Of Poppy Framework
+# Phpstan
+
 
 > since 4.1
 > 为了在项目中增加 phpstan 的静态检测

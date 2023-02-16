@@ -53,7 +53,13 @@ App\Lemon\Repositories\Providers\RbacServiceProvider::class,
 使用 `RbacUserTrait` 在系统中的 `User` 模型
 
 ```
-<?phpuse App\Lemon\Repositories\Application\Rbac\Traits\RbacUserTrait;class User extends Eloquent {    use RbacUserTrait;  // add this trait to your user model    // ...}
+<?php
+use App\Lemon\Repositories\Application\Rbac\Traits\RbacUserTrait;
+class User extends Eloquent {    
+    use RbacUserTrait;  
+    // add this trait to your user model    
+    // ...
+}
 ```
 
 这个会启用用户和`Role` 关联关系, 并且给`User`模型添加以下方法 `roles()`, `hasRole($name)`, `capble($permission)`, `ability($roles, $permissions, $options)`
@@ -69,7 +75,18 @@ composer dump-autoload
 The default migration takes advantage of `onDelete('cascade')` clauses within the pivot tables to remove relations when a parent record is deleted. If for some reason you cannot use cascading deletes in your database, the EntrustRole and EntrustPermission classes, and the HasRole trait include event listeners to manually delete records in relevant pivot tables. In the interest of not accidentally deleting data, the event listeners will **not** delete pivot data if the model uses soft deleting. However, due to limitations in Laravel’s event listeners, there is no way to distinguish between a call to `delete()` versus a call to `forceDelete()`. For this reason, **before you force delete a model, you must manually delete any of the relationship data** (unless your pivot tables uses cascading deletes). For example:
 
 ```
-$role = Role::findOrFail(1); // Pull back a given role// Regular Delete$role->delete(); // This will work no matter what// Force Delete$role->users()->sync([]); // Delete relationship data$role->perms()->sync([]); // Delete relationship data$role->forceDelete(); // Now force delete will work regardless of whether the pivot table has cascading delete
+$role = Role::findOrFail(1); 
+// Pull back a given role
+// Regular Delete
+$role->delete(); 
+// This will work no matter what
+// Force Delete
+$role->users()->sync([]); 
+// Delete relationship data
+$role->perms()->sync([]); 
+// Delete relationship data
+$role->forceDelete(); 
+// Now force delete will work regardless of whether the pivot table has cascading delete
 ```
 
 ## 使用说明
@@ -79,19 +96,58 @@ $role = Role::findOrFail(1); // Pull back a given role// Regular Delete$role->de
 下面开始创建角色和权限
 
 ```
-$owner = new Role();$owner->name         = 'owner';$owner->display_name = 'Project Owner'; // optional$owner->description  = 'User is the owner of a given project'; // optional$owner->save();$admin = new Role();$admin->name         = 'admin';$admin->display_name = 'User Administrator'; // optional$admin->description  = 'User is allowed to manage and edit other users'; // optional$admin->save();
+$owner = new Role();
+$owner->name         = 'owner';
+$owner->display_name = 'Project Owner'; 
+// optional
+$owner->description  = 'User is the owner of a given project'; 
+// optional
+$owner->save();
+$admin = new Role();
+$admin->name         = 'admin';
+$admin->display_name = 'User Administrator'; 
+// optional
+$admin->description  = 'User is allowed to manage and edit other users'; 
+// optional
+$admin->save();
 ```
 
 接下来， 给用户赋予角色， 我们使用 `HasRole` trait 来非常方便的给用户赋予固定的角色
 
 ```
-$user = User::where('username', '=', 'michele')->first();// role attach alias$user->attachRole($admin); // parameter can be an Role object, array, or id// or eloquent's original technique$user->roles()->attach($admin->id); // id only
+$user = User::where('username', '=', 'michele')->first();
+// role attach alias
+$user->attachRole($admin); 
+// parameter can be an Role object, array, or id
+// or eloquent's original technique
+$user->roles()->attach($admin->id); 
+// id only
 ```
 
 下面我们给角色赋予权限
 
 ```
-$createPost = new Permission();$createPost->name         = 'create-post';$createPost->display_name = 'Create Posts'; // optional// Allow a user to...$createPost->description  = 'create new blog posts'; // optional$createPost->save();$editUser = new Permission();$editUser->name         = 'edit-user';$editUser->display_name = 'Edit Users'; // optional// Allow a user to...$editUser->description  = 'edit existing users'; // optional$editUser->save();$admin->attachPermission($createPost);// equivalent to $admin->perms()->sync(array($createPost->id));$owner->attachPermissions(array($createPost, $editUser));// equivalent to $owner->perms()->sync(array($createPost->id, $editUser->id));
+$createPost = new Permission();
+$createPost->name         = 'create-post';
+$createPost->display_name = 'Create Posts'; 
+// optional
+// Allow a user to...
+$createPost->description  = 'create new blog posts'; 
+// optional$createPost->save();
+$editUser = new Permission();
+$editUser->name         = 'edit-user';
+$editUser->display_name = 'Edit Users'; 
+// optional
+// Allow a user to...
+$editUser->description  = 'edit existing users'; 
+// optional
+$editUser->save();
+$admin->attachPermission($createPost);
+// equivalent to 
+$admin->perms()->sync(array($createPost->id));
+$owner->attachPermissions(array($createPost, $editUser));
+// equivalent to 
+$owner->perms()->sync(array($createPost->id, $editUser->id));
 ```
 
 ### 检查 Roles 和 Permissions
@@ -111,7 +167,14 @@ $user->hasRole(['owner', 'admin']);       // true$user->capable(['edit-user', 'c
 默认, 如果任何一个权限或者角色通过都会返回 `true`, 如果传递第二个参数 `true` , 则要求`所有`的权限都必须检测通过才能返回 `true`
 
 ```
-$user->hasRole(['owner', 'admin']);             // true$user->hasRole(['owner', 'admin'], true);       // false, user does not have admin role$user->capable(['edit-user', 'create-post']);       // true$user->capable(['edit-user', 'create-post'], true); // false, user does not have edit-user permission
+$user->hasRole(['owner', 'admin']);             
+// true
+$user->hasRole(['owner', 'admin'], true);       
+// false, user does not have admin role
+$user->capable(['edit-user', 'create-post']);       
+// true
+$user->capable(['edit-user', 'create-post'], true); 
+// false, user does not have edit-user permission
 ```
 
 一个`用户`能够拥有多个`角色`, 反之亦然.
@@ -119,13 +182,22 @@ $user->hasRole(['owner', 'admin']);             // true$user->hasRole(['owner', 
 `Rbac` 对当前用户存在两个方法 `capable()` 和 `hasRole()`来检测是否有这个角色或者有相关的权限
 
 ```
-Rbac::hasRole('role-name');Rbac::capable('permission-name');// is identical toAuth::user()->hasRole('role-name');Auth::user()->capable('permission-name');
+Rbac::hasRole('role-name');
+Rbac::capable('permission-name');
+// is identical to
+Auth::user()->hasRole('role-name');
+Auth::user()->capable('permission-name');
 ```
 
 你同样可以使用占位符来检测匹配的权限.
 
 ```
-// match any admin permission$user->capable("admin.*"); // true// match any permission about users$user->capable("*_users"); // true
+// match any admin permission
+$user->capable("admin.*"); 
+// true
+// match any permission about users
+$user->capable("*_users"); 
+// true
 ```
 
 ### User ability
@@ -138,7 +210,8 @@ Rbac::hasRole('role-name');Rbac::capable('permission-name');// is identical toAu
 每组角色或权限都可以使用数组或者使用 `,` 分隔
 
 ```
-$user->ability(array('admin', 'owner'), array('create-post', 'edit-user'));// or$user->ability('admin,owner', 'create-post,edit-user');
+$user->ability(array('admin', 'owner'), array('create-post', 'edit-user'));
+// or$user->ability('admin,owner', 'create-post,edit-user');
 ```
 
 这会检测用户是否有相关的权限或者角色. 如上说明: 如果用户是 `admin` 角色并且拥有`create-post`则返回 `true`.
@@ -146,7 +219,9 @@ $user->ability(array('admin', 'owner'), array('create-post', 'edit-user'));// or
 第三个参数是个可选的数组.
 
 ```
-$options = array(    'validate_all' => true | false (Default: false),    'return_type'  => boolean | array | both (Default: boolean));
+$options = array(    
+    'validate_all' => true | false (Default: false),    'return_type'  => boolean | array | both (Default: boolean)
+);
 ```
 
 - `validate_all` 是否检测所有的权限, 或者说只要是存在匹配则返回`true`.
