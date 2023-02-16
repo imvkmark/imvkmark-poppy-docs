@@ -216,18 +216,8 @@ sso 单点登录的分组, 默认数据为
 
 ```
 [
-    'app' => ['android', 'ios'],
-    'web' => ['h5', 'webapp', 'mp'],
-    'pc'  => ['mac', 'linux', 'win'],
-];
-```
-
-对于 sso 的分组还有设备限制的定义, 定义的 key 是设备, 定义的值是设备类型, 如果仅允许 h5 和 webapp 两种设备类型,并且 h5 和 webapp 可以同时登录, 可以设定为
-
-```
-[
-    'h5'     => ['h5'],
-    'webapp' => ['webapp'],
+    'app:kicked' => ['android', 'ios'],
+    'web.unlimited' => ['h5', 'webapp', 'mp']
 ];
 ```
 
@@ -328,4 +318,13 @@ class OrderHunterResultProgress implements Progress
 
 ## SSO(单点登录)
 
-单点登录, 用于 Pam 的设备登录类型限定
+单点登录, 用于 Pam 的设备登录类型限定, 用于设备和设备之间的踢下线, 分组定义限制如下
+
+```php
+'sso_group'             => [
+    'app:kicked'    => ['android', 'ios'],
+    'web:unlimited' => ['h5', 'webapp', 'android_h5', 'ios_h5'],
+],
+```
+
+如上的定义, `kicked` 代表组内互踢, `unlimited` 代表不进行限制(也不会去记录用户的 Token 数据)
