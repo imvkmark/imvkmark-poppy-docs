@@ -5,9 +5,9 @@
 ### 3.2
 
 -   php 最低限制 7.4
--   composer 版本 2.\*
+-   composer 版本 `2.*`
 -   相关依赖变更为 `3.2.*`
--   (framework) 放开 laravel 6.0 的限制至 6.\*
+-   (framework) 放开 laravel 6.0 的限制至 `6.*`
 
 ### 3.1
 
@@ -61,7 +61,7 @@
 
 ## 2.x
 
--   (framework) for laravel 6.x
+-   (framework) for laravel 6.0
 -   (framework) remove agmotto
 -   (framework) Support Module Loader
 
