@@ -1,640 +1,462 @@
-import fs from 'fs'
-import path from 'path'
 import { defineConfigWithTheme } from 'vitepress'
 import type { Config as ThemeConfig } from '@vue/theme'
 import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
 
 const nav: ThemeConfig['nav'] = [
-  {
-    text: '4.x',
-    activeMatch: `^/(4\.x)/`,
-    link: '/4.x/upgrade/4.x.html'
-  },
-  {
-    text: '3.x',
-    activeMatch: `^/(3\.x)/`,
-    link: '/3.x/'
-  },
-  {
-    text: 'Playground',
-    link: 'https://sfc.vuejs.org'
-  },
-  {
-    text: '1.x-2.x',
-    activeMatch: `^/(1\.x)|(2\.x)/`,
-    items: [
-      {
-        text: '开发规约',
-        link: 'develop/'
-      },
-      {
-        text: '往期版本',
+    {
+        text: '4.x',
+        activeMatch: `^/(4\.x)/`,
+        link: '/4.x/upgrade/4.x.html'
+    },
+    {
+        text: '3.x',
+        activeMatch: `^/(3\.x)/`,
+        link: '/3.x/'
+    },
+    {
+        text: '1.x-2.x',
+        activeMatch: `^/(1\.x)|(2\.x)/`,
         items: [
-          { text: '1.x', link: '1.x/' },
-          { text: '2.x', link: '2.x/' }
+            {
+                text: '往期版本',
+                items: [
+                    { text: '1.x', link: '1.x/tree' },
+                    { text: '2.x', link: '2.x/' }
+                ]
+            }
         ]
-      }
-    ]
-  },
-  {
-    text: 'About',
-    activeMatch: `^/about/`,
-    items: [
-      { text: 'FAQ', link: '/about/faq' },
-      { text: 'Team', link: '/about/team' },
-      { text: 'Releases', link: '/about/releases' },
-      {
-        text: 'Community Guide',
-        link: '/about/community-guide'
-      },
-      { text: 'Code of Conduct', link: '/about/coc' },
-      {
-        text: 'The Documentary',
-        link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
-      }
-    ]
-  },
-  {
-    text: 'Sponsor',
-    link: '/sponsor/'
-  },
-  {
-    text: 'Partners',
-    link: '/partners/',
-    activeMatch: `^/partners/`
-  }
+    },
+    {
+        text: '开发规约',
+        activeMatch: `^/develop/`,
+        items: [
+            {
+                text: '开发规范',
+                link: 'develop/spec'
+            },
+            {
+                text: 'changelog',
+                link: 'develop/changelog'
+            }
+        ]
+    },
 ]
 
 export const sidebar: ThemeConfig['sidebar'] = {
-  '/4.x/': [
-    {
-      text: 'Getting Started',
-      items: [
-        { text: 'Introduction', link: '/guide/introduction' },
+    "/1.x": [
         {
-          text: 'Quick Start',
-          link: '/guide/quick-start'
+            text: "1.x",
+            "items": [
+                {
+                    "text": "模型",
+                    "link": "/1.x/model"
+                },
+                {
+                    "text": "文件目录树",
+                    "link": "/1.x/tree"
+                }
+            ]
         }
-      ]
-    },
-    {
-      text: 'Essentials',
-      items: [
+    ],
+    "/2.x": [
         {
-          text: 'Creating an Application',
-          link: '/guide/essentials/application'
-        },
-        {
-          text: 'Template Syntax',
-          link: '/guide/essentials/template-syntax'
-        },
-        {
-          text: 'Reactivity Fundamentals',
-          link: '/guide/essentials/reactivity-fundamentals'
-        },
-        {
-          text: 'Computed Properties',
-          link: '/guide/essentials/computed'
-        },
-        {
-          text: 'Class and Style Bindings',
-          link: '/guide/essentials/class-and-style'
-        },
-        {
-          text: 'Conditional Rendering',
-          link: '/guide/essentials/conditional'
-        },
-        { text: 'List Rendering', link: '/guide/essentials/list' },
-        {
-          text: 'Event Handling',
-          link: '/guide/essentials/event-handling'
-        },
-        { text: 'Form Input Bindings', link: '/guide/essentials/forms' },
-        {
-          text: 'Lifecycle Hooks',
-          link: '/guide/essentials/lifecycle'
-        },
-        { text: 'Watchers', link: '/guide/essentials/watchers' },
-        { text: 'Template Refs', link: '/guide/essentials/template-refs' },
-        {
-          text: 'Components Basics',
-          link: '/guide/essentials/component-basics'
+            "text": "2.x",
+            "items": [
+                {
+                    "text": "开发者模式/ACL",
+                    "link": "/2.x/acl"
+                },
+                {
+                    "text": "Action 业务逻辑封装",
+                    "link": "/2.x/action"
+                },
+                {
+                    "text": "Api文档 1.0",
+                    "link": "/2.x/api"
+                },
+                {
+                    "text": "compass - LemonCMS",
+                    "link": "/2.x/compass"
+                },
+                {
+                    "text": "Env 环境配置",
+                    "link": "/2.x/env"
+                },
+                {
+                    "text": "入门手册",
+                    "link": "/2.x/index"
+                },
+                {
+                    "text": "多语言",
+                    "link": "/2.x/lang"
+                },
+                {
+                    "text": "模型 v2.0",
+                    "link": "/2.x/model"
+                },
+                {
+                    "text": "策略(Policy)",
+                    "link": "/2.x/policy"
+                },
+                {
+                    "text": "RBAC 角色控制",
+                    "link": "/2.x/rbac-role"
+                },
+                {
+                    "text": "rbac 在项目中的实现",
+                    "link": "/2.x/rbac"
+                },
+                {
+                    "text": "路由 / 控制器",
+                    "link": "/2.x/route"
+                },
+                {
+                    "text": "sample - 创建后台访问模块",
+                    "link": "/2.x/sample"
+                },
+                {
+                    "text": "服务器环境配置",
+                    "link": "/2.x/server"
+                },
+                {
+                    "text": "图片上传",
+                    "link": "/2.x/upload"
+                }
+            ]
         }
-      ]
-    },
-    {
-      text: 'Components In-Depth',
-      items: [
+    ],
+    "/3.x": [
         {
-          text: 'Registration',
-          link: '/guide/components/registration'
-        },
-        { text: 'Props', link: '/guide/components/props' },
-        { text: 'Events', link: '/guide/components/events' },
-        { text: 'Component v-model', link: '/guide/components/v-model' },
-        {
-          text: 'Fallthrough Attributes',
-          link: '/guide/components/attrs'
-        },
-        { text: 'Slots', link: '/guide/components/slots' },
-        {
-          text: 'Provide / inject',
-          link: '/guide/components/provide-inject'
+            "text": "入门",
+            "items": [
+                {
+                    "text": "Readme",
+                    "link": "/3.x/index"
+                },
+            ]
         },
         {
-          text: 'Async Components',
-          link: '/guide/components/async'
+            "text": "框架",
+            "items": [
+
+                {
+                    "text": "配置",
+                    "link": "/3.x/framework/config"
+                },
+                {
+                    "text": "扩展开发",
+                    "link": "/3.x/framework/extension"
+                },
+                {
+                    "text": "开发计划",
+                    "link": "/3.x/framework/plan"
+                },
+                {
+                    "text": "README",
+                    "link": "/3.x/framework/readme"
+                },
+                {
+                    "text": "错误码",
+                    "link": "/3.x/framework/resp"
+                },
+                {
+                    "text": "文件树",
+                    "link": "/3.x/framework/tree"
+                }
+            ]
+        },
+        {
+            "text": "组件",
+            "items": [
+                {
+                    "text": "CanalEs - 同步导入监听组件",
+                    "link": "/3.x/components/canal-es"
+                },
+                {
+                    "text": "核心",
+                    "link": "/3.x/components/core"
+                },
+                {
+                    "text": "管理后台",
+                    "link": "/3.x/components/mgr-page"
+                },
+                {
+                    "text": "系统",
+                    "link": "/3.x/components/system"
+                }
+            ]
+        },
+        {
+            "text": "项目",
+            "items": [
+                {
+                    "text": "最佳实践",
+                    "link": "/3.x/project/best-practice"
+                },
+                {
+                    "text": "Code Review",
+                    "link": "/3.x/project/code-review"
+                },
+                {
+                    "text": "前后端分离项目约定",
+                    "link": "/3.x/project/fe-backend"
+                },
+                {
+                    "text": "[WIP] Laravel-Mix",
+                    "link": "/3.x/project/fe-mix"
+                },
+                {
+                    "text": "安装",
+                    "link": "/3.x/project/install"
+                },
+                {
+                    "text": "说明",
+                    "link": "/3.x/project/readme"
+                }
+            ]
+        },
+        {
+            "text": "模型",
+            "items": [
+                {
+                    "text": "业务逻辑",
+                    "link": "/3.x/module/action"
+                },
+                {
+                    "text": "事件",
+                    "link": "/3.x/module/event"
+                },
+                {
+                    "text": "服务和钩子",
+                    "link": "/3.x/module/hook"
+                },
+                {
+                    "text": "国际化",
+                    "link": "/3.x/module/lang"
+                },
+                {
+                    "text": "菜单",
+                    "link": "/3.x/module/menus"
+                },
+                {
+                    "text": "模型",
+                    "link": "/3.x/module/models"
+                },
+                {
+                    "text": "权限",
+                    "link": "/3.x/module/permission"
+                },
+                {
+                    "text": "策略",
+                    "link": "/3.x/module/policy"
+                },
+                {
+                    "text": "批次更新",
+                    "link": "/3.x/module/progress"
+                },
+                {
+                    "text": "常见问题",
+                    "link": "/3.x/module/qa"
+                },
+                {
+                    "text": "说明",
+                    "link": "/3.x/module/readme"
+                }
+            ]
         }
-      ]
-    },
-    {
-      text: 'Reusability',
-      items: [
+    ],
+    "/4.x": [
         {
-          text: 'Composables',
-          link: '/guide/reusability/composables'
+            "text": "常见问题",
+            "items": [
+                {
+                    "text": "FAQ",
+                    "link": "/4.x/faq"
+                }
+            ]
+        }, {
+            "text": "框架",
+            "items": [
+                {
+                    "text": "Resp",
+                    "link": "/4.x/framework/resp"
+                }
+            ]
         },
         {
-          text: 'Custom Directives',
-          link: '/guide/reusability/custom-directives'
+            "text": "组件",
+            "items": [
+                {
+                    "text": "Aliyun Oss",
+                    "link": "/4.x/poppy/aliyun-oss"
+                },
+                {
+                    "text": "Aliyun 推送",
+                    "link": "/4.x/poppy/aliyun-push"
+                },
+                {
+                    "text": "应用管理",
+                    "link": "/4.x/poppy/app"
+                },
+                {
+                    "text": "核心",
+                    "link": "/4.x/poppy/core"
+                },
+                {
+                    "text": "支付宝支付",
+                    "link": "/4.x/poppy/ext-alipay"
+                },
+                {
+                    "text": "Ip Store",
+                    "link": "/4.x/poppy/ext-ip_store"
+                },
+                {
+                    "text": "Phpstan",
+                    "link": "/4.x/poppy/ext-phpstan"
+                },
+                {
+                    "text": "Form",
+                    "link": "/4.x/poppy/mgr-app-form"
+                },
+                {
+                    "text": "Grid",
+                    "link": "/4.x/poppy/mgr-app-grid"
+                },
+                {
+                    "text": "Table",
+                    "link": "/4.x/poppy/mgr-app-table"
+                },
+                {
+                    "text": "MgrApp",
+                    "link": "/4.x/poppy/mgr-app"
+                },
+                {
+                    "text": "后台管理",
+                    "link": "/4.x/poppy/mgr-page"
+                },
+                {
+                    "text": "Sms 扩展包",
+                    "link": "/4.x/poppy/sms"
+                },
+                {
+                    "text": "系统",
+                    "link": "/4.x/poppy/system"
+                }
+            ]
         },
-        { text: 'Plugins', link: '/guide/reusability/plugins' }
-      ]
-    },
-    {
-      text: 'Built-in Components',
-      items: [
-        { text: 'Transition', link: '/guide/built-ins/transition' },
         {
-          text: 'TransitionGroup',
-          link: '/guide/built-ins/transition-group'
-        },
-        { text: 'KeepAlive', link: '/guide/built-ins/keep-alive' },
-        { text: 'Teleport', link: '/guide/built-ins/teleport' },
-        { text: 'Suspense', link: '/guide/built-ins/suspense' }
-      ]
-    },
-    {
-      text: 'Scaling Up',
-      items: [
-        { text: 'Single-File Components', link: '/guide/scaling-up/sfc' },
-        { text: 'Tooling', link: '/guide/scaling-up/tooling' },
-        { text: 'Routing', link: '/guide/scaling-up/routing' },
-        {
-          text: 'State Management',
-          link: '/guide/scaling-up/state-management'
-        },
-        { text: 'Testing', link: '/guide/scaling-up/testing' },
-        {
-          text: 'Server-Side Rendering (SSR)',
-          link: '/guide/scaling-up/ssr'
+            "text": "升级说明",
+            "items": [
+                {
+                    "text": "3.2 -> 4.0 升级说明",
+                    "link": "/4.x/upgrade/3.2-4.0"
+                },
+                {
+                    "text": "4.x 版本升级说明",
+                    "link": "/4.x/upgrade/4.x"
+                }
+            ]
         }
-      ]
-    },
-    {
-      text: 'Best Practices',
-      items: [
+    ],
+    "/develop": [
         {
-          text: 'Production Deployment',
-          link: '/guide/best-practices/production-deployment'
-        },
-        {
-          text: 'Performance',
-          link: '/guide/best-practices/performance'
-        },
-        {
-          text: 'Accessibility',
-          link: '/guide/best-practices/accessibility'
-        },
-        {
-          text: 'Security',
-          link: '/guide/best-practices/security'
+            "text": "/develop",
+            "items": [
+                {
+                    "text": "ChangeLog",
+                    "link": "/develop/changelog"
+                },
+                {
+                    "text": "开发规范",
+                    "link": "/develop/spec"
+                }
+            ]
         }
-      ]
-    },
-    {
-      text: 'TypeScript',
-      items: [
-        { text: 'Overview', link: '/guide/typescript/overview' },
-        {
-          text: 'TS with Composition API',
-          link: '/guide/typescript/composition-api'
-        },
-        {
-          text: 'TS with Options API',
-          link: '/guide/typescript/options-api'
-        }
-      ]
-    },
-    {
-      text: 'Extra Topics',
-      items: [
-        {
-          text: 'Ways of Using Vue',
-          link: '/guide/extras/ways-of-using-vue'
-        },
-        {
-          text: 'Composition API FAQ',
-          link: '/guide/extras/composition-api-faq'
-        },
-        {
-          text: 'Reactivity in Depth',
-          link: '/guide/extras/reactivity-in-depth'
-        },
-        {
-          text: 'Rendering Mechanism',
-          link: '/guide/extras/rendering-mechanism'
-        },
-        {
-          text: 'Render Functions & JSX',
-          link: '/guide/extras/render-function'
-        },
-        {
-          text: 'Vue and Web Components',
-          link: '/guide/extras/web-components'
-        },
-        {
-          text: 'Animation Techniques',
-          link: '/guide/extras/animation'
-        }
-        // {
-        //   text: 'Building a Library for Vue',
-        //   link: '/guide/extras/building-a-library'
-        // },
-        // { text: 'Custom Renderers', link: '/guide/extras/custom-renderer' },
-        // {
-        //   text: 'Vue for React Devs',
-        //   link: '/guide/extras/vue-for-react-devs'
-        // }
-      ]
-    }
-  ],
-  '/api/': [
-    {
-      text: 'Global API',
-      items: [
-        { text: 'Application', link: '/api/application' },
-        {
-          text: 'General',
-          link: '/api/general'
-        }
-      ]
-    },
-    {
-      text: 'Composition API',
-      items: [
-        { text: 'setup()', link: '/api/composition-api-setup' },
-        {
-          text: 'Reactivity: Core',
-          link: '/api/reactivity-core'
-        },
-        {
-          text: 'Reactivity: Utilities',
-          link: '/api/reactivity-utilities'
-        },
-        {
-          text: 'Reactivity: Advanced',
-          link: '/api/reactivity-advanced'
-        },
-        {
-          text: 'Lifecycle Hooks',
-          link: '/api/composition-api-lifecycle'
-        },
-        {
-          text: 'Dependency Injection',
-          link: '/api/composition-api-dependency-injection'
-        }
-      ]
-    },
-    {
-      text: 'Options API',
-      items: [
-        { text: 'Options: State', link: '/api/options-state' },
-        { text: 'Options: Rendering', link: '/api/options-rendering' },
-        {
-          text: 'Options: Lifecycle',
-          link: '/api/options-lifecycle'
-        },
-        {
-          text: 'Options: Composition',
-          link: '/api/options-composition'
-        },
-        { text: 'Options: Misc', link: '/api/options-misc' },
-        {
-          text: 'Component Instance',
-          link: '/api/component-instance'
-        }
-      ]
-    },
-    {
-      text: 'Built-ins',
-      items: [
-        { text: 'Directives', link: '/api/built-in-directives' },
-        { text: 'Components', link: '/api/built-in-components' },
-        {
-          text: 'Special Elements',
-          link: '/api/built-in-special-elements'
-        },
-        {
-          text: 'Special Attributes',
-          link: '/api/built-in-special-attributes'
-        }
-      ]
-    },
-    {
-      text: 'Single-File Component',
-      items: [
-        { text: 'Syntax Specification', link: '/api/sfc-spec' },
-        { text: '<script setup>', link: '/api/sfc-script-setup' },
-        { text: 'CSS Features', link: '/api/sfc-css-features' }
-      ]
-    },
-    {
-      text: 'Advanced APIs',
-      items: [
-        { text: 'Render Function', link: '/api/render-function' },
-        { text: 'Server-Side Rendering', link: '/api/ssr' },
-        { text: 'TypeScript Utility Types', link: '/api/utility-types' },
-        { text: 'Custom Renderer', link: '/api/custom-renderer' }
-      ]
-    }
-  ],
-  '/examples/': [
-    {
-      text: 'Basic',
-      items: [
-        {
-          text: 'Hello World',
-          link: '/examples/#hello-world'
-        },
-        {
-          text: 'Handling User Input',
-          link: '/examples/#handling-input'
-        },
-        {
-          text: 'Attribute Bindings',
-          link: '/examples/#attribute-bindings'
-        },
-        {
-          text: 'Conditionals and Loops',
-          link: '/examples/#conditionals-and-loops'
-        },
-        {
-          text: 'Form Bindings',
-          link: '/examples/#form-bindings'
-        },
-        {
-          text: 'Simple Component',
-          link: '/examples/#simple-component'
-        }
-      ]
-    },
-    {
-      text: 'Practical',
-      items: [
-        {
-          text: 'Markdown Editor',
-          link: '/examples/#markdown'
-        },
-        {
-          text: 'Fetching Data',
-          link: '/examples/#fetching-data'
-        },
-        {
-          text: 'Grid with Sort and Filter',
-          link: '/examples/#grid'
-        },
-        {
-          text: 'Tree View',
-          link: '/examples/#tree'
-        },
-        {
-          text: 'SVG Graph',
-          link: '/examples/#svg'
-        },
-        {
-          text: 'Modal with Transitions',
-          link: '/examples/#modal'
-        },
-        {
-          text: 'List with Transitions',
-          link: '/examples/#list-transition'
-        },
-        {
-          text: 'TodoMVC',
-          link: '/examples/#todomvc'
-        }
-      ]
-    },
-    {
-      // https://eugenkiss.github.io/7guis/
-      text: '7 GUIs',
-      items: [
-        {
-          text: 'Counter',
-          link: '/examples/#counter'
-        },
-        {
-          text: 'Temperature Converter',
-          link: '/examples/#temperature-converter'
-        },
-        {
-          text: 'Flight Booker',
-          link: '/examples/#flight-booker'
-        },
-        {
-          text: 'Timer',
-          link: '/examples/#timer'
-        },
-        {
-          text: 'CRUD',
-          link: '/examples/#crud'
-        },
-        {
-          text: 'Circle Drawer',
-          link: '/examples/#circle-drawer'
-        },
-        {
-          text: 'Cells',
-          link: '/examples/#cells'
-        }
-      ]
-    }
-  ],
-  '/style-guide/': [
-    {
-      text: 'Style Guide',
-      items: [
-        {
-          text: 'Overview',
-          link: '/style-guide/'
-        },
-        {
-          text: 'A - Essential',
-          link: '/style-guide/rules-essential'
-        },
-        {
-          text: 'B - Strongly Recommended',
-          link: '/style-guide/rules-strongly-recommended'
-        },
-        {
-          text: 'C - Recommended',
-          link: '/style-guide/rules-recommended'
-        },
-        {
-          text: 'D - Use with Caution',
-          link: '/style-guide/rules-use-with-caution'
-        }
-      ]
-    }
-  ]
+    ]
 }
 
 // Placeholder of the i18n config for @vuejs-translations.
-// const i18n: ThemeConfig['i18n'] = {
-// }
+const i18n: ThemeConfig['i18n'] = {
+    toc: '页内导航'
+}
 
 export default defineConfigWithTheme<ThemeConfig>({
-  extends: baseConfig,
+    extends: baseConfig,
 
-  lang: 'en-US',
-  title: 'Vue.js',
-  description: 'Vue.js - The Progressive JavaScript Framework',
-  srcDir: 'src',
-  srcExclude: ['tutorial/**/description.md'],
-  scrollOffset: 'header',
+    lang: 'zh-CN',
+    title: 'Poppy Framework',
+    description: 'Poppy Framework - 基于 Laravel 的模块化加载框架',
+    srcDir: 'src',
+    srcExclude: [],
+    scrollOffset: 'header',
 
-  head: [
-    ['meta', { name: 'theme-color', content: '#3c8772' }],
-    ['meta', { name: 'twitter:site', content: '@vuejs' }],
-    ['meta', { name: 'twitter:card', content: 'summary' }],
-    [
-      'meta',
-      {
-        name: 'twitter:image',
-        content: 'https://vuejs.org/images/logo.png'
-      }
-    ],
-    [
-      'link',
-      {
-        rel: 'preconnect',
-        href: 'https://sponsors.vuejs.org'
-      }
-    ],
-    [
-      'script',
-      {},
-      fs.readFileSync(
-        path.resolve(__dirname, './inlined-scripts/restorePreference.js'),
-        'utf-8'
-      )
-    ],
-    [
-      'script',
-      {
-        src: 'https://cdn.usefathom.com/script.js',
-        'data-site': 'XNOLWPLB',
-        'data-spa': 'auto',
-        defer: ''
-      }
-    ]
-  ],
-
-  themeConfig: {
-    nav,
-    sidebar,
-    // Placeholder of the i18n config for @vuejs-translations.
-    // i18n,
-
-    localeLinks: [
-      {
-        link: 'https://cn.vuejs.org',
-        text: '简体中文',
-        repo: 'https://github.com/vuejs-translations/docs-zh-cn'
-      },
-      {
-        link: 'https://ja.vuejs.org',
-        text: '日本語',
-        repo: 'https://github.com/vuejs-translations/docs-ja'
-      },
-      {
-        link: '/translations/',
-        text: 'Help Us Translate!',
-        isTranslationsDesc: true
-      }
+    head: [
+        ['meta', { name: 'theme-color', content: '#3c8772' }]
     ],
 
-    algolia: {
-      indexName: 'vuejs',
-      appId: 'ML0LEBN7FQ',
-      apiKey: 'f49cbd92a74532cc55cfbffa5e5a7d01',
-      searchParameters: {
-        facetFilters: ['version:v3']
-      }
+    themeConfig: {
+        nav,
+        sidebar,
+        // Placeholder of the i18n config for @vuejs-translations.
+        i18n,
+
+        // algolia,
+
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/imvkmark/' },
+            { icon: 'twitter', link: 'https://twitter.com/DuoliVk' }
+        ],
+
+        editLink: {
+            repo: 'imvkmark/poppy-docs',
+            text: 'Edit this page on GitHub'
+        },
+
+        footer: {
+            license: {
+                text: '鲁ICP备13016276号-9',
+                link: 'https://beian.miit.gov.cn/#/Integrated/index'
+            },
+            copyright: `Copyright © 2015-${new Date().getFullYear()} duoli`
+        }
     },
 
-    carbonAds: {
-      code: 'CEBDT27Y',
-      placement: 'vuejsorg'
+    markdown: {
+        config(md) {
+            md.use(headerPlugin)
+        }
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/' },
-      { icon: 'twitter', link: 'https://twitter.com/vuejs' },
-      { icon: 'discord', link: 'https://discord.com/invite/HBherRA' }
-    ],
-
-    editLink: {
-      repo: 'vuejs/docs',
-      text: 'Edit this page on GitHub'
+    vite: {
+        define: {
+            __VUE_OPTIONS_API__: false
+        },
+        optimizeDeps: {
+            include: ['gsap', 'dynamics.js'],
+            exclude: ['@vue/repl']
+        },
+        // @ts-ignore
+        ssr: {
+            external: ['@vue/repl']
+        },
+        server: {
+            host: true,
+            fs: {
+                // for when developing with locally linked theme
+                allow: ['../..']
+            }
+        },
+        build: {
+            minify: 'terser',
+            chunkSizeWarningLimit: Infinity
+        },
+        json: {
+            stringify: true
+        }
     },
 
-    footer: {
-      license: {
-        text: 'MIT License',
-        link: 'https://opensource.org/licenses/MIT'
-      },
-      copyright: `Copyright © 2014-${new Date().getFullYear()} Evan You`
+    vue: {
+        reactivityTransform: true
     }
-  },
-
-  markdown: {
-    config(md) {
-      md.use(headerPlugin)
-    }
-  },
-
-  vite: {
-    define: {
-      __VUE_OPTIONS_API__: false
-    },
-    optimizeDeps: {
-      include: ['gsap', 'dynamics.js'],
-      exclude: ['@vue/repl']
-    },
-    // @ts-ignore
-    ssr: {
-      external: ['@vue/repl']
-    },
-    server: {
-      host: true,
-      fs: {
-        // for when developing with locally linked theme
-        allow: ['../..']
-      }
-    },
-    build: {
-      minify: 'terser',
-      chunkSizeWarningLimit: Infinity
-    },
-    json: {
-      stringify: true
-    }
-  },
-
-  vue: {
-    reactivityTransform: true
-  }
 })

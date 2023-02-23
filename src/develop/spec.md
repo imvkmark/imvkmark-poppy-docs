@@ -51,28 +51,27 @@ $ php artisan poppy:test  {slug} {name}
 
 ```json
 "autoload" : {
-    "classmap" : [
-    ],
-    "psr-4" : {
-        ...
-        "User\\Tests\\" : "modules/user/tests/",
-        "User\\" : "modules/user/src/",
-        "Site\\Tests\\" : "modules/site/tests/",
-        "Site\\" : "modules/site/src/"
-        ...
-    }
+"classmap": [
+],
+"psr-4": {
+...
+"User\\Tests\\": "modules/user/tests/",
+"User\\" : "modules/user/src/",
+"Site\\Tests\\": "modules/site/tests/",
+"Site\\": "modules/site/src/"
+...
+}
 }
 ```
 
--   单元测试 : [在 PhpStorm 中运行 Laravel 的 phpunit 单元测试](https://wulicode.com/php/vendor/phpunit-at-project/index.html)
-
+- 单元测试 : [在 PhpStorm 中运行 Laravel 的 phpunit 单元测试](https://wulicode.com/php/vendor/phpunit-at-project/index.html)
 
 **要求**
 
--   编写配置文件, 保证配置正确
--   编写模型文件, 保证模型函数正确
--   编写功能文件, 保证 Notification, Im 等功能正常
--   编写方便的 Action 测试, 便于功能点测试
+- 编写配置文件, 保证配置正确
+- 编写模型文件, 保证模型函数正确
+- 编写功能文件, 保证 Notification, Im 等功能正常
+- 编写方便的 Action 测试, 便于功能点测试
 
 ## 接口
 
@@ -80,9 +79,9 @@ $ php artisan poppy:test  {slug} {name}
 
 接口文档写法遵循 [apidoc](https://apidocjs.com/)
 
--   接口文档说明: [使用 ApiDoc 编写接口文档](https://wulicode.com/develop/cooperation/apidoc/)
--   接口文档示例: [ApiDocument@Start](http://v4.poppy-framework.com/docs/web/)
+- 接口文档说明: [使用 ApiDoc 编写接口文档](https://wulicode.com/develop/cooperation/apidoc/)
+- 接口文档示例: [ApiDocument@Start](http://v4.poppy-framework.com/docs/web/)
 
 **接口要求**
 
--   保证接口请求不返回 null 值
+- 保证接口请求不返回 null 值
