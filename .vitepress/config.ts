@@ -7,38 +7,35 @@ const nav: ThemeConfig['nav'] = [
     {
         text: '4.x',
         activeMatch: `^/(4\.x)/`,
-        link: '/4.x/upgrade/4.x.html'
+        link: '/4.x/'
     },
+
     {
-        text: '3.x',
-        activeMatch: `^/(3\.x)/`,
-        link: '/3.x/'
-    },
-    {
-        text: '1.x-2.x',
-        activeMatch: `^/(1\.x)|(2\.x)/`,
+        text: '其他',
+        activeMatch: `^/(develop)(1\.x)|(2\.x)|(3.x)/`,
         items: [
             {
                 text: '往期版本',
                 items: [
                     { text: '1.x', link: '1.x/tree' },
-                    { text: '2.x', link: '2.x/' }
+                    { text: '2.x', link: '2.x/' },
+                    { text: '3.x', link: '3.x/' },
                 ]
-            }
-        ]
-    },
-    {
-        text: '开发规约',
-        activeMatch: `^/develop/`,
-        items: [
-            {
-                text: '开发规范',
-                link: 'develop/spec'
             },
             {
-                text: 'changelog',
-                link: 'develop/changelog'
+                text: '开发',
+                items: [
+                    {
+                        text: '开发规范',
+                        link: 'develop/spec'
+                    },
+                    {
+                        text: 'changelog',
+                        link: 'develop/changelog'
+                    }
+                ]
             }
+
         ]
     },
 ]
@@ -268,14 +265,19 @@ export const sidebar: ThemeConfig['sidebar'] = {
     ],
     "/4.x": [
         {
-            "text": "常见问题",
+            "text": "前言",
             "items": [
                 {
-                    "text": "FAQ",
-                    "link": "/4.x/faq"
-                }
+                    "text": "版本说明",
+                    "link": "/4.x/"
+                },
+                {
+                    "text": "升级说明",
+                    "link": "/4.x/upgrade"
+                },
             ]
-        }, {
+        },
+        {
             "text": "框架",
             "items": [
                 {
@@ -285,24 +287,42 @@ export const sidebar: ThemeConfig['sidebar'] = {
             ]
         },
         {
-            "text": "组件",
+            "text": "插件",
             "items": [
+                {
+                    "text": "Core",
+                    "link": "/4.x/poppy/core"
+                },
+                {
+                    "text": "System",
+                    "link": "/4.x/poppy/system"
+                },
+                {
+                    "text": "Mgr Page",
+                    "link": "/4.x/poppy/mgr-page"
+                },
                 {
                     "text": "Aliyun Oss",
                     "link": "/4.x/poppy/aliyun-oss"
                 },
                 {
-                    "text": "Aliyun 推送",
+                    "text": "Aliyun Push",
                     "link": "/4.x/poppy/aliyun-push"
                 },
                 {
-                    "text": "应用管理",
+                    "text": "App",
                     "link": "/4.x/poppy/app"
                 },
                 {
-                    "text": "核心",
-                    "link": "/4.x/poppy/core"
+                    "text": "Sms",
+                    "link": "/4.x/poppy/sms"
                 },
+
+            ]
+        },
+        {
+            text: '扩展',
+            items: [
                 {
                     "text": "支付宝支付",
                     "link": "/4.x/poppy/ext-alipay"
@@ -314,6 +334,15 @@ export const sidebar: ThemeConfig['sidebar'] = {
                 {
                     "text": "Phpstan",
                     "link": "/4.x/poppy/ext-phpstan"
+                },
+            ]
+        },
+        {
+            text: '[WIP]MgrApp',
+            items: [
+                {
+                    "text": "管理平台",
+                    "link": "/4.x/poppy/mgr-app"
                 },
                 {
                     "text": "Form",
@@ -327,35 +356,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
                     "text": "Table",
                     "link": "/4.x/poppy/mgr-app-table"
                 },
-                {
-                    "text": "MgrApp",
-                    "link": "/4.x/poppy/mgr-app"
-                },
-                {
-                    "text": "后台管理",
-                    "link": "/4.x/poppy/mgr-page"
-                },
-                {
-                    "text": "Sms 扩展包",
-                    "link": "/4.x/poppy/sms"
-                },
-                {
-                    "text": "系统",
-                    "link": "/4.x/poppy/system"
-                }
-            ]
-        },
-        {
-            "text": "升级说明",
-            "items": [
-                {
-                    "text": "3.2 -> 4.0 升级说明",
-                    "link": "/4.x/upgrade/3.2-4.0"
-                },
-                {
-                    "text": "4.x 版本升级说明",
-                    "link": "/4.x/upgrade/4.x"
-                }
+
             ]
         }
     ],
