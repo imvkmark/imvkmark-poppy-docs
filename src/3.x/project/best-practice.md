@@ -180,9 +180,3 @@ $ php artisan system:inspect class > fp.txt
 ```
 ide:clean code
 ```
-
-### 不要出现 package 标签
-
-```
-@package
-```

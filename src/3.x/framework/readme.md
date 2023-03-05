@@ -298,11 +298,6 @@ $ php artisan py-core:inspect class
 
 这个指的是 IDE 进行优化导入, 选中文件夹, 然后批量进行格式化 + 优化导入
 
-**不要出现 package 标签**
-
-```
-@package
-```
 
 ## 参考 & Docs
 
