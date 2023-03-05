@@ -333,3 +333,19 @@ class OrderHunterResultProgress implements Progress
 ```
 
 如上的定义, `kicked` 代表组内互踢, `unlimited` 代表不进行限制(也不会去记录用户的 Token 数据)
+
+## 设置
+
+**命名**
+
+命名会注入到 Laravel config 中
+
+命名分为扩展, 组件, 建议命名如下
+
+```
+# 扩展的命名
+ext-aliyun::push.access_key
+
+# 组件设置
+py-system::permission.prefix
+```
