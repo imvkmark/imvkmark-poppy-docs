@@ -85,3 +85,21 @@ $ php artisan poppy:test  {slug} {name}
 **接口要求**
 
 - 保证接口请求不返回 null 值
+
+## IDE
+
+### 优化导入
+
+在 PHPstorm 中需要 `alt+enter` 进行 `Import Class` 或者 `Simplify FQN`, 这样便可以是代码看起来更简洁
+
+```php
+// bad
+/**
+ * @property \Carbon\Carbon    $created_at
+ */
+
+// good
+/**
+ * @property Carbon    $created_at
+ */
+```
