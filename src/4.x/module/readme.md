@@ -10,6 +10,20 @@
 $ php artsian poppy:make {slug} -Q
 ```
 
+在模块创建完成后会在模块的根目录下创建一个 `manifest.json` 文件, 用来对项目中的模块进行加载
+
+```json
+{
+    "name": "系统",
+    "slug": "system",
+    "version": "1.1",
+    "order": 10,
+    "description": "Core Support Module For Basic Pam"
+}
+```
+
+这里的 `order` 是对于模块进行排序的, 该项目可以控制模块中间菜单的顺序, 模块的加载顺序, 如果要调整各个模块菜单的加载顺序可以通过此参数进行调整, 排序规则 : 递增
+
 ## 文件树
 
 ```
@@ -47,7 +61,6 @@ $ php artsian poppy:make {slug} -Q
 │   └── Notifications    # 通知
 └── tests                # 单元测试
 ```
-
 
 ## 注册服务
 

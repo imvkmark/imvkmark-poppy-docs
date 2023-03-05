@@ -2,7 +2,6 @@
 outline: deep
 ---
 
-
 # 权限和菜单
 
 ## 菜单
@@ -18,17 +17,19 @@ $ php artisan poppy:optimize
 key 包含 backend(后端), develop(开发), web(前台)这几个部分.
 
 ```yaml
-backend:
-    title: 广告管理
-    groups:
-        - title: 广告管理
-          icon: "bi bi-badge-ad"
-          injection: "poppy.mgr-page/backend||setting"
-          children:
-              - title: 广告位管理
-                route: py-ad:backend.place.index
-                permission: backend:poppy-ad.place.manage
-develop: ...
+backend :
+  title : 广告管理
+  groups :
+    -
+      title : 广告管理
+      icon : "bi bi-badge-ad"
+      injection : "poppy.mgr-page/backend||setting"
+      children :
+        -
+          title : 广告位管理
+          route : py-ad:backend.place.index
+          permission : backend:poppy-ad.place.manage
+develop : ...
 ```
 
 ### key 说明
@@ -57,20 +58,24 @@ global.manage : 权限操作
 权限分为全局权限和操作权限, 全局权限用在 控制器中, 赋值 `static::$permission` 权限来进行限定,操作权限用于在操作步骤中进行限定
 
 ```yaml
-- title: 系统
-  description: 系统权限
-  slug: backend:system
-  groups:
-      - slug: global
-        title: 全局
-        description: 管理配置内容
-        permissions:
-            - slug: manage
-              description: 全局设置菜单
-              default: false
-            - slug: page
-              description: 系统设置
-              default: false
+-
+  title : 系统
+  description : 系统权限
+  slug : backend:system
+  groups :
+    -
+      slug : global
+      title : 全局
+      description : 管理配置内容
+      permissions :
+        -
+          slug : manage
+          description : 全局设置菜单
+          default : false
+        -
+          slug : page
+          description : 系统设置
+          default : false
 ```
 
 ### 初始化
