@@ -78,7 +78,7 @@ class JsController extends WebController
 }
 ```
 
-## List 表格
+## 快捷表格
 
 ### 单文件列表
 
@@ -297,4 +297,126 @@ class ListSysSensitiveWord extends ListBase
         };
     }
 }
+```
+
+## 静态表格渲染
+
+为了保障设计的唯一性解决方式, 我们推荐使用一致性的渲染方式, layui 提供了一种方式可以将静态表格转换为更加优雅的表格方式
+
+### 设定渲染 ID
+
+我们首先需要在表格 `table` 中加入 `lay-filter="default"` 来标示这是一个layui 可以渲染的表格
+
+```html
+
+<table class="layui-table" lay-filter="default">
+    ...
+</table>
+```
+
+在页面底部, 我们需要调用 layui 的 table 初始化方法, 为了方便, 封装了一个函数来达到快速输出的效果
+
+```
+{!! mgr_table() !!}
+```
+
+如果列表中有多个表格, 可以传入 `mgr_table(string $filter)` 参数来进行多个列表的初始化
+
+### 列定义
+
+为了方便列的渲染, layui 需要在每个列上都定义唯一的字段标识, 我们提供了一个方法来快速生成字段, 宽度以及其他属性
+
+```
+function mgr_col(int $width = 0, string $fixed = '', string $append = '')
+{
+    //...
+}
+```
+
+在列中可以跨苏插入定义
+
+```
+<th {!! mgr_col() !!}>
+    标题
+    {!! Form::order('title') !!}
+</th>
+```
+
+### 列操作
+
+诚然, 你可以使用标准的 html 来生成标签
+
+这里我们封装了操作方法方便快捷的生成标签, 这里的操作和以上列表中标书的列操作方法一致, 只是在快捷操作中做了封装方法使用.
+
+```php
+// 调用复制按钮
+{!! mgr_op()->copy('复制', $item->title)->primary()->bare()->only()->render(); !!}
+
+// 调用 iframe 编辑
+{!! mgr_op()->iframe('编辑', '/path/of/id')->only()->primary()->bare()->render(); !!}
+
+// 调用多个动作
+{!! mgr_actions(function (\Poppy\MgrPage\Classes\Operations $operations) use ($item){
+    $operations->iframe('跳转', '#')->icon('pencil')->primary();
+}) !!}
+
+// 调用下拉菜单
+{!! mgr_dropdown('状态', function (\Poppy\MgrPage\Classes\Operations $dd) use ($item){
+       $dd->iframe('下拉1-'.$item->id, '#');
+       $dd->iframe('下拉2-'.$item->id, '#');
+}) !!}
+```
+
+以下是完整的示例
+
+```php
+<table class="layui-table" lay-filter="default">
+    <thead>
+    <tr>
+        <th {!! mgr_col() !!}>ID</th>
+        <th {!! mgr_col() !!}>
+            标题
+            {!! Form::order('title') !!}
+        </th>
+        <th {!! mgr_col() !!}>创建时间</th>
+        <th {!! mgr_col() !!}>更新时间</th>
+        <th {!! mgr_col_actions(170) !!}>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if($items->total())
+        @foreach($items as $item)
+            <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->title }}</td>
+                <td>{{ $item->created_at }}</td>
+                <td>{{ $item->updated_at }}</td>
+                <td>
+                    {!! mgr_op()->copy('复制', $item->title)->primary()->bare()->only()->render(); !!}
+                    
+                    {!! mgr_op()->iframe('icon', '3')->icon('fa:comment-alt')->only()->primary()->bare()->render(); !!}
+                    
+                    {!! mgr_actions(function (\Poppy\MgrPage\Classes\Operations $operations) use ($item){
+                        $operations->iframe('跳转', '#')->icon('pencil')->primary();
+                    }) !!}
+
+                    {!! mgr_dropdown('状态', function (\Poppy\MgrPage\Classes\Operations $dd) use ($item){
+                           $dd->iframe('下拉1-'.$item->id, '#');
+                           $dd->iframe('下拉2-'.$item->id, '#');
+                    }) !!}
+                </td>
+            </tr>
+        @endforeach
+    @else
+        <tr>
+            <td colspan="100" align="center">暂无数据</td>
+        </tr>
+    @endif
+    </tbody>
+</table>
+
+{!! mgr_table() !!}
+<div class="clearfix layui-card-pager" align="right">
+    {!! $items->render('py-mgr-page::vendor.pagination-layui') !!}
+</div>
 ```
