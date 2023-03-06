@@ -232,7 +232,8 @@ $actions
 
 ```php
 $actions->iframe('弹窗打开', DemoDef::IFRAME_INBOX_NONE)
-    ->width(428);    // 可设定宽度
+    ->width(428)      // 可设定宽度
+    ->height(428);    // 可设定高度
 ```
 
 ### 筛选器
