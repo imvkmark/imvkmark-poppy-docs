@@ -93,9 +93,8 @@ md5(sha1($password . $reg_datetime) . $randomKey);
 - Type : `string|array`
 - Default : `*`
 
-接口请求的时候可以对来源进行设定, 防止 web 端跨域访问资源, 这里的来源可以为 `*` 或者数组, 数组为类似于 `http://poppy.wulicode.com` 这种形式, 如果是网址则只能填写一个完整字串,
-或者多个网址, 使用
-数组进行设定
+接口请求的时候可以对来源进行设定, 防止 web 端跨域访问资源, 这里的来源可以为 `*` 或者数组,
+数组为类似于 `http://poppy.wulicode.com` 这种形式, 如果是网址则只能填写一个完整字串, 或者多个网址, 使用数组进行设定
 
 ```
 'cross_origin'      => [
@@ -105,7 +104,7 @@ md5(sha1($password . $reg_datetime) . $randomKey);
 
 ### platform
 
-> \> 4.0
+> 4.0
 
 - Type : `array`
 - Default : `[]`

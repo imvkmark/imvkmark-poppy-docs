@@ -421,3 +421,18 @@ function mgr_col(int $width = 0, string $fixed = '', string $append = '')
     {!! $items->render('py-mgr-page::vendor.pagination-layui') !!}
 </div>
 ```
+
+## 配置
+
+### captcha_login
+
+> since 4.2
+
+- Type : `bool`
+- Default : `false`
+
+后台管理支持密码登录和验证码登录, 默认情况下开启用户名密码登录, 如果有需要可以在 ENV 设置此参数, 用来开启验证码登录
+
+```
+'captcha_login' => (bool) env('PY_MGR_CAPTCHA_LOGIN', false),
+```
