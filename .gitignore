@@ -114,4 +114,4 @@ src/tutorial/data.json
 draft.md
 
 .vitepress/cache
-.pnpm-lock.yaml
+pnpm-lock.yaml
