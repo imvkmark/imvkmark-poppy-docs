@@ -252,7 +252,8 @@ export default defineConfigWithTheme({
 
     vite: {
         define: {
-            __VUE_OPTIONS_API__: false
+            __VUE_OPTIONS_API__: false,
+            __VITE_MEILISEARCH_INDEX__: JSON.stringify('console'),
         },
         resolve: {
             alias: [
@@ -269,9 +270,6 @@ export default defineConfigWithTheme({
                 resolvers: [
                     ElementPlusResolver({ ssr: true })
                 ]
-            }),
-            SearchPlugin({
-                index: 'console'
             })
         ],
         server: {
