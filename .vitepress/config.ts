@@ -1,9 +1,20 @@
 import { defineConfigWithTheme } from 'vitepress'
-import type { Config as ThemeConfig } from '@vue/theme'
-import baseConfig from '@vue/theme/config'
-import { headerPlugin } from './headerMdPlugin'
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { fileURLToPath, URL } from 'node:url'
+import { SearchPlugin } from './theme/meilisearch/index'
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
-const nav: ThemeConfig['nav'] = [
+/**
+ * Create Simple Link
+ * @param title
+ * @param url
+ */
+const createLink = (title: string, url: string) => {
+    return { text: title, link: url }
+}
+
+const nav = [
     {
         text: '4.x',
         activeMatch: `^/(4\.x)/`,
@@ -30,19 +41,13 @@ const nav: ThemeConfig['nav'] = [
     }
 ]
 
-export const sidebar: ThemeConfig['sidebar'] = {
+export const sidebar = {
     '/1.x': [
         {
             text: '1.x',
             items: [
-                {
-                    text: '模型',
-                    link: '/1.x/model'
-                },
-                {
-                    text: '文件目录树',
-                    link: '/1.x/tree'
-                }
+                createLink('模型', '/1.x/model'),
+                createLink('文件目录树', '/1.x/tree'),
             ]
         }
     ],
@@ -50,66 +55,21 @@ export const sidebar: ThemeConfig['sidebar'] = {
         {
             text: '2.x',
             items: [
-                {
-                    text: '开发者模式/ACL',
-                    link: '/2.x/acl'
-                },
-                {
-                    text: 'Action 业务逻辑封装',
-                    link: '/2.x/action'
-                },
-                {
-                    text: 'Api文档 1.0',
-                    link: '/2.x/api'
-                },
-                {
-                    text: 'compass - LemonCMS',
-                    link: '/2.x/compass'
-                },
-                {
-                    text: 'Env 环境配置',
-                    link: '/2.x/env'
-                },
-                {
-                    text: '入门手册',
-                    link: '/2.x/index'
-                },
-                {
-                    text: '多语言',
-                    link: '/2.x/lang'
-                },
-                {
-                    text: '模型 v2.0',
-                    link: '/2.x/model'
-                },
-                {
-                    text: '策略(Policy)',
-                    link: '/2.x/policy'
-                },
-                {
-                    text: 'RBAC 角色控制',
-                    link: '/2.x/rbac-role'
-                },
-                {
-                    text: 'rbac 在项目中的实现',
-                    link: '/2.x/rbac'
-                },
-                {
-                    text: '路由 / 控制器',
-                    link: '/2.x/route'
-                },
-                {
-                    text: 'sample - 创建后台访问模块',
-                    link: '/2.x/sample'
-                },
-                {
-                    text: '服务器环境配置',
-                    link: '/2.x/server'
-                },
-                {
-                    text: '图片上传',
-                    link: '/2.x/upload'
-                }
+                createLink('开发者模式/ACL', '/2.x/acl'),
+                createLink('Action 业务逻辑封装', '/2.x/action'),
+                createLink('Api文档 1.0', '/2.x/api'),
+                createLink('compass - LemonCMS', '2.x/compass'),
+                createLink('Env 环境配置', '/2.x/env'),
+                createLink('入门手册', '/2.x/index'),
+                createLink('多语言', '/2.x/lang'),
+                createLink('模型 v2.0', '/2.x/model'),
+                createLink('策略(Policy)', '/2.x/policy'),
+                createLink('RBAC 角色控制', '/2.x/rbac-role'),
+                createLink('rbac 在项目中的实现', '/2.x/rbac'),
+                createLink('路由 / 控制器', '/2.x/route'),
+                createLink('sample - 创建后台访问模块', '/2.x/sample'),
+                createLink('服务器环境配置', '/2.x/server'),
+                createLink('图片上传', '/2.x/upload'),
             ]
         }
     ],
@@ -117,138 +77,58 @@ export const sidebar: ThemeConfig['sidebar'] = {
         {
             text: '入门',
             items: [
-                {
-                    text: 'Readme',
-                    link: '/3.x/index'
-                }
+                createLink('Readme', '/3.x/index'),
             ]
         },
         {
             text: '框架',
             items: [
-                {
-                    text: '配置',
-                    link: '/3.x/framework/config'
-                },
-                {
-                    text: '扩展开发',
-                    link: '/3.x/framework/extension'
-                },
-                {
-                    text: '开发计划',
-                    link: '/3.x/framework/plan'
-                },
-                {
-                    text: 'README',
-                    link: '/3.x/framework/readme'
-                },
-                {
-                    text: '错误码',
-                    link: '/3.x/framework/resp'
-                },
-                {
-                    text: '文件树',
-                    link: '/3.x/framework/tree'
-                }
+                createLink('配置', '/3.x/framework/config'),
+                createLink('扩展开发', '/3.x/framework/extension'),
+                createLink('开发计划', '/3.x/framework/plan'),
+                createLink('README', '/3.x/framework/readme'),
+                createLink('错误码', '/3.x/framework/resp'),
+                createLink('文件树', '/3.x/framework/tree'),
             ]
         },
         {
             text: '组件',
             items: [
-                {
-                    text: 'CanalEs - 同步导入监听组件',
-                    link: '/3.x/components/canal-es'
-                },
-                {
-                    text: '核心',
-                    link: '/3.x/components/core'
-                },
-                {
-                    text: '管理后台',
-                    link: '/3.x/components/mgr-page'
-                },
-                {
-                    text: '系统',
-                    link: '/3.x/components/system'
-                }
+                createLink('CanalEs - 同步导入监听组件', '/3.x/components//canal-es'),
+                createLink('核心', '/3.x/components/core'),
+                createLink('管理后台', '/3.x/components/mgr-page'),
+                createLink('系统', '/3.x/components/system'),
             ]
         },
         {
             text: '项目',
             items: [
-                {
-                    text: '最佳实践',
-                    link: '/3.x/project/best-practice'
-                },
-                {
-                    text: 'Code Review',
-                    link: '/3.x/project/code-review'
-                },
-                {
-                    text: '前后端分离项目约定',
-                    link: '/3.x/project/fe-backend'
-                },
-                {
-                    text: '[WIP] Laravel-Mix',
-                    link: '/3.x/project/fe-mix'
-                },
-                {
-                    text: '安装',
-                    link: '/3.x/project/install'
-                },
-                {
-                    text: '说明',
-                    link: '/3.x/project/readme'
-                }
+                createLink('最佳实践', '/3.x/project/best-practice'
+                ),
+                createLink('Code Review', '/3.x//project/code-review'),
+                createLink('前后端分离项目约定', '/3.x/project/fe-backend'),
+                createLink('[WIP] Laravel-Mix', '/3.x/project/fe-mix'),
+                createLink('安装', '/3.x/project/install'),
+                createLink('说明', '/3.x/project/readme'),
             ]
         },
         {
             text: '模型',
             items: [
-                {
-                    text: '业务逻辑',
-                    link: '/3.x/module/action'
-                },
-                {
-                    text: '事件',
-                    link: '/3.x/module/event'
-                },
-                {
-                    text: '服务和钩子',
-                    link: '/3.x/module/hook'
-                },
-                {
-                    text: '国际化',
-                    link: '/3.x/module/lang'
-                },
-                {
-                    text: '菜单',
-                    link: '/3.x/module/menus'
-                },
-                {
-                    text: '模型',
-                    link: '/3.x/module/models'
-                },
-                {
-                    text: '权限',
-                    link: '/3.x/module/permission'
-                },
-                {
-                    text: '策略',
-                    link: '/3.x/module/policy'
-                },
-                {
-                    text: '批次更新',
-                    link: '/3.x/module/progress'
-                },
-                {
-                    text: '常见问题',
-                    link: '/3.x/module/qa'
-                },
-                {
-                    text: '说明',
-                    link: '/3.x/module/readme'
-                }
+                createLink('业务逻辑', '/3.x/module/action'
+                ),
+                createLink('事件', '/3.x/module/event'),
+                createLink('服务和钩子', '/3.x/module/hook'),
+                createLink('国际化', '/3.x/module/lang'),
+                createLink('菜单', '/3.x/module/menus'),
+                createLink('模型', '/3.x/module/models'),
+                createLink('权限', '/3.x/module/permission'),
+                createLink('策略', '/3.x/module/policy'),
+                createLink('批次更新', '/3.x/module/progress'
+                ),
+                createLink('常见问题', '/3.x/module/qa'
+                ),
+                createLink('说明', '/3.x/module/readme'),
             ]
         }
     ],
@@ -256,156 +136,69 @@ export const sidebar: ThemeConfig['sidebar'] = {
         {
             text: '前言',
             items: [
-                {
-                    text: '版本说明',
-                    link: '/4.x/'
-                },
-                {
-                    text: '升级说明',
-                    link: '/4.x/upgrade'
-                },
-                {
-                    text: '常见问题',
-                    link: '/4.x/faq'
-                }
+                createLink('版本说明', '/4.x/'
+                ),
+                createLink('升级说明', '/4.x/upgrade'
+                ),
+                createLink('常见问题', '/4.x/faq'),
             ]
         },
         {
             text: '项目',
             items: [
-                {
-                    text: '说明',
-                    link: '/4.x/project/readme'
-                },
-                {
-                    text: '最佳实践',
-                    link: '/4.x/project/best-practice'
-                }
+                createLink('说明', '/4.x/project/readme'),
+                createLink('最佳实践', '/4.x/project/best-practice'),
             ]
         },
         {
             text: '框架',
             items: [
-                {
-                    text: '介绍',
-                    link: '/4.x/framework/readme'
-                },
-                {
-                    text: '配置',
-                    link: '/4.x/framework/config'
-                },
-                {
-                    text: 'Resp',
-                    link: '/4.x/framework/resp'
-                }
+                createLink('介绍', '/4.x/framework/readme'),
+                createLink('配置', '/4.x/framework/config'),
+                createLink('Resp', '/4.x/framework/resp'),
             ]
         },
         {
             text: '模块',
             items: [
-                {
-                    text: '介绍',
-                    link: '/4.x/module/readme'
-                },
-                {
-                    text: '菜单和权限',
-                    link: '/4.x/module/menu-and-permission'
-                },
-                {
-                    text: '服务和钩子',
-                    link: '/4.x/module/hook'
-                },
-                {
-                    text: '模型',
-                    link: '/4.x/module/models'
-                },
-                {
-                    text: '策略',
-                    link: '/4.x/module/policy'
-                },
-                {
-                    text: '事件',
-                    link: '/4.x/module/event'
-                },
-                {
-                    text: '更新',
-                    link: '/4.x/module/progress'
-                }
+                createLink('介绍', '/4.x/module/readme'),
+                createLink('菜单和权限', '/4.x/module/menu-and-permission'),
+                createLink('服务和钩子', '/4.x/module/hook'),
+                createLink('模型', '/4.x/module/models'),
+                createLink('策略', '/4.x/module/policy'),
+                createLink('事件', '/4.x/module/event'),
+                createLink('更新', '/4.x/module/progress'),
             ]
         },
         {
             text: '系统模块',
             items: [
-                {
-                    text: 'Core',
-                    link: '/4.x/poppy/core'
-                },
-                {
-                    text: 'System',
-                    link: '/4.x/poppy/system'
-                },
-                {
-                    text: 'Mgr Page',
-                    link: '/4.x/poppy/mgr-page'
-                },
-                {
-                    text: 'Aliyun Oss',
-                    link: '/4.x/poppy/aliyun-oss'
-                },
-                {
-                    text: 'Aliyun Push',
-                    link: '/4.x/poppy/aliyun-push'
-                },
-                {
-                    text: 'App',
-                    link: '/4.x/poppy/app'
-                },
-                {
-                    text: 'Sms',
-                    link: '/4.x/poppy/sms'
-                }
+                createLink('Core', '/4.x/poppy/core'),
+                createLink('System', '/4.x/poppy/system'),
+                createLink('Mgr Page', '/4.x/poppy/mgr-page'),
+                createLink('Aliyun Oss', '/4.x/poppy/aliyun-oss'),
+                createLink('Aliyun Push', '/4,x/poppy/aliyun-push'),
+                createLink('App', '/4.x/poppy/app'),
+                createLink('Sms', '/4.x/poppy/sms'),
             ]
         },
         {
             text: '扩展模块',
             items: [
-                {
-                    text: '介绍',
-                    link: '/4.x/extension/readme'
-                },
-                {
-                    text: '支付宝支付',
-                    link: '/4.x/extension/alipay'
-                },
-                {
-                    text: 'Ip Store',
-                    link: '/4.x/extension/ip_store'
-                },
-                {
-                    text: 'Phpstan',
-                    link: '/4.x/extension/phpstan'
-                }
+                createLink('介绍', '/4.x/extension/readme'),
+                createLink('支付宝支付', '/4.x/extension/alipay'),
+                createLink('Ip Store', '/4.x/extension/ip_store'),
+                createLink('Phpstan', '/4.x/extension/phpstan'),
             ]
         },
         {
             text: '[WIP]MgrApp',
             items: [
-                {
-                    text: '管理平台',
-                    link: '/4.x/poppy/mgr-app'
-                },
-                {
-                    text: 'Form',
-                    link: '/4.x/poppy/mgr-app-form'
-                },
-                {
-                    text: 'Grid',
-                    link: '/4.x/poppy/mgr-app-grid'
-                },
-                {
-                    text: 'Table',
-                    link: '/4.x/poppy/mgr-app-table'
-                }
+                createLink('管理平台', '/4.x/poppy/mgr-app'
+                ),
+                createLink('Form', '/4.x/poppy/mgr-app-form'),
+                createLink('Grid', '/4.x/poppy/mgr-app-grid'),
+                createLink('Table', '/4.x/poppy/mgr-app-table'),
             ]
         }
     ],
@@ -413,37 +206,28 @@ export const sidebar: ThemeConfig['sidebar'] = {
         {
             text: '开发',
             items: [
-                {
-                    text: 'ChangeLog',
-                    link: '/develop/changelog'
-                },
-                {
-                    text: '开发规范',
-                    link: '/develop/spec'
-                }
+                createLink('ChangeLog', '/develop/changelog'),
+                createLink('开发规范', '/develop/spec'),
             ]
         }
     ]
 }
 
 // Placeholder of the i18n config for @vuejs-translations.
-const i18n: ThemeConfig['i18n'] = {
+const i18n = {
     toc: '页内导航'
 }
 
-export default defineConfigWithTheme<ThemeConfig>({
-    extends: baseConfig,
-
+export default defineConfigWithTheme({
     lang: 'zh-CN',
     title: 'Poppy Framework',
     description: 'Poppy Framework - 基于 Laravel 的模块化加载框架',
     srcDir: 'src',
-    srcExclude: [],
-    scrollOffset: 'header',
-
+    base: '/docs/poppy',
     head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
 
     themeConfig: {
+        logo: '/logo.png',
         nav,
         sidebar,
         // Placeholder of the i18n config for @vuejs-translations.
@@ -456,11 +240,6 @@ export default defineConfigWithTheme<ThemeConfig>({
             { icon: 'twitter', link: 'https://twitter.com/DuoliVk' }
         ],
 
-        editLink: {
-            repo: 'imvkmark/poppy-docs',
-            text: 'Edit this page on GitHub'
-        },
-
         footer: {
             license: {
                 text: '鲁ICP备13016276号-9',
@@ -470,26 +249,36 @@ export default defineConfigWithTheme<ThemeConfig>({
         }
     },
 
-    markdown: {
-        config(md) {
-            md.use(headerPlugin)
-        }
-    },
-
     vite: {
         define: {
             __VUE_OPTIONS_API__: false
         },
-        optimizeDeps: {
-            include: ['gsap', 'dynamics.js'],
-            exclude: ['@vue/repl']
+        resolve: {
+            alias: [
+                {
+                    find: /^.*\/VPNavBarSearch\.vue$/,
+                    replacement: fileURLToPath(
+                        new URL('./theme/components/Search.vue', import.meta.url)
+                    )
+                }
+            ]
         },
-        // @ts-ignore
-        ssr: {
-            external: ['@vue/repl']
-        },
+        plugins: [
+            Components({
+                resolvers: [
+                    ElementPlusResolver()
+                ]
+            }),
+            AutoImport({
+                resolvers: [ElementPlusResolver()],
+            }),
+            SearchPlugin({
+                index: 'console'
+            })
+        ],
         server: {
             host: true,
+            port: 9428,
             fs: {
                 // for when developing with locally linked theme
                 allow: ['../..']
@@ -505,6 +294,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
 
     vue: {
-        reactivityTransform: true
+        reactivityTransform: true,
     }
 })

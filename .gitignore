@@ -106,7 +106,11 @@ dist/
 tmp/
 temp/
 TODOs.md
+src/auto-imports.d.ts
+src/components.d.ts
 src/api/index.json
 src/examples/data.json
 src/tutorial/data.json
 draft.md
+
+.vitepress/cache

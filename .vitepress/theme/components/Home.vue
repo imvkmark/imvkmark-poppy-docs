@@ -1,7 +1,6 @@
 <template>
     <section id="hero">
         <h1 class="tagline">
-
             <span class="accent">模块化开发框架</span>
             <br/>基于 Laravel
         </h1>
