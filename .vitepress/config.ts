@@ -278,15 +278,7 @@ export default defineConfigWithTheme({
         ],
         server: {
             host: true,
-            port: 9428,
-            fs: {
-                // for when developing with locally linked theme
-                allow: ['../..']
-            }
-        },
-        build: {
-            minify: 'terser',
-            chunkSizeWarningLimit: Infinity
+            port: 9428
         },
         json: {
             stringify: true

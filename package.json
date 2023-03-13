@@ -16,7 +16,6 @@
     "devDependencies": {
         "@types/markdown-it": "^12.2.3",
         "@types/node": "^18.15.0",
-        "terser": "^5.14.2",
         "unplugin-auto-import": "^0.15.1",
         "unplugin-vue-components": "^0.24.1"
     },
