@@ -1,9 +1,8 @@
 import { defineConfigWithTheme } from 'vitepress'
-import Components from 'unplugin-vue-components/vite'
-import AutoImport from 'unplugin-auto-import/vite'
 import { fileURLToPath, URL } from 'node:url'
-import { SearchPlugin } from './theme/meilisearch/index'
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import 'element-plus/dist/index.css'
 
 /**
@@ -226,7 +225,7 @@ export default defineConfigWithTheme({
     srcDir: 'src',
     base: '/docs/poppy',
     head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
-    mpa:true,
+    mpa: true,
     themeConfig: {
         logo: '/logo.png',
         nav,
@@ -266,11 +265,16 @@ export default defineConfigWithTheme({
             ]
         },
         plugins: [
+            AutoImport({
+                resolvers: [
+                    ElementPlusResolver()
+                ]
+            }),
             Components({
                 resolvers: [
                     ElementPlusResolver({ ssr: true })
                 ]
-            })
+            }),
         ],
         server: {
             host: true,
