@@ -224,20 +224,13 @@ export default defineConfigWithTheme({
     srcDir: 'src',
     base: '/docs/poppy',
     head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
-    mpa: true,
+    // mpa: true,
     themeConfig: {
         logo: '/logo.png',
         nav,
         sidebar,
         // Placeholder of the i18n config for @vuejs-translations.
         i18n,
-
-        // algolia,
-
-        socialLinks: [
-            { icon: 'github', link: 'https://github.com/imvkmark/' },
-            { icon: 'twitter', link: 'https://twitter.com/DuoliVk' }
-        ],
 
         footer: {
             license: {
@@ -255,7 +248,7 @@ export default defineConfigWithTheme({
         },
         resolve: {
             alias: {
-                './VPNavBarSearch.vue' : fileURLToPath(
+                './VPNavBarSearch.vue': fileURLToPath(
                     new URL('./theme/components/Search.vue', import.meta.url)
                 )
             }
@@ -279,9 +272,5 @@ export default defineConfigWithTheme({
         json: {
             stringify: true
         }
-    },
-
-    vue: {
-        reactivityTransform: true,
     }
 })
