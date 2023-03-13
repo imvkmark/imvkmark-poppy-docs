@@ -266,7 +266,7 @@ export default defineConfigWithTheme({
         plugins: [
             Components({
                 resolvers: [
-                    ElementPlusResolver()
+                    ElementPlusResolver({ ssr: true })
                 ]
             }),
             AutoImport({
