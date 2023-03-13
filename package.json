@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "element-plus": "^2.3.0",
-        "vitepress": "^1.0.0-alpha.54",
+        "vitepress": "^1.0.0-alpha.56",
         "vue": "^3.2.45"
     },
     "devDependencies": {
