@@ -4,6 +4,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { fileURLToPath, URL } from 'node:url'
 import { SearchPlugin } from './theme/meilisearch/index'
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import 'element-plus/dist/index.css'
 
 /**
  * Create Simple Link
@@ -268,9 +269,6 @@ export default defineConfigWithTheme({
                 resolvers: [
                     ElementPlusResolver({ ssr: true })
                 ]
-            }),
-            AutoImport({
-                resolvers: [ElementPlusResolver()],
             }),
             SearchPlugin({
                 index: 'console'
