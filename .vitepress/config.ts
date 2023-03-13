@@ -254,14 +254,11 @@ export default defineConfigWithTheme({
             __VITE_MEILISEARCH_INDEX__: JSON.stringify('console'),
         },
         resolve: {
-            alias: [
-                {
-                    find: /^.*\/VPNavBarSearch\.vue$/,
-                    replacement: fileURLToPath(
-                        new URL('./theme/components/Search.vue', import.meta.url)
-                    )
-                }
-            ]
+            alias: {
+                './VPNavBarSearch.vue' : fileURLToPath(
+                    new URL('./theme/components/Search.vue', import.meta.url)
+                )
+            }
         },
         plugins: [
             AutoImport({
