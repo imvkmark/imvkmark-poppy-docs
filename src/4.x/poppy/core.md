@@ -36,17 +36,23 @@ php artisan py-core:doc {slug}
 ### 检查代码
 
 ```
-php artisan py-core:inspect {slug}
-{slug} :
-    - apidoc     : 检查api文档(需要指定目录)
+php artisan py-core:inspect {type}
+{type} :
     - class      : 方法检测
-    - pages      : 检测页面Key[todo 以后会删掉]
     - file       : 检测文件命名[文件类和文件位置不匹配]
-    - database   : 检测数据库配置
     - controller : 列出所有功能点
     - action     : 列出所有业务逻辑
     - seo        : 生成 seo 项目
-    - db_seo     : 生成数据库SEO 数据
+    - trans      : 对 trans 数据进行导入验证
+```
+
+### 数据库
+
+```
+php artisan py-core:db {action}
+{action} :
+    - fields      : 生成数据库 db 缓存
+    - suggest     : 生成数据库建议项目, 便于简单规则的验证
 ```
 
 ### 运维工具
@@ -118,7 +124,7 @@ Version master
 
 ### apidoc
 
--   Type : `array`
+- Type : `array`
 
 api 接口文档配置, 改文档可以使用 `php artisan py-core:doc api` 来生成文档, 定义如下
 
@@ -141,14 +147,14 @@ api 接口文档配置, 改文档可以使用 `php artisan py-core:doc api` 来�
 
 ### op_mail
 
--   Type : `string`
--   Default : `env('CORE_OP_MAIL', '')`
+- Type : `string`
+- Default : `env('CORE_OP_MAIL', '')`
 
 后台可支持发送测试邮件, 这里配置发送人的邮箱
 
 ### rbac
 
--   Type : `array`
+- Type : `array`
 
 设置 RBAC 模型以及外键 KEY, 这里默认设定的是 `poppy/system` 模块的模型, 不使用此模块可以自行实现模型定义以及关联关系
 
@@ -182,7 +188,7 @@ api 接口文档配置, 改文档可以使用 `php artisan py-core:doc api` 来�
 缓存一般采用如下命名
 
 ```
-sys_cache('{slug}')->get('{name}')
+sys_tag('{slug}')->get('{name}')
 slug    : 根据模块目录来进行判定
     例如 poppy system 模块命名为 py-system
     例如 poppy core 模块命名为 py-core
@@ -226,10 +232,10 @@ class PyAreaDef
 function matchKv($clear = false)
 {
     if ($clear) {
-        sys_cache('py-area')->forget(PyAreaDef::ckMatchIdPid());
+        sys_tag('py-area')->forget(PyAreaDef::ckMatchIdPid());
     }
 
-    return sys_cache('py-area')->remember(PyAreaDef::ckMatchIdPid(), 10, function () {
+    return sys_tag('py-area')->remember(PyAreaDef::ckMatchIdPid(), 10, function () {
         return AreaContent::pluck('parent_id', 'id')->toArray();
     });
 }
