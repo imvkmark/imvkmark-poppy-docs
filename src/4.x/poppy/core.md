@@ -42,6 +42,7 @@ php artisan py-core:inspect {type}
     - file       : 检测文件命名[文件类和文件位置不匹配]
     - controller : 列出所有功能点
     - action     : 列出所有业务逻辑
+    - permission : 检测未在控制器使用的权限和已使用但是未定义的权限
     - seo        : 生成 seo 项目
     - trans      : 对 trans 数据进行导入验证
 ```
@@ -53,6 +54,7 @@ php artisan py-core:db {action}
 {action} :
     - fields      : 生成数据库 db 缓存
     - suggest     : 生成数据库建议项目, 便于简单规则的验证
+    - friendly    : 检查 Friendly trans 是否已定义
 ```
 
 ### 运维工具
@@ -328,11 +330,13 @@ $result = [
 
 如果需要持久化到数据库则需要执行相关命令
 
+```
 Usage:
 py-core:persist `<table>`
 
 Arguments:
-table Table to exec. [pam_log...|all]
+table  Table to exec. [pam_log...|all]
+```
 
 ```
 $this->app['events']->listen('console.schedule', function (Schedule $schedule) {
