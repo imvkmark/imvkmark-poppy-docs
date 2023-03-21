@@ -78,6 +78,65 @@ class JsController extends WebController
 }
 ```
 
+## Splash
+
+> splash 是前后端交互的约定方式, splash 使用返回的 json 的 data 属性作为 json 进行数据的传递
+
+例如: 服务端返回
+
+```php
+class JsController extends WebController
+{
+    /**
+     * 前台代码
+     * @return Factory|JsonResponse|RedirectResponse|Response|View
+     */
+    public function index()
+    {
+        if ($type === 'top-request') {
+            return Resp::error('错误信息', [
+                '_top' => [
+                    'operation' => 'doWhat',
+                ],
+            ]);
+        }
+    }
+}
+```
+
+服务器返回的数据格式为
+
+```
+{
+    "status": 1,
+    "message": "[local]错误信息",
+    "data": {
+        "_top": {
+            "operation": "doWhat"
+        }
+    }
+}
+```
+
+### _top
+
+定义为调用 `top.window._app(resp)` 这个函数, 数据为完整的状态数据, 此数据使用在同源策略下的前后端数据约定调用情况
+
+
+### _captcha_reload
+
+触发前端 `.J_captcha` 的点击事件
+
+### _top_location
+
+top 页面的 window 对象进行 location 跳转
+
+### _location
+
+当前页面的 window 对象进行 location 跳转
+
+
+
 ## 快捷表格
 
 ### 单文件列表
@@ -371,7 +430,7 @@ function mgr_col(int $width = 0, string $fixed = '', string $append = '')
 以下是完整的示例
 
 ```php
-<table class="layui-table" lay-filter="default">
+<table class="layui-table" {!! mgr_table_open() !!}>
     <thead>
     <tr>
         <th {!! mgr_col() !!}>ID</th>
@@ -416,7 +475,7 @@ function mgr_col(int $width = 0, string $fixed = '', string $append = '')
     </tbody>
 </table>
 
-{!! mgr_table() !!}
+ {!! mgr_table_close() !!}
 <div class="clearfix layui-card-pager" align="right">
     {!! $items->render('py-mgr-page::vendor.pagination-layui') !!}
 </div>
