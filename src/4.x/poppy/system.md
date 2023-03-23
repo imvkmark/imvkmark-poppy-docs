@@ -88,6 +88,14 @@ md5(sha1($password . $reg_datetime) . $randomKey);
 > 本模块的配置是注入到 `poppy.php` 文件中, 以下的所有配置均可配置
 > key 是 `poppy.system`
 
+### captcha_register
+
+- Type : `bool`
+- Default: `true`
+- Since: `4.2.51`
+
+是否允许通过手机号 + 验证码进行直接注册并登录, 默认开启, 可以通过 env 变量 `PY_SYS_CAPTCHA_LOGIN` 进行快捷设定
+
 ### cross_origin
 
 - Type : `string|array`
