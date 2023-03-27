@@ -130,7 +130,7 @@ Sami 配置文件查看 : [sami-config.php](https://github.com/imvkmark/poppy-co
 
 ### apidoc
 
--   Type : `array`
+- Type : `array`
 
 api 接口文档配置, 改文档可以使用 `php artisan py-core:doc api` 来生成文档, 定义如下
 
@@ -166,14 +166,14 @@ api 接口文档配置, 改文档可以使用 `php artisan py-core:doc api` 来�
 
 ### op_mail
 
--   Type : `string`
--   Default : `env('CORE_OP_MAIL', '')`
+- Type : `string`
+- Default : `env('CORE_OP_MAIL', '')`
 
 后台可支持发送测试邮件, 这里配置发送人的邮箱
 
 ### rbac
 
--   Type : `array`
+- Type : `array`
 
 设置 RBAC 模型以及外键 KEY, 这里默认设定的是 `poppy/system` 模块的模型, 不使用此模块可以自行实现模型定义以及关联关系
 
@@ -198,7 +198,6 @@ api 接口文档配置, 改文档可以使用 `php artisan py-core:doc api` 来�
 ],
 ```
 
-
 ## 缓存
 
 ### 缓存定义
@@ -208,7 +207,7 @@ api 接口文档配置, 改文档可以使用 `php artisan py-core:doc api` 来�
 缓存一般采用如下命名
 
 ```
-sys_cache('{slug}')->get('{name}')
+sys_tag('{slug}')->get('{name}')
 slug    : 根据模块目录来进行判定
     例如 poppy system 模块命名为 py-system
     例如 poppy core 模块命名为 py-core
@@ -216,10 +215,12 @@ slug    : 根据模块目录来进行判定
 name    : 代表的是缓存的名称
 ```
 
-为了保证缓存名称的唯一性我们约定
-slug : poppy 模块 : `py-{module}`
+为了保证缓存名称的唯一性我们约定, 对于缓存来讲存在可删除的缓存也存在不可删除的缓存(例如用户的登录 Token, 涉及到单点登录)
 
-name : name 使用静态方法定义, 支持传参
+- `slug` 
+
+poppy 模块 : `py-{module}`, 如果是需要持久化的缓存, 我们使用 `py-{module}-persist` 来作为标签, 对于缓存定义, 不建议在 `{Module}Def` 文件中添加 `tag:{module}` 标识, 而是应当使用 `slug + name` 方式进行缓存的约定
+- `name` : name 使用静态方法定义, 支持传参
 
 ### 示例
 
@@ -252,10 +253,10 @@ class PyAreaDef
 function matchKv($clear = false)
 {
     if ($clear) {
-        sys_cache('py-area')->forget(PyAreaDef::ckMatchIdPid());
+        sys_tag('py-area')->del(PyAreaDef::ckMatchIdPid());
     }
 
-    return sys_cache('py-area')->remember(PyAreaDef::ckMatchIdPid(), 10, function () {
+    return sys_tag('py-area')->remember(PyAreaDef::ckMatchIdPid(), 10, function () {
         return AreaContent::pluck('parent_id', 'id')->toArray();
     });
 }

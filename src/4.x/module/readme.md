@@ -160,7 +160,8 @@ class ServiceProvider extends PoppyServiceProvider
 
 ### 模块定义文件
 
-模块定义文件一般放置在 `{module}/src/Classes` 目录下, 文件名称为 `{Module}Def.php` , 用以放置项目中通用的缓存定义等通用型的定义数据
+模块定义文件一般放置在 `{module}/src/Classes` 目录下, 文件名称为 `{Module}Def.php` , 用以放置项目中通用的缓存定义等通用型的定义数据的 name 值, 不包含 `slug`,
+slug 在使用的时候定义
 
 - 缓存KEY定义
 - 错误码
@@ -177,7 +178,7 @@ class DemoDef
 
     public static function ckDemoCache(string $key) : string
     {
-        return '{module}:demo_cache_'.$key;
+        return 'demo_cache_'.$key;
     }
 }
 ```
