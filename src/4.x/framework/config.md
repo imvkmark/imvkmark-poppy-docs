@@ -1,5 +1,5 @@
 ---
-outline: deep
+outline : deep
 ---
 
 # 框架配置

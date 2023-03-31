@@ -102,8 +102,7 @@ export const sidebar = {
         {
             text: '项目',
             items: [
-                createLink('最佳实践', '/3.x/project/best-practice'
-                ),
+                createLink('最佳实践', '/3.x/project/best-practice'),
                 createLink('Code Review', '/3.x//project/code-review'),
                 createLink('前后端分离项目约定', '/3.x/project/fe-backend'),
                 createLink('[WIP] Laravel-Mix', '/3.x/project/fe-mix'),
@@ -114,8 +113,7 @@ export const sidebar = {
         {
             text: '模型',
             items: [
-                createLink('业务逻辑', '/3.x/module/action'
-                ),
+                createLink('业务逻辑', '/3.x/module/action'),
                 createLink('事件', '/3.x/module/event'),
                 createLink('服务和钩子', '/3.x/module/hook'),
                 createLink('国际化', '/3.x/module/lang'),
@@ -123,10 +121,8 @@ export const sidebar = {
                 createLink('模型', '/3.x/module/models'),
                 createLink('权限', '/3.x/module/permission'),
                 createLink('策略', '/3.x/module/policy'),
-                createLink('批次更新', '/3.x/module/progress'
-                ),
-                createLink('常见问题', '/3.x/module/qa'
-                ),
+                createLink('批次更新', '/3.x/module/progress'),
+                createLink('常见问题', '/3.x/module/qa'),
                 createLink('说明', '/3.x/module/readme'),
             ]
         }
@@ -135,10 +131,8 @@ export const sidebar = {
         {
             text: '前言',
             items: [
-                createLink('版本说明', '/4.x/'
-                ),
-                createLink('升级说明', '/4.x/upgrade'
-                ),
+                createLink('版本说明', '/4.x/'),
+                createLink('升级说明', '/4.x/upgrade'),
                 createLink('常见问题', '/4.x/faq'),
             ]
         },
@@ -153,6 +147,7 @@ export const sidebar = {
             text: '框架',
             items: [
                 createLink('介绍', '/4.x/framework/readme'),
+                createLink('验证', '/4.x/framework/rules'),
                 createLink('配置', '/4.x/framework/config'),
                 createLink('Resp', '/4.x/framework/resp'),
             ]
