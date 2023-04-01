@@ -219,7 +219,7 @@ export default defineConfigWithTheme({
     srcDir: 'src',
     base: '/docs/poppy',
     head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
-    mpa: true,
+    mpa: false,
     themeConfig: {
         logo: '/logo.png',
         nav,
@@ -228,10 +228,6 @@ export default defineConfigWithTheme({
         i18n,
 
         footer: {
-            license: {
-                text: '鲁ICP备13016276号-9',
-                link: 'https://beian.miit.gov.cn/#/Integrated/index'
-            },
             copyright: `Copyright © 2015-${new Date().getFullYear()} duoli`
         }
     },
