@@ -1,5 +1,5 @@
 {
     "env": {
-        "VITE_VERCEL": true
+        "VITE_VERCEL": "1"
     }
 }
