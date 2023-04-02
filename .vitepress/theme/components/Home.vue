@@ -8,7 +8,7 @@
             快速, 便捷, 全站式, 接口调用
         </p>
         <p class="actions">
-            <a class="get-started" href="/3.x/">
+            <a class="get-started" href="/4.x/">
                 开始使用
                 <svg
                     class="icon"
@@ -87,7 +87,6 @@ html:not(.dark) .accent,
 .description {
     max-width: 960px;
     line-height: 1.5;
-    color: var(--vt-c-text-2);
     transition: color 0.5s;
     font-size: 22px;
     margin: 24px auto 40px;
@@ -96,7 +95,6 @@ html:not(.dark) .accent,
 .actions a {
     font-size: 16px;
     display: inline-block;
-    background-color: var(--vt-c-bg-mute);
     padding: 8px 18px;
     font-weight: 500;
     border-radius: 8px;
@@ -118,64 +116,22 @@ html:not(.dark) .accent,
 
 .actions .get-started:hover {
     transition-duration: 0.2s;
+    text-decoration: none;
 }
 
 .actions .get-started:hover .icon {
     transform: translateX(2px);
 }
 
-.actions .get-started,
-.actions .setup {
-    color: var(--vt-c-text-code);
-}
-
-.actions .get-started:hover,
-.actions .setup:hover {
-    background-color: var(--vt-c-gray-light-4);
-    transition-duration: 0.2s;
-}
-
-.dark .actions .get-started:hover,
-.dark .actions .setup:hover {
-    background-color: var(--vt-c-gray-dark-3);
-}
-
-#special-sponsor {
-    border-top: 1px solid var(--vt-c-divider-light);
-    border-bottom: 1px solid var(--vt-c-divider-light);
-    padding: 12px 24px;
-    text-align: center;
-}
-
-#special-sponsor span {
-    color: var(--vt-c-text-2);
-    font-weight: 500;
-    font-size: 13px;
-    vertical-align: middle;
-    margin: 0 24px;
-}
-
-#special-sponsor img {
-    display: inline-block;
-    vertical-align: middle;
-    height: 36px;
-}
-
-.dark #special-sponsor img {
-    filter: grayscale(1) invert(1);
-}
-
 #highlights {
     max-width: 960px;
-    margin: 0px auto;
-    color: var(--vt-c-text-2);
+    margin: 0 auto;
 }
 
 #highlights h2 {
     font-weight: 600;
     font-size: 20px;
     letter-spacing: -0.4px;
-    color: var(--vt-c-text-1);
     transition: color 0.5s;
     margin-bottom: 0.75em;
 }
@@ -189,12 +145,6 @@ html:not(.dark) .accent,
     background-color: transparent;
 }
 
-
-#sponsors h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 1em;
-}
 
 @media (max-width: 960px) {
     .tagline {
@@ -225,11 +175,6 @@ html:not(.dark) .accent,
         margin: 18px 0 30px;
     }
 
-    #special-sponsor img {
-        display: block;
-        margin: 2px auto 1px;
-    }
-
     #highlights h3 {
         margin-bottom: 0.6em;
     }
@@ -247,5 +192,10 @@ html:not(.dark) .accent,
     .tagline {
         font-size: 36px;
     }
+}
+
+.vt-box-container {
+    display: flex;
+    justify-content: space-between;
 }
 </style>

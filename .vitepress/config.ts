@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import process from "process";
 
 /**
  * Create Simple Link
@@ -217,7 +218,7 @@ export default defineConfigWithTheme({
     title: 'Poppy Framework',
     description: 'Poppy Framework - 基于 Laravel 的模块化加载框架',
     srcDir: 'src',
-    base: '/docs/poppy',
+    base: process.env.VITE_VERCEL ? '/' : '/docs/poppy',
     head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
     mpa: false,
     themeConfig: {
