@@ -380,9 +380,8 @@ class ListSysSensitiveWord extends ListBase
 
 我们首先需要在表格 `table` 中加入 `lay-filter="default"` 来标示这是一个layui 可以渲染的表格
 
-```html
-
-<table class="layui-table" lay-filter="default">
+```
+<table class="layui-table" {!! mgr_table_open() !!}>
     ...
 </table>
 ```
@@ -390,10 +389,10 @@ class ListSysSensitiveWord extends ListBase
 在页面底部, 我们需要调用 layui 的 table 初始化方法, 为了方便, 封装了一个函数来达到快速输出的效果
 
 ```
-{!! mgr_table() !!}
+{!! mgr_table_close() !!}
 ```
 
-如果列表中有多个表格, 可以传入 `mgr_table(string $filter)` 参数来进行多个列表的初始化
+如果列表中有多个表格, 可以传入 `mgr_table_open(string $filter)` 参数来进行多个列表的初始化
 
 ### 列定义
 
