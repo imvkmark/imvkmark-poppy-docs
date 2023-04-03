@@ -1,5 +1,5 @@
 ---
-outline: deep
+outline : deep
 ---
 
 # 验证规则
@@ -32,5 +32,5 @@ outline: deep
 
 ### urls
 
-验证是否是 url 地址
+验证批量数据是否是 url 地址, 当文件进行批量上传时候, 生成的数据类似于 `blob://****` 这种类型的数据, 这种数据并非正确的 url 数据 
 
