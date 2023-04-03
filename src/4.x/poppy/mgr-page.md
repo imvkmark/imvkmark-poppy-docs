@@ -1,5 +1,5 @@
 ---
-outline: deep
+outline : deep
 ---
 
 # 后台管理
@@ -122,7 +122,6 @@ class JsController extends WebController
 
 定义为调用 `top.window._app(resp)` 这个函数, 数据为完整的状态数据, 此数据使用在同源策略下的前后端数据约定调用情况
 
-
 ### _captcha_reload
 
 触发前端 `.J_captcha` 的点击事件
@@ -131,11 +130,25 @@ class JsController extends WebController
 
 top 页面的 window 对象进行 location 跳转
 
+### _parent_location
+
+打开当前页面的父页面的 window 对象进行 location 跳转
+
 ### _location
 
 当前页面的 window 对象进行 location 跳转
 
+### _top_reload
 
+top 页面的 window 对象进行 reload 刷新
+
+### _parent_reload
+
+打开当前页面的父页面的 window 对象进行 reload 刷新
+
+### _reload
+
+当前页面的 window 对象进行 reload 刷新
 
 ## 快捷表格
 
