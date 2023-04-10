@@ -237,6 +237,7 @@ export default defineConfigWithTheme({
         define: {
             __VUE_OPTIONS_API__: false,
             __VITE_MEILISEARCH_INDEX__: JSON.stringify('console'),
+            __VITE_IS_VERCEL__: process.env.VITE_VERCEL ? 'Y' : 'N',
         },
         resolve: {
             alias: {

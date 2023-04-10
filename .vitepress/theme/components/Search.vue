@@ -1,6 +1,6 @@
 <template>
-    <div>
-         <input type="search" class="search-input" id="search-bar-input" placeholder="输入 '/' 搜索" readonly @click="isOpen=true"/>
+    <div v-if="__VITE_IS_VERCEL__ === 'N'">
+        <input type="search" class="search-input" id="search-bar-input" placeholder="输入 '/' 搜索" readonly @click="isOpen=true"/>
     </div>
     <ElDialog v-model="isOpen">
         <iframe class="iframe" :src="`https://i.huowanes.com/misc/search/meili?index=${host}`"/>
@@ -14,7 +14,6 @@ const isOpen = ref(false);
 const host = __VITE_MEILISEARCH_INDEX__;
 
 onMounted(() => {
-    console.log(host);
     document.addEventListener('keypress', (k) => {
         if (k.key === '/') {
             isOpen.value = true;

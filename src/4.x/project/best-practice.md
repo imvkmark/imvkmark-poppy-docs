@@ -25,11 +25,23 @@ $ phplint /path/of/code -c /framework/path/.phplint.yml
 
 ## composer 配置
 
+### 加入安全策略
+
+项目根 `composer.json` 中加入安全建议
+
+```
+{
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    }
+}
+```
+
 ### 开发文件不需要自动加载
 
--   项目中使用 IDE Helper 生成浏览器提示文件,
-    此文件在正式项目下不需要进行加载
--   Clockwork 不需要加载
+- 项目中使用 IDE Helper 生成浏览器提示文件,
+  此文件在正式项目下不需要进行加载
+- Clockwork 不需要加载
 
 ```
 "extra" : {
