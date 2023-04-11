@@ -24,6 +24,25 @@ $ php artsian poppy:make {slug} -Q
 
 这里的 `order` 是对于模块进行排序的, 该项目可以控制模块中间菜单的顺序, 模块的加载顺序, 如果要调整各个模块菜单的加载顺序可以通过此参数进行调整, 排序规则 : 递增
 
+## 配置
+
+模块配置文件 :`config/module.php`
+
+模块配置依据模块命名进行设置
+
+```php
+return [
+    'module1' => [
+        'some-config': true
+    ],
+    
+    //...
+    'module2' => [
+        'some-config': true
+    ],
+],
+```
+
 ## 文件树
 
 ```

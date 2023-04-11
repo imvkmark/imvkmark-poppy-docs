@@ -1,5 +1,5 @@
 ---
-outline: deep
+outline : deep
 ---
 
 # 权限和菜单
@@ -14,7 +14,7 @@ $ php artisan poppy:optimize
 
 ### 支持的类型
 
-key 包含 backend(后端), develop(开发), web(前台)这几个部分.
+key 包含 backend(后端), web(前台)这几个部分.
 
 ```yaml
 backend :
@@ -29,7 +29,6 @@ backend :
           title : 广告位管理
           route : py-ad:backend.place.index
           permission : backend:poppy-ad.place.manage
-develop : ...
 ```
 
 ### key 说明
@@ -42,12 +41,11 @@ injection : 分组的插入目标地 'poppy.mgr-page/backend||setting' 代表放
 match     : 用于路由的第三级别, 页面中内容区域和右侧菜单项目的匹配,不设置可能会导致页面菜单为空
 ```
 
-
 ## 权限
 
 ### 定义
 
-权限解释 : backend:system.global.manage
+权限解释 : `backend:system.global.manage`
 
 ```
 backend : 后台
@@ -94,28 +92,29 @@ $ php artisan py-core:permission init
 
 在控制器中定义变量 `self::$permission`, 并赋值全局权限, 则可以对控制器进行权限控制
 
+其中 :
+
+- `global` 用于对没有设定方法的权限进行全部的权限限定
+- `create` 用于对 `create` 方法进行权限设定
+
 ```php
 /**
  * 广告位管理
  */
 class PlaceController extends InitController
 {
-    public function __construct()
-    {
-        parent::__construct();
-        // 这里的权限定义可以和策略定义在一处
-        // 可以写成
-        // self::$permission = AdPlacePolicy::getPermissionMap();
-        self::$permission = [
-            'global'     => 'backend:ad.place.manage',
-        ];
-    }
+    public static $permission = [
+        'global'     => 'backend:ad.place.manage',
+        'create'     => 'backend:ad.place.create',
+    ];
 }
 ```
 
 ### 操作
 
 **策略中权限的定义**
+
+对于在策略中使用的权限, 建议使用 `$permissionMap` 进行权限的统一定义, 这样既可在使用权限的时候便可以进行权限的校验
 
 ```php
 /**
@@ -129,9 +128,6 @@ class AdPlacePolicy
      * @var array 权限映射
      */
     protected static $permissionMap = [
-        // for controller
-        'establish'  => 'backend:ad.place.establish',
-        'global'     => 'backend:ad.place.manage',
         // create 操作 必须要有对应的  'backend:ad.place.establish' 权限
         'create'     => 'backend:ad.place.establish',
         'edit'       => 'backend:ad.place.establish',
@@ -163,4 +159,12 @@ _编辑_
         <i class="bi bi-pencil text-info"></i>
     </a>
 @endcan
+```
+
+### 验证
+
+使用以下命令验证权限在项目中是否有多余的定义, 这个前提是权限必须定义在策略中或者控制器中
+
+```console
+$ php artisan py-core:inspect permission
 ```

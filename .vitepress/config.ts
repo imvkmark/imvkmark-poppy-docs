@@ -186,16 +186,6 @@ export const sidebar = {
                 createLink('Phpstan', '/4.x/extension/phpstan'),
             ]
         },
-        {
-            text: '[WIP]MgrApp',
-            items: [
-                createLink('管理平台', '/4.x/poppy/mgr-app'
-                ),
-                createLink('Form', '/4.x/poppy/mgr-app-form'),
-                createLink('Grid', '/4.x/poppy/mgr-app-grid'),
-                createLink('Table', '/4.x/poppy/mgr-app-table'),
-            ]
-        }
     ],
     '/develop': [
         {
@@ -225,6 +215,26 @@ export default defineConfigWithTheme({
         logo: '/logo.png',
         nav,
         sidebar,
+        offlineSearch: {
+            locales: {
+                zh: {
+                    translations: {
+                        button: {
+                            buttonText: '搜索文档',
+                            buttonAriaLabel: '搜索文档'
+                        },
+                        modal: {
+                            noResultsText: '无法找到相关结果',
+                            resetButtonTitle: '清除查询条件',
+                            footer: {
+                                selectText: '选择',
+                                navigateText: '切换'
+                            }
+                        }
+                    }
+                }
+            }
+        },
         // Placeholder of the i18n config for @vuejs-translations.
         i18n,
 
@@ -237,13 +247,13 @@ export default defineConfigWithTheme({
         define: {
             __VUE_OPTIONS_API__: false,
             __VITE_MEILISEARCH_INDEX__: JSON.stringify('console'),
-            __VITE_IS_VERCEL__: process.env.VITE_VERCEL ? 'Y' : 'N',
+            // __VITE_IS_VERCEL__: process.env.VITE_VERCEL ? 'Y' : 'N',
         },
         resolve: {
             alias: {
-                './VPNavBarSearch.vue': fileURLToPath(
-                    new URL('./theme/components/Search.vue', import.meta.url)
-                )
+                // './VPNavBarSearch.vue': fileURLToPath(
+                //     new URL('./theme/components/Search.vue', import.meta.url)
+                // )
             }
         },
         plugins: [

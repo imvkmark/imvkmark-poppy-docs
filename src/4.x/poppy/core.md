@@ -1,5 +1,5 @@
 ---
-outline: deep
+outline : deep
 ---
 
 # 核心
@@ -33,6 +33,10 @@ php artisan py-core:doc {slug}
     - log   : 查看当天的 storage 日志
 ```
 
+**PHP-CS-Fixer**
+
+[PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) is a tool to automatically fix PHP Coding Standards issues, We use it for Code Specification.
+
 ### 检查代码
 
 ```
@@ -45,6 +49,7 @@ php artisan py-core:inspect {type}
     - permission : 检测未在控制器使用的权限和已使用但是未定义的权限
     - seo        : 生成 seo 项目
     - trans      : 对 trans 数据进行导入验证
+    - validation : 对通用验证项目进行校验
 ```
 
 ### 数据库

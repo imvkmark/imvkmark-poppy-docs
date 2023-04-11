@@ -1,5 +1,5 @@
 <template>
-    <div v-if="__VITE_IS_VERCEL__ === 'N'">
+    <div v-if="isVercel === 'N'">
         <input type="search" class="search-input" id="search-bar-input" placeholder="输入 '/' 搜索" readonly @click="isOpen=true"/>
     </div>
     <ElDialog v-model="isOpen">
@@ -12,6 +12,7 @@ import { onMounted, ref } from "vue";
 
 const isOpen = ref(false);
 const host = __VITE_MEILISEARCH_INDEX__;
+const isVercel = __VITE_IS_VERCEL__;
 
 onMounted(() => {
     document.addEventListener('keypress', (k) => {

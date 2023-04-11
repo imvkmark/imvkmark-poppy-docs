@@ -4,7 +4,9 @@ outline : deep
 
 # 后台管理
 
-> 基于 layui 的后台管理工具包
+> 基于 layui 的后台管理工具包, 
+
+演示地址 : [http://v4.wulicode.com/demo](http://v4.wulicode.com/demo/)
 
 ## 资源打包
 

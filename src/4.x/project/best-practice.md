@@ -1,27 +1,38 @@
 # 最佳实践
 
+## 参考阅读
+
+- [JetBrains 系 IDE 常用插件](https://juejin.cn/post/7220683059866730557/)
+
 ## 配置
 
 对于文件目录 & 网址, 我们不建议在右侧添加 `/` 作为后缀, 例如
 
 ```
-URL_SITE=https://wulicode.com
+URL_SITE=http://v4.wulicode.com
 ```
 
-## phplint
+## Inspect
 
-[phplint](https://github.com/overtrue/phplint)是一个快速检测 php 语法错误的工具,
-此工具无需安装在项目中, 全局安装即可.
+[Inspect](../poppy/core.md#检查代码) 是开发过程中的工具, 用来检查项目中的文件注释, 文件命名, seo 命名, 权限等是否都满足项目定义
 
-```
-$ composer global require overtrue/phplint -vvv
-$ php artisan system:doc lint
-$ phplint /path/of/code -c /framework/path/.phplint.yml
+```console
+$ php artisan py-core:inspect > inspect.txt 
 ```
 
-## 项目优化 optimize
+:::tip
 
-运行 `php artisan poppy:optimize` 保障依赖组件均已经安装
+- [必须] 完成 seo 校验
+- [必须] 完成 validation 校验
+- [必须] 完成 class 加载校验
+- [建议] 完成代码注释
+  :::
+
+## 代码
+
+### 代码编写符合规范
+
+### 测试用例完善并且通过
 
 ## composer 配置
 
@@ -35,23 +46,6 @@ $ phplint /path/of/code -c /framework/path/.phplint.yml
         "roave/security-advisories": "dev-latest"
     }
 }
-```
-
-### 开发文件不需要自动加载
-
-- 项目中使用 IDE Helper 生成浏览器提示文件,
-  此文件在正式项目下不需要进行加载
-- Clockwork 不需要加载
-
-```
-"extra" : {
-    "laravel" : {
-        "dont-discover" : [
-            "itsgoingd/clockwork",
-            "barryvdh/laravel-ide-helper",
-        ]
-    }
-},
 ```
 
 ### 映射 Form , 需要在 composer 中加入数据
@@ -81,16 +75,10 @@ $ phplint /path/of/code -c /framework/path/.phplint.yml
 ];
 ```
 
-生成自动加载类
+更新并清空换粗
 
 ```
-composer dumpautoload
-```
-
-清空缓存的数据
-
-```
-php artisan poppy:optimize
+composer dumpautoload && php artisan poppy:optimize
 ```
 
 然后在 `app.php` 的 `aliases` 部分加入
@@ -104,90 +92,14 @@ php artisan poppy:optimize
 ];
 ```
 
-## 模块配置 (config/module.php)
+### IDE 项目配置
 
-## IDE 项目配置
-
-### 可以隐藏的目录
+**忽略掉的目录**
 
 右键忽略掉即可, 这个是生成的文件, 不需要进行 php 索引
 
 ```
-前端文件
-========
-public/assets/css
-public/assets/font/fontawesome
-public/assets/js/system_cp.js
-public/assets/js/system_vendor.js
-public/assets/easy-web
-```
-
-### IDE 插件配置
-
-#### 插件 [.ignore](https://plugins.jetbrains.com/plugin/7495--ignore)
-
-可以在编辑器忽略文件显示的组件
-
-[.ignore 示例文件](https://gist.github.com/imvkmark/15198641b214b35916cf54414516caf0)
-
-#### 插件 [Laravel Plugin](https://plugins.jetbrains.com/plugin/7532-laravel-plugin)
-
-**启用 插件**
-
-找到 `Preferences | Languages & Frameworks | PHP | Laravel`, 然后开启 `Enable Plugin for this project`
-
-**配置 view 的映射**
-例如 `system` 模块的映射地址应该是 `modules/system/resources/views`
-
-这样在点击的时候才能够跳转到这个页面
-
-**启用控制器的命名空间检测**
-
-在 `Router Namespace` 中添加相关的命名空间, 多个使用 `,` 分隔.
-
-#### 插件 [php inspection](https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-)
-
-开启之后需要需要在写 PHP 的时候注意项目, [相关的文档点击](https://github.com/kalessil/phpinspectionsea/tree/master/docs)
-
-#### 插件 [String Manipulation](https://plugins.jetbrains.com/plugin/2162-string-manipulation)
-
-> 提供字符的便捷操作
-
-#### 插件 [CamelCase](https://plugins.jetbrains.com/plugin/7160-camelcase)
-
-> 提供大小写转换
-
-## 前端组件文档
-
-### 多图片/视频上传
-
-```
-{!! Form::multiThumb('images', [], $options) !!}
-
-options    类型      默认值    备注
----------- -------- -------- --------------------------------
-pam        object   null     当前用户对象, 用于上传文件的授权
-type       string   image    允许传入的文件类型支持 (image:图片;video:视频;picture:音视频)
-sequence   bool     false    是否支持排序
-number     int      3        本表单允许上传的最大数量
-```
-
-### PHP-CS-Fixer
-
-[PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) is a tool to automatically fix PHP Coding Standards issues, We use it for Code Specification.
-
-### 测试用例完善并且通过
-
-### 注释完善并且通过
-
-注释使用 `modules/system` 模块来检测
-
-```
-$ php artisan system:inspect class > fp.txt
-```
-
-### 代码清理过
-
-```
-ide:clean code
+public/assets/
+storage/clockwork/
+storage/phpunit/
 ```
