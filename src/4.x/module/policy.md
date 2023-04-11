@@ -8,8 +8,8 @@
 
 ```php
 protected $policies = [
-    PamRole::class    => RolePolicy::class,
-    PamAccount::class => AccountPolicy::class,
+    PamRole::class    => PamRolePolicy::class,
+    PamAccount::class => PamAccountPolicy::class,
 ];
 ```
 
@@ -65,21 +65,46 @@ trait PolicyTrait
 }
 ```
 
-## 控制器
+## 无权操作
 
-```php
-class RoleController extends BackendController
+用户在策略中使用校验会触发更加详细的权限说明
+
+以下是在表单请求中进行策略验证的示例
+
+```
+class ExceptionPolicyRequest extends Request
 {
-    public function __construct()
+
+    public function authorize(): bool
     {
-        parent::__construct();
-        self::$permission = [
-            'global' => 'backend:py-system.role.manage',
-            'delete' => 'backend:py-system.role.delete',
-            'menu'   => 'backend:py-system.role.permissions',
-        ];
+        return $this->can('create', DemoWebapp::class);
+    }
+
+    public function rules(): array
+    {
+        return [];
     }
 }
+
 ```
 
-这里定义的 permission 权限会在 `RbacPermission` 中间件中有拦截,让用户无法通过控制器来进入这个操作, 看到相关的数据.
+当我们使用 FormRequest 的时候如果权限返回 false 则会触发 `AuthorizationException` 异常, 这个异常在提示过程中是不友好的
+
+内容是 : `This action is unauthorized.`, 即使我们做了拦截, 也只能够出现: `操作未授权, 无权操作`, 所以我们封装了一个方法进行友好的提示
+
+设置位置 : `{module}/resources/lang/zh/util.php`
+
+```php
+<?php
+
+return [
+    'policy' => [
+        'demo_webapp' => [
+            'create' => '创建应用',
+        ],
+    ],
+];
+```
+
+这样的提示语则为 `你无权操作 创建应用`, 这样的提示是比较友好的
+
